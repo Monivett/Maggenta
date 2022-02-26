@@ -2,7 +2,6 @@ const express = require("express"); //Mandamos a llamar el contenido de la  libr
 const bodyParser = require("body-parser");//Mandamos a llamar el contenido de la  librería bodyparser
 const app = express(); //Creamos la aplicación
 const port = 5000; //Puerto del servicio
-
 require('./models/connection')
 
 /*Requiers de las rutas */
