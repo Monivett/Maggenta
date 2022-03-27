@@ -1,0 +1,4 @@
+WWWIIII
+para entrar a la carpeta de front end primero en la terminar pon cd frontend. 
+Para iniciar le proyecto: npm start 
+Si cierras tu ventana, en el navegador localhost:3000
