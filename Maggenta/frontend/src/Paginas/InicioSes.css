@@ -1,0 +1,48 @@
+body{
+    background: #282828;
+}
+.form{
+    align-items: center;
+    font-family: Arial Black;
+}
+
+#login{
+    align-items: center;
+    height: 420px;
+    width: 500px;
+    font-family: Arial Black;
+    background:  #f54a7e;
+    padding: 40px 50px;
+    border-radius: 10px;
+    margin-top: 170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+#entrar{
+    font-size: 22px;
+    margin-left: 150px;
+}
+.btn{
+    color:#f54a7e;
+}
+
+.logoFORMS{
+    margin-left: 50px;
+}
+
+#letraCorreo{
+    font-size: 22px;
+    margin-left: 90px;
+}
+
+#letraContra{
+    font-size: 22px;
+    margin-left: 130px;
+}
+
+h1,label{
+    color:#ffffff;
+}

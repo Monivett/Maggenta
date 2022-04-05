@@ -1,0 +1,34 @@
+body{
+    background: #282828;
+}
+
+.todo{
+    align-items: center;
+    font-family: Arial Black;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 180px;
+}
+
+
+#letraTIPO{
+    font-size: 20px;
+}
+
+#letraPRECIO{
+    font-size: 20px;
+}
+
+#letraEJEMPLO{
+    font-size: 20px;
+}
+
+#agregar{
+    margin-left: 210px;
+    color:#f54a7e;
+}
+
+h2,label{
+    color:#ffffff;
+}

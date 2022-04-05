@@ -12,7 +12,13 @@ function Nav() {
           <a class="nav-link" href="#">BEBE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">BOBO</a>
+        <Link class="nav-link active" aria-current="page" to="login" >Login</Link>
+        </li>
+        <li class="nav-item">
+        <Link class="nav-link active" aria-current="page" to="Registro" >Registro</Link>
+        </li>
+        <li class="nav-item">
+        <Link class="nav-link active" aria-current="page" to="Comision" >Comision</Link>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled">BUBU</a>
