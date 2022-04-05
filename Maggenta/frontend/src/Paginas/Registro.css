@@ -1,0 +1,20 @@
+body{
+    background: #282828;
+}
+
+.registrarse{
+    align-items: center;
+    height: 720px;
+    width: 550px;
+    font-family: Arial Black;
+    background:  #f54a7e;
+    padding: 40px 50px;
+    border-radius: 10px;
+    margin-top: 140px;
+    margin-right: 160px;
+}
+
+.hola{
+    margin-top: 140px;
+    margin-left: 190px;
+}
