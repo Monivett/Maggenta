@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './Colores.css';
 
 function Nav() {
+
   return (
     <Fragment>
 
@@ -105,3 +106,37 @@ function Nav() {
 }
 
 export default Nav;
+/*
+    return (
+
+        <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <Link class="nav-link active" aria-current="page" to="Perfil" >Perfil</Link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">BEBE</a>
+        </li>
+        <li class="nav-item">
+        <Link class="nav-link active" aria-current="page" to="login" >Login</Link>
+        </li>
+        <li class="nav-item">
+        <Link class="nav-link active" aria-current="page" to="Registro" >Registro</Link>
+        </li>
+        <li class="nav-item">
+        <Link class="nav-link active" aria-current="page" to="Comision" >Comision</Link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">BUBU</a>
+        </li>
+      </ul>
+
+      // Tiene que retornar una sola cosa uwu
+      //Un Div Gigante o un Fragment.
+      
+
+    );
+  }
+  
+  export default Nav;
+  
+*/

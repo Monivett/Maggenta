@@ -7,7 +7,13 @@ import Chat from "./Paginas/Chat";
 import Publicaion from "./Paginas/Publicacion";
 import SubirPub from "./Paginas/SubirPub";
 import Home from "./Paginas/Home";
-import Foot from "./Paginas/Footer";
+
+//import Foot from "./Paginas/Footer";
+=======
+//import Login from "./Paginas/InicioSes";
+//import Registro from "./Paginas/Registro";
+//import Comision from "./Paginas/Comision";
+
 
 function App() {
   return (
@@ -20,6 +26,9 @@ function App() {
         <Route path="Chat" element={<Chat />} />
         <Route path="SubirPub" element={<SubirPub />} />
         <Route path="Publicacion" element={<Publicaion />} />
+        <Route path="login" element={<Login />} />
+        <Route path="Registro" element={<Registro />} />
+        <Route path="Comision" element={<Comision />} />
 
       </Routes>
       <Foot>
