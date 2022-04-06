@@ -24,9 +24,12 @@ function Nav() {
             </div>
 
             <div className="col  mt-3 ">
-
+            <Link to= "/login">
               <button className="btn btn-outline-info m-1" type="submit">Iniciar Sesion</button>
+              </Link>
+              <Link to= "/Registro">
               <button className="btn btn-outline-info m-1" type="submit">Registrarse</button>
+              </Link>
 
               <Link to= "/SubirPub">
               < button className="btn btn-outline-info m-1" > < svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-brush-fill" viewBox="0 0 16 16">
@@ -50,7 +53,7 @@ function Nav() {
           </div>
           <div className="row bg2">
             <ul className="navbar-nav    bg  p-1 ">
-              <li className="nav-item"><Link className="nav-link text-white" href="/">Inicio</Link></li>
+              <li className="nav-item"><Link className="nav-link text-white" to="/" >Inicio</Link></li>
               <li className="nav-item"><a className="nav-link text-white" href="#">FanArts</a></li>
               <li className="nav-item"><a className="nav-link text-white" href="#">Escenarios</a></li>
               <li className="nav-item"><a className="nav-link text-white" href="#">Sketch</a></li>

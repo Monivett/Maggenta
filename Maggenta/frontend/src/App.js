@@ -11,7 +11,8 @@ import Login from "./Paginas/InicioSes";
 import Registro from "./Paginas/Registro";
 import Comision from "./Paginas/Comision";
 import Foot from "./Paginas/Footer";
-import Comision from "./Paginas/Comision";
+import ComisionesHoja from "./Paginas/ComisionesHoja";
+
 import EditarPerfil from "./Paginas/EditarPerfil";
 
 function App() {
@@ -28,10 +29,8 @@ function App() {
         <Route path="Registro" element={<Registro />} />
         <Route path="Comision" element={<Comision />} />
         <Route path="EditarPerfil" element={<EditarPerfil />} />
+        <Route path="ComisionesHoja" element={<ComisionesHoja />} />
       </Routes>
-      <Foot>
-
-      </Foot>
       <Foot/>
     </Fragment>
 
