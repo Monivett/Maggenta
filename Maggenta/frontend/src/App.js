@@ -7,6 +7,7 @@ import Chat from "./Paginas/Chat";
 import Publicaion from "./Paginas/Publicacion";
 import SubirPub from "./Paginas/SubirPub";
 import Home from "./Paginas/Home";
+import Foot from "./Paginas/Footer";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         <Route path="Publicacion" element={<Publicaion />} />
 
       </Routes>
+      <Foot>
+
+      </Foot>
 
     </Fragment>
 
