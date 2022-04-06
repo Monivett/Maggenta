@@ -12,14 +12,9 @@ function Nav() {
         <div className="container-fluid ">
           <div className="row bg2">
             <div className="col m-3 " >
-
               <img className="" src={require("../IMG/Logo.png")}
                 alt="" width="150" />
-
             </div>
-
-
-
             <div className="col  mt-3 ">
               <input type="password" className="form-control" id="Buscador" placeholder="Buscar" />
             </div>
@@ -44,41 +39,18 @@ function Nav() {
               < button className="btn btn-outline-info m-1" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
               </svg> </button>
-
-
               </Link>
             </div>
-
-
-
-
-
-
-
             <div className="col-auto m-2 " >
-
-
               <Link to= "/Perfil">
-
                 <img className="img-thumbnail" src={require("../IMG/Perfil2.png")}
                   alt="" width="50" />
               </Link>
-
-
-
             </div>
           </div>
-
-
-
-
-
           <div className="row bg2">
-
-
             <ul className="navbar-nav    bg  p-1 ">
-
-              <li className="nav-item"><a className="nav-link text-white" href="#">Inicio</a></li>
+              <li className="nav-item"><Link className="nav-link text-white" href="/">Inicio</Link></li>
               <li className="nav-item"><a className="nav-link text-white" href="#">FanArts</a></li>
               <li className="nav-item"><a className="nav-link text-white" href="#">Escenarios</a></li>
               <li className="nav-item"><a className="nav-link text-white" href="#">Sketch</a></li>
@@ -98,45 +70,7 @@ function Nav() {
 
     </Fragment >
 
-    // Tiene que retornar una sola cosa uwu
-    //Un Div Gigante o un Fragment.
-
-
   );
 }
 
 export default Nav;
-/*
-    return (
-
-        <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <Link class="nav-link active" aria-current="page" to="Perfil" >Perfil</Link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">BEBE</a>
-        </li>
-        <li class="nav-item">
-        <Link class="nav-link active" aria-current="page" to="login" >Login</Link>
-        </li>
-        <li class="nav-item">
-        <Link class="nav-link active" aria-current="page" to="Registro" >Registro</Link>
-        </li>
-        <li class="nav-item">
-        <Link class="nav-link active" aria-current="page" to="Comision" >Comision</Link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">BUBU</a>
-        </li>
-      </ul>
-
-      // Tiene que retornar una sola cosa uwu
-      //Un Div Gigante o un Fragment.
-      
-
-    );
-  }
-  
-  export default Nav;
-  
-*/
