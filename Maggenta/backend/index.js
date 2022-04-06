@@ -1,7 +1,10 @@
 const express = require("express"); //Mandamos a llamar el contenido de la  librería exprees
 const bodyParser = require("body-parser");//Mandamos a llamar el contenido de la  librería bodyparser
 const app = express(); //Creamos la aplicación
+const cors = require('cors')
 const port = 5000; //Puerto del servicio
+app.use(cors());
+
 require('./models/connection')
 
 /*Requiers de las rutas */
