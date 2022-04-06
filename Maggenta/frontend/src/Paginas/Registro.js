@@ -1,7 +1,61 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import "./Registro.css";
-
+import { axiosBase as axios } from "../services/Config";
+import { storage } from "../Firebase";
 function Registro() {
+
+    const [image, setImage] = useState();
+    const [imageurl, setImageurl] = useState();
+    //Cuando la foto cambia
+    function handleChange(e) {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0])
+        }
+    }
+
+    //Subir foto a Firebase
+    const uploadToFirebase = () => {
+        const uploadTask = storage.ref(`Userimages/${image.name}`).put(image);
+        uploadTask.on(
+            "state_changed",
+            snapshot => { },
+            error => {
+                console.log(error);
+            },
+            () => {
+                storage.ref('Userimages').child(image.name).getDownloadURL().then(url => {
+                    setImageurl(url);
+                })
+            }
+
+        )
+    }
+
+    //Registra el usuario
+    function submitHandler(event) {
+
+        event.preventDefault();
+
+        uploadToFirebase();
+
+        //Registra los datos a MongoDB
+        axios.post('/Usuario', {
+            Nombre: event.target.Nombre.value,
+            Apellidos: event.target.Apellidos.value,
+            Usuario: event.target.Usuario.value,
+            Correo: event.target.Correo.value,
+            Contraseña: event.target.Contraseña.value,
+            FechaNac: event.target.FechaNac.value,
+            Foto: imageurl
+        })
+            .then(function (response) {
+                console.log(response);
+                alert('Te has registrado correctamente');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     return (
         <Fragment>
             <div className="row">
@@ -13,7 +67,7 @@ function Registro() {
                     </div>
                 </div>
                 <div className="col bg text-center">
-                    <form action="" method="POST" id="form" className="registrarse">
+                    <form onSubmit={submitHandler} method="POST" id="form" className="registrarse">
                         <h1 id="letraTitulo">REGISTRO</h1>
                         <div className="row m-2">
                             <div className="col d-flex flex-column">
@@ -25,26 +79,26 @@ function Registro() {
                         <div className="form">
                             <div className="grupo">
                                 <label htmlFor="">Nombre(s):</label><br />
-                                <input className="form-control" type="text" placeholder="Nombre..." />
+                                <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." />
                             </div>
                             <div className="grupo">
                                 <label htmlFor="">Apellidos:</label><br />
-                                <input className="form-control" type="text" placeholder="Apellidos..." />
+                                <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Usuario:</label><br />
-                                <input className="form-control" type="text" placeholder="Usuario..." />
+                                <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." />
                             </div>
 
                             <div className="grupo">
-                                <label htmlFor="">Correo electronico:</label><br />
-                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." />
+                                <label htmlFor="">Correo electrónico:</label><br />
+                                <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." />
 
                             </div>
                             <div className="grupo">
                                 <label htmlFor="">Contraseña:</label><br />
-                                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Contraseña..." />
+                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." />
                             </div>
 
                             <div className="grupo">
@@ -54,10 +108,10 @@ function Registro() {
 
                             <div className="grupo">
                                 <label htmlFor="">Foto de perfil:</label><br />
-                                <input id="foto" name="image" className="input-file" type="file" required />
+                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} required />
                             </div>
                             <br />
-                            <button type="button" className="btn btn-light btn-lg" id="registro">Registrarme</button>
+                            <button type="submit" className="btn btn-light btn-lg" id="registro">Registrarme</button>
                         </div>
                     </form>
                 </div>
