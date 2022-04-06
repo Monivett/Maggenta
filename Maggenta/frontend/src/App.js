@@ -7,12 +7,10 @@ import Chat from "./Paginas/Chat";
 import Publicaion from "./Paginas/Publicacion";
 import SubirPub from "./Paginas/SubirPub";
 import Home from "./Paginas/Home";
-
-//import Foot from "./Paginas/Footer";
-=======
-//import Login from "./Paginas/InicioSes";
-//import Registro from "./Paginas/Registro";
-//import Comision from "./Paginas/Comision";
+import Foot from "./Paginas/Footer";
+import Login from "./Paginas/InicioSes";
+import Registro from "./Paginas/Registro";
+import Comision from "./Paginas/Comision";
 
 
 function App() {
