@@ -2,7 +2,7 @@
 Proyecto Final de Programación Web II
 
 # Integrantes del equipo
-Lucia Sarahi Ramos  Serrano 1937906
+    *   [Lucia Sarahi Ramos  Serrano 1937906]
 Mónica Ivette Chapa Rodríguez 1811536
 Carlos Iván Meneses López 1887899
 Gonzalo Aguilar Galeana 1827045 
