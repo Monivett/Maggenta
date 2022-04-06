@@ -28,40 +28,42 @@ function Perfil() {
             </div>
           </div>
         </div>
-      
+
         <div className="row text-center  bg5   ">
-        <div className="col-3 ">
-          <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
-            <h3 className="fw-bold text-center mt-3"> Frase de presentacionacion </h3>
-            <h3 className="fw-bold text-center mt-3"> Nombre de Usuario </h3>
-            <h3 className="fw-bold text-center mt-3"> Fecha de Nacimiento </h3>
-            <h3 className="fw-bold text-center mt-3"> Correo </h3>
-            <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
-            <Link to= "/ComisionesHoja">
-            <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
-            </Link>
+          <div className="col-3 ">
+            <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
+              <h3 className="fw-bold text-center mt-3"> Frase de presentacionacion </h3>
+              <h3 className="fw-bold text-center mt-3"> Nombre de Usuario </h3>
+              <h3 className="fw-bold text-center mt-3"> Fecha de Nacimiento </h3>
+              <h3 className="fw-bold text-center mt-3"> Correo </h3>
+              <Link to="/EditarPerfil">
+                <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
+              </Link>
+              <Link to="/ComisionesHoja">
+                <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
+              </Link>
             </div>
             <button className="btn btn-outline-info m-1" type="submit">Seguir Artista</button>
             <button className="btn btn-outline-info m-1" type="submit">Comisionar Artista</button>
           </div>
           <div className="col-8 text-center   m-2 ">
-          <Link to= "/Publicacion">
-          <div className="d-inline-flex m-3 " >
+            <Link to="/Publicacion">
+              <div className="d-inline-flex m-3 " >
                 <img className="img" src={require("../IMG/9.png")}
                   alt="" width="300" height="300" />
-            </div>
+              </div>
             </Link>
             <div className="d-inline-flex m-3 " >
-                <img className="img" src={require("../IMG/2.png")}
-                  alt="" width="300" height="300" />
+              <img className="img" src={require("../IMG/2.png")}
+                alt="" width="300" height="300" />
             </div>
             <div className="d-inline-flex m-3 " >
-                <img className="img" src={require("../IMG/2.png")}
-                  alt="" width="300" height="300" />
+              <img className="img" src={require("../IMG/2.png")}
+                alt="" width="300" height="300" />
             </div>
             <div className="d-inline-flex m-3 " >
-                <img className="img" src={require("../IMG/9.png")}
-                  alt="" width="300" height="300"/>
+              <img className="img" src={require("../IMG/9.png")}
+                alt="" width="300" height="300" />
             </div>
           </div>
         </div>
