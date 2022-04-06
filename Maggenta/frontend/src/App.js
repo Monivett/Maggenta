@@ -11,14 +11,8 @@ import Login from "./Paginas/InicioSes";
 import Registro from "./Paginas/Registro";
 import Comision from "./Paginas/Comision";
 import Foot from "./Paginas/Footer";
-import Login from "./Paginas/InicioSes";
-import Registro from "./Paginas/Registro";
 import Comision from "./Paginas/Comision";
 import EditarPerfil from "./Paginas/EditarPerfil";
-import Foot from "./Paginas/Footer";
-import Login from "./Paginas/InicioSes";
-import Registro from "./Paginas/Registro";
-import Comision from "./Paginas/Comision";
 
 function App() {
   return (
