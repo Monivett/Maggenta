@@ -1,6 +1,13 @@
 import { Fragment } from "react";
+import useAuth from "../auth/useAuth";
 import "./InicioSes.css";
+
+const userCredentials = {};
+
 function Login() {
+  
+  const {login} = useAuth();
+
   return (
     <Fragment>
 
@@ -25,7 +32,7 @@ function Login() {
             <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Contraseña..." />
           </div>
           <br />
-          <button type="button" className="btn btn-light btn-lg" id="entrar">Entrar</button>
+          <button type="button" onClick={()=>login(userCredentials)} className="btn btn-light btn-lg" id="entrar">Entrar</button>
         </div>
       </form>
     </Fragment>

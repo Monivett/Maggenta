@@ -1,7 +1,7 @@
 //PONEMOS LA FUNCIONALIDAD
 
 const User = require("../models/UserSchemas");
-
+const jwt = require("jsonwebtoken");
 //MUESTRA TODOS LOS DATOS
 exports.User_getall = async (req, res) => {
     const data = await User.find(); //Busca dentro de la base de datos
@@ -25,6 +25,22 @@ exports.User_create = async (req, res) => {
     res.send(newUser);
 };
 
+//LOGIN
+exports.User_login = async (req, res) => {
+    const { correo } = req.params;
+    const { password } = req.params;
+
+    const data = await User.find({Correo: correo, Contraseña: password});
+    //const passwordata = await User.find(pcontra).populate();
+
+    if (data) { //Si existe
+        res.send(data);
+
+    } else {
+        res.send({ message: "Usuario no existe" })
+       
+    }
+};
 //MODIFICAR
 exports.User_update = async (req, res) => {
     const { id } = req.params;
