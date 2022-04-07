@@ -2,10 +2,14 @@ import { Fragment, useState } from "react";
 import "./Registro.css";
 import { axiosBase as axios } from "../services/Config";
 import { storage } from "../Firebase";
+import { useNavigate } from "react-router-dom";
 function Registro() {
 
     const [image, setImage] = useState();
     const [imageurl, setImageurl] = useState();
+
+    const navigate = useNavigate();
+
     //Cuando la foto cambia
     function handleChange(e) {
         if (e.target.files[0]) {
@@ -14,7 +18,7 @@ function Registro() {
     }
 
     //Subir foto a Firebase
-    const uploadToFirebase = () => {
+    const uploadToFirebase = (event) => {
         const uploadTask = storage.ref(`Userimages/${image.name}`).put(image);
         uploadTask.on(
             "state_changed",
@@ -25,6 +29,10 @@ function Registro() {
             () => {
                 storage.ref('Userimages').child(image.name).getDownloadURL().then(url => {
                     setImageurl(url);
+                    if(url!==undefined){
+                          Registrar(event);
+                    }
+                  
                 })
             }
 
@@ -36,9 +44,13 @@ function Registro() {
 
         event.preventDefault();
 
-        uploadToFirebase();
+        uploadToFirebase(event);
 
-        //Registra los datos a MongoDB
+    }
+
+ //Registra los datos a MongoDB
+    function Registrar(event) {
+       
         axios.post('/Usuario', {
             Nombre: event.target.Nombre.value,
             Apellidos: event.target.Apellidos.value,
@@ -51,6 +63,8 @@ function Registro() {
             .then(function (response) {
                 console.log(response);
                 alert('Te has registrado correctamente');
+                
+                navigate("/login");
             })
             .catch(function (error) {
                 console.log(error);
@@ -58,7 +72,7 @@ function Registro() {
     }
     return (
         <Fragment>
-            <div className="row">
+            <div className="row" id="registroForm">
                 <div className="col hola">
                     <div className="align-self-center">
                         <div className="mt-auto" id="usuarioFoto">

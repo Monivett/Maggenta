@@ -7,14 +7,19 @@ function Nav() {
 
   const { user } = useAuth();
   const { logout } = useAuth();
+if(user){
+  console.log(user.userData.Foto)
+}
   return (
     <Fragment>
       <nav className="navbar-fluid sticky-top navbar-expand-md   ">
         <div className="container-fluid ">
           <div className="row bg2">
             <div className="col m-3 " >
-              <img className="" src={require("../IMG/Logo.png")}
-                alt="" width="150" />
+              <Link to="/">
+                <img src={require("../IMG/Logo.png")}
+                  alt="" width="150" />
+              </Link>
             </div>
             <div className="col  mt-3 ">
               <input type="password" className="form-control" id="Buscador" placeholder="Buscar" />
@@ -30,8 +35,8 @@ function Nav() {
               {!user && <Link to="/Registro">
                 <button className="btn btn-outline-info m-1" type="submit">Registrarse</button>
               </Link>}
-              {!user && <Link to="/">
-                <button onclick={logout} className="btn btn-outline-info m-1" type="submit">Cerrar Sesión</button>
+              {user && <Link to="/">
+                <button onClick={logout} className="btn btn-outline-info m-1" type="submit">Cerrar Sesión</button>
               </Link>}
               <Link to="/SubirPub">
                 < button className="btn btn-outline-info m-1" > < svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-brush-fill" viewBox="0 0 16 16">
@@ -48,12 +53,12 @@ function Nav() {
             </div>
             <div className="col-auto m-2 " >
               <Link to="/Perfil">
-                <img className="img-thumbnail" src={require("../IMG/Perfil2.png")}
+                <img className="img-thumbnail" src={user ? user.userData.Foto : require("../IMG/Perfil2.png")}
                   alt="" width="50" />
               </Link>
             </div>
           </div>
-          <div className="row bg2">
+          <div className="row bg8">
             <ul className="navbar-nav    bg  p-1 ">
               <li className="nav-item"><Link className="nav-link text-white" to="/" >Inicio</Link></li>
               <li className="nav-item"><a className="nav-link text-white" href="#">FanArts</a></li>
@@ -65,11 +70,7 @@ function Nav() {
 
 
           </div>
-
-
         </div>
-
-
       </nav >
 
 

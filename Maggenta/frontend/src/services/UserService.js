@@ -14,3 +14,20 @@ export const Getall = async () => {
         return (err);
     }
 }
+
+
+export const Login = async (Pmail, Ppassword) => {
+  
+    try {
+        const response = await axios.get(`/Usuario/${Pmail}/${Ppassword}`);
+        if (response.status = 200) {
+            return response.data;
+        }
+
+        console.log("Login" + response.data);
+    }
+    catch (err) {
+        console.log(err);
+        return (err);
+    }
+}

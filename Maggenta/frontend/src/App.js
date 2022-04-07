@@ -12,13 +12,14 @@ import Registro from "./Paginas/Registro";
 import Comision from "./Paginas/Comision";
 import Foot from "./Paginas/Footer";
 import ComisionesHoja from "./Paginas/ComisionesHoja";
-
+import AuthProvider from "./auth/AuthProvider";
 import EditarPerfil from "./Paginas/EditarPerfil";
 
 function App() {
   return (
     <Fragment>
-      <Nav/>
+      <AuthProvider>
+        <Nav/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="Perfil" element={<Perfil />} />
@@ -32,6 +33,8 @@ function App() {
         <Route path="ComisionesHoja" element={<ComisionesHoja />} />
       </Routes>
       <Foot/>
+      </AuthProvider>
+      
     </Fragment>
 
   );

@@ -1,14 +1,16 @@
 import './Colores.css';
 import { Link } from 'react-router-dom';
+import useAuth from "../auth/useAuth";
 
 function Perfil() {
-  return (
-    <div className="App">
 
+  const { user } = useAuth();
+
+  return (
       <div className="container-fluid bg4 ">
         <div className="row align-items-stretch">
           <div className="col m-3 text-center ">
-            <img className=" img rounded-circle" alt="100x100" src={require("../IMG/Perfil2.png")}
+            <img className="img rounded-circle" alt="100x100" src={ user? user.userData.Foto: require("../IMG/Perfil2.png")}
               width="150" height="150" />
             <h3 className="fw-bold text-center mt-3 TCR"> Monica Chappa</h3>
             <h5 className="fw-bold text-center mt-3 TCR"> @Monivette</h5>
@@ -68,7 +70,6 @@ function Perfil() {
           </div>
         </div>
       </div>
-    </div >
   );
 }
 

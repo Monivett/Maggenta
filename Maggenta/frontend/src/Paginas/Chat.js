@@ -3,7 +3,7 @@ import { Fragment } from "react";
 
 function Chat() {
   return (
-    <div className="App">
+ 
 
       <Fragment>
 
@@ -128,7 +128,7 @@ function Chat() {
         </div>
       </Fragment>
 
-    </div>
+ 
   );
 }
 
