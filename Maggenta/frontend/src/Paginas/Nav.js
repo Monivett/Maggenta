@@ -22,16 +22,15 @@ if(user){
               </Link>
             </div>
             <div className="col  mt-3 ">
-              <input type="password" className="form-control" id="Buscador" placeholder="Buscar" />
+              <input type="text" className="form-control" id="Buscador" placeholder="Buscar" />
             </div>
             <div className="col mt-3">
               <button className="btn btn-outline-info " type="submit">Buscar</button>
             </div>
-            <div className="col  mt-3 ">
+            <div className="col-4  mt-3 ">
               {!user && <Link to="/login">
                 <button className="btn btn-outline-info m-1" type="submit">Iniciar Sesion</button>
-              </Link>
-              }
+              </Link>}
               {!user && <Link to="/Registro">
                 <button className="btn btn-outline-info m-1" type="submit">Registrarse</button>
               </Link>}

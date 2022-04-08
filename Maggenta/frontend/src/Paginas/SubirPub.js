@@ -12,8 +12,8 @@ function SubirPub() {
 
               <div className="row">
 
-                <img className=" img" src={require("../IMG/1.png")}
-                  alt="Card image cap " width="200" height="800" />
+                <img className=" img" src={require("../IMG/tbchoi2.jpg")}
+                  alt="Card image cap " width="300" height="500" />
 
 
                 <form>
