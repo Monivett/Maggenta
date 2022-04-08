@@ -17,9 +17,12 @@ function ComisionesHoja() {
                             <div className="card-body">
                                 <h5 className="card-title">Comision 1 </h5>
                                 <p className="card-text">250.00 MX</p>
-                                <button className="btn btn-outline-info m-1">Comisionar</button>
+                                <Link to="/Pago">
+                                    <button className="btn btn-outline-info m-1">Comisionar</button>
+                                </Link>
+
                                 <button className="btn btn-outline-info m-1">Borrar</button>
-                              
+
                             </div>
                         </div>
                         <div class="card d-inline-flex CC m-4" >
@@ -29,7 +32,7 @@ function ComisionesHoja() {
                                 <p className="card-text">350.00 MX</p>
                                 <button className="btn btn-outline-info m-1">Comisionar</button>
                                 <button className="btn btn-outline-info m-1">Borrar</button>
-                              
+
                             </div>
                         </div>
                         <div class="card d-inline-flex CC m-4" >
@@ -39,7 +42,7 @@ function ComisionesHoja() {
                                 <p className="card-text">150.00 MX</p>
                                 <button className="btn btn-outline-info m-1">Comisionar</button>
                                 <button className="btn btn-outline-info m-1">Borrar</button>
-                              
+
                             </div>
                         </div>
 

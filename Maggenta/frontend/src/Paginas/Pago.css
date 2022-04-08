@@ -1,0 +1,23 @@
+body{
+    background: #282828;
+}
+
+.toditoPAGO{
+    align-items: center;
+    font-family: Arial Black;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.btnPAGAR{
+    margin-left: 250px;
+    color: #f54a7e;
+}
+#letrasTITULAR{
+    color:#ffffff
+}
+#yafalta{
+    color: #f54a7e;
+}

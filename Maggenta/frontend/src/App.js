@@ -14,27 +14,29 @@ import Foot from "./Paginas/Footer";
 import ComisionesHoja from "./Paginas/ComisionesHoja";
 import AuthProvider from "./auth/AuthProvider";
 import EditarPerfil from "./Paginas/EditarPerfil";
+import Pago from './Paginas/Pago';
 
 function App() {
   return (
     <Fragment>
       <AuthProvider>
-        <Nav/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="Perfil" element={<Perfil />} />
-        <Route path="Chat" element={<Chat />} />
-        <Route path="SubirPub" element={<SubirPub />} />
-        <Route path="Publicacion" element={<Publicaion />} />
-        <Route path="login" element={<Login />} />
-        <Route path="Registro" element={<Registro />} />
-        <Route path="Comision" element={<Comision />} />
-        <Route path="EditarPerfil" element={<EditarPerfil />} />
-        <Route path="ComisionesHoja" element={<ComisionesHoja />} />
-      </Routes>
-      <Foot/>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="Perfil" element={<Perfil />} />
+          <Route path="Chat" element={<Chat />} />
+          <Route path="SubirPub" element={<SubirPub />} />
+          <Route path="Publicacion" element={<Publicaion />} />
+          <Route path="login" element={<Login />} />
+          <Route path="Registro" element={<Registro />} />
+          <Route path="Comision" element={<Comision />} />
+          <Route path="EditarPerfil" element={<EditarPerfil />} />
+          <Route path="ComisionesHoja" element={<ComisionesHoja />} />
+          <Route path="Pago" element={<Pago />} />
+        </Routes>
+        <Foot />
       </AuthProvider>
-      
+
     </Fragment>
 
   );
