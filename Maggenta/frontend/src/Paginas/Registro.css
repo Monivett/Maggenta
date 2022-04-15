@@ -13,7 +13,9 @@ body{
     margin-top: 140px;
     margin-right: 160px;
 }
-
+.error{
+    color: #282828;
+}
 .hola{
     margin-top: 140px;
     margin-left: 190px;

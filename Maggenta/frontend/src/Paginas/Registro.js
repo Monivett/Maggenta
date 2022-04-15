@@ -1,12 +1,15 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useRef } from "react";
 import "./Registro.css";
 import { axiosBase as axios } from "../services/Config";
 import { storage } from "../Firebase";
 import { useNavigate } from "react-router-dom";
+import { GetEmail } from "../services/UserService";
 function Registro() {
 
     const [image, setImage] = useState();
-    const [imageurl, setImageurl] = useState();
+
+    const [error, setError] = useState('');
+    const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
 
@@ -28,29 +31,51 @@ function Registro() {
             },
             () => {
                 storage.ref('Userimages').child(image.name).getDownloadURL().then(url => {
-                    setImageurl(url);
-                    if(url!==undefined){
-                          Registrar(event);
+                    if (url !== undefined) {
+                        Registrar(event, url);
                     }
-                  
+
                 })
             }
 
         )
     }
 
-    //Registra el usuario
+    //Cuando oprimo el botón registrar
     function submitHandler(event) {
 
         event.preventDefault();
 
-        uploadToFirebase(event);
+        if (event.target.Nombre.value !== '' && event.target.Apellidos.value !== '' && event.target.Usuario.value !== '' && event.target.Correo.value !== '' && event.target.Contraseña.value !== '' && event.target.FechaNac.value && event.target.image.value !== '') {
+            setError('');
+            if (password.length >= 8) {
+                BuscarCorreoValido(event.target.Correo.value, event);
+            } else {
+                setError('Contraseña mínima 8 caracteres');
+            }
+        }
+        else {
+            setError('¡Hay campos vacíos!');
+        }
 
     }
 
- //Registra los datos a MongoDB
-    function Registrar(event) {
-       
+    function BuscarCorreoValido(pMail, event) {
+        async function fetchData() {
+            const Emails = await GetEmail(pMail);
+            if (Emails.length === 0) { //Si el email es único
+                setError('Registrando...');
+                uploadToFirebase(event);
+            } else {
+                setError('¡El correo debe de ser único!');
+            }
+        }
+        fetchData();
+    }
+
+    //Registra los datos a MongoDB
+    function Registrar(event, url) {
+
         axios.post('/Usuario', {
             Nombre: event.target.Nombre.value,
             Apellidos: event.target.Apellidos.value,
@@ -58,13 +83,18 @@ function Registro() {
             Correo: event.target.Correo.value,
             Contraseña: event.target.Contraseña.value,
             FechaNac: event.target.FechaNac.value,
-            Foto: imageurl
+            Foto: url
         })
             .then(function (response) {
-                console.log(response);
-                alert('Te has registrado correctamente');
-                
-                navigate("/login");
+                console.log(response.data);
+                if (response.data !== '') {
+                    alert('Te has registrado correctamente');
+                    navigate("/login");
+                }
+                else {
+                    setError('¡No se pudo registrar el usuario!');
+                }
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -111,20 +141,23 @@ function Registro() {
 
                             </div>
                             <div className="grupo">
-                                <label htmlFor="">Contraseña:</label><br />
-                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." />
+                                <label htmlFor="">Contraseña: </label><br />
+                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)} />
+
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Fecha de Nacimiento:</label><br />
-                                <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" required />
+                                <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Foto de perfil:</label><br />
-                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} required />
+                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} />
                             </div>
+
                             <br />
+                            <p className="error">{error}</p>
                             <button type="submit" className="btn btn-light btn-lg" id="registro">Registrarme</button>
                         </div>
                     </form>

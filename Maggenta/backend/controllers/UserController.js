@@ -19,6 +19,7 @@ exports.User_create = async (req, res) => {
         .catch((err) => {
             console.log("Error: No se pudo insertar el usuario", err)
             res.send(err.errors)
+            res.redirect()
         }
         );
 
@@ -31,6 +32,21 @@ exports.User_login = async (req, res) => {
     const { password } = req.params;
 
     const data = await User.find({Correo: correo, Contraseña: password});
+    //const passwordata = await User.find(pcontra).populate();
+
+    if (data) { //Si existe
+        res.send(data);
+
+    } else {
+        res.send({ message: "Usuario no existe" })
+       
+    }
+};
+
+//BUSCAR POR CORREO
+exports.User_email = async (req, res) => {
+    const { correo } = req.params;
+    const data = await User.find({Correo: correo});
     //const passwordata = await User.find(pcontra).populate();
 
     if (data) { //Si existe
