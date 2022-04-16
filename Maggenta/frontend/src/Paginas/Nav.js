@@ -7,9 +7,7 @@ function Nav() {
 
   const { user } = useAuth();
   const { logout } = useAuth();
-  if (user) {
-    console.log(user.userData.Foto)
-  }
+
   return (
     <Fragment>
       <nav className="navbar-fluid sticky-top navbar-expand-md   ">

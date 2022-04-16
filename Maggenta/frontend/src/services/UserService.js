@@ -15,9 +15,8 @@ export const Getall = async () => {
     }
 }
 
-
 export const Login = async (Pmail, Ppassword) => {
-  
+     
     try {
         const response = await axios.get(`/Usuario/${Pmail}/${Ppassword}`);
         if (response.status = 200) {
