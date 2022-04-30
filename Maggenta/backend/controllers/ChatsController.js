@@ -6,7 +6,7 @@ const Chats = require("../models/ChatsSchemas");
 exports.Chats_create = async (req, res) => {
     const { body } = req;
 
-    //Validaciónde  infoarmción
+    //Validaciónde  información
     let newChats = new Chats(body);
     await newChats.save()
         .then((newObject) => console.log("Se ha insertado el mensaje", newObject))
@@ -25,12 +25,16 @@ exports.Chats_create = async (req, res) => {
 
 //MOSTRAR POR USUARIO
 exports.Chats_getByUser = async (req, res) => {
-    const {id} = req.params;
-    const data = await Chats.findById(id).populate();
 
-    if(data){ //Si existe
+    const { receiver } = req.params;
+    const { sender } = req.params;
+
+    const data = await Chats.find({$or:[ {_UserReceiver: receiver, _UserSender: sender } , { _UserReceiver: sender, _UserSender: receiver }]});
+
+
+    if (data) { //Si existe
         res.send(data);
-    }else{
-        res.send({message: "Mensaje no existe"})
+    } else {
+        res.send({ message: "Mensaje no existe" })
     }
 }

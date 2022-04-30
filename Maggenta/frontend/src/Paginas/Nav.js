@@ -8,6 +8,7 @@ function Nav() {
   const { user } = useAuth();
   const { logout } = useAuth();
 
+
   return (
     <Fragment>
       <nav className="navbar-fluid sticky-top navbar-expand-md   ">
@@ -53,7 +54,7 @@ function Nav() {
             </div>
 
             <div className="col-auto m-2 " >
-             {user && <Link to="/Perfil">
+              {user && <Link to={`/Perfil/${user.userData._id}`}>
                 <img className="img-thumbnail" src={user.userData.Foto}
                   alt="" width="50" />
               </Link>}

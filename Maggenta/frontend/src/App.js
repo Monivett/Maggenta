@@ -23,7 +23,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="Perfil" element={<Perfil />} />
+          <Route path="Perfil/:id" element={<Perfil />} />
           <Route path="Chat" element={<Chat />} />
           <Route path="SubirPub" element={<SubirPub />} />
           <Route path="Publicacion" element={<Publicaion />} />

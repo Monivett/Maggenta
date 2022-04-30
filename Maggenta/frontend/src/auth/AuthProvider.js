@@ -14,7 +14,7 @@ export default function AuthProvider({ children }) {
     const login = async (Pmail, Ppassword) => {
 
         try {
-            const response = await axios.get(`/Usuario/${Pmail}/${Ppassword}`);
+            const response = await axios.get(`/Usuario/login/${Pmail}/${Ppassword}`);
             if (response.status = 200) {
 
                 if (response.data[0] !== undefined) {

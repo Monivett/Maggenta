@@ -6,6 +6,7 @@ const router = express.Router();
 const Chats_controller = require('../controllers/ChatsController');
 
 router.post("/Chat", Chats_controller.Chats_create); //Agregar
-router.get("/Chat/:id", Chats_controller.Chats_getByUser); //Buscar por usuario
+router.get("/Chat/:receiver/:sender", Chats_controller.Chats_getByUser); //Login
+
 
 module.exports = router;
