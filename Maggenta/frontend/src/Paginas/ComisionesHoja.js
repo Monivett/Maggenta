@@ -12,7 +12,7 @@ function ComisionesHoja() {
                     <div className="col m-2">
                     </div>
                     <div className="col-10 bg2  align-items-center m-2 p-5">
-                        <div class="card d-inline-flex CC m-4" >
+                        <div className="card d-inline-flex CC m-4" >
                             <img className=" card-img-top" src={require("../IMG/3.png")} alt="Card image cap " />
                             <div className="card-body">
                                 <h5 className="card-title">Comision 1 </h5>
@@ -25,7 +25,7 @@ function ComisionesHoja() {
 
                             </div>
                         </div>
-                        <div class="card d-inline-flex CC m-4" >
+                        <div className="card d-inline-flex CC m-4" >
                             <img className=" card-img-top" src={require("../IMG/4.png")} alt="Card image cap " />
                             <div className="card-body">
                                 <h5 className="card-title">Comision 2 </h5>
@@ -35,7 +35,7 @@ function ComisionesHoja() {
 
                             </div>
                         </div>
-                        <div class="card d-inline-flex CC m-4" >
+                        <div className="card d-inline-flex CC m-4" >
                             <img className=" card-img-top" src={require("../IMG/2.png")} alt="Card image cap " />
                             <div className="card-body">
                                 <h5 className="card-title">Comision 3 </h5>

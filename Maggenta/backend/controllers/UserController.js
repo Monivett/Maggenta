@@ -57,6 +57,19 @@ exports.User_email = async (req, res) => {
        
     }
 };
+//BUSCAR POR CORREO
+exports.User_username= async (req, res) => {
+    const { username } = req.params;
+    const data = await User.find({Usuario: username});
+
+    if (data) { //Si existe
+        res.send(data);
+
+    } else {
+        res.send({ message: "Usuario no existe" })
+       
+    }
+};
 //MODIFICAR
 exports.User_update = async (req, res) => {
     const { id } = req.params;
@@ -104,7 +117,7 @@ exports.User_delete = async (req, res) => {
 //MOSTRAR POR ID
 exports.User_getById = async (req, res) => {
     const { id } = req.params;
-    const data = await User.findById(id).populate();
+    const data = await User.findById(id);
 
     if (data) { //Si existe
         res.send(data);
