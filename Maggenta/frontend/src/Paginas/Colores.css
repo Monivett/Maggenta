@@ -28,6 +28,11 @@
     background-color: #f4497d !important;
     color: white !important;
 }
+.btn-outline-info-danger {
+
+    background-color: #f44949 !important;
+    color: white !important;
+}
 
 .nav-item {
     font-weight: bold;

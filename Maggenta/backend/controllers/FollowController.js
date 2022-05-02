@@ -6,7 +6,7 @@ const Follow = require("../models/FollowSchemas");
 exports.Follow_create = async (req, res) => {
     const { body } = req;
 
-    //Validaciónde  infoarmción
+    //Validación de  información
     let newFollow = new Follow(body);
     await newFollow.save()
         .then((newObject) => console.log("Has seguido al artista", newObject))
@@ -21,19 +21,33 @@ exports.Follow_create = async (req, res) => {
 
 //NO SE PUEDEN MODIFICAR LOS SEGUIDOS
 
+//MOSTRAR SI EL USUARIO LOGEADO HA SEGUIDO AL ARTISTA INGRESADO
+exports.Follow_getFollower = async (req, res) => {
+    const { follow } = req.params;
+    const { follower } = req.params;
+    const data = await Follow.find({ _UserFollow: follow, _UserFollower: follower });
+
+    if (data) { //Si existe
+        res.send(data);
+    } else {
+        res.send({ message: "No has seguido a este usuario" })
+    }
+}
 //DELETE
 exports.Follow_delete = async (req, res) => {
-    const { id } = req.params;
+    const { follow } = req.params;
+    const { follower } = req.params;
+
     try {
-        const Followdb = await Follow.findById({id});
-        
+        const Followdb = await Follow.find({ _UserFollow: follow, _UserFollower: follower });
+
         if (Followdb) { //Proceso de actualizar
 
-            const data = await Follow.deleteOne({_id: id});
-            
+            const data = await Follow.deleteOne({ _UserFollow: follow, _UserFollower: follower });
+
             res.send({ message: "Seguido eliminado exitosamente", data })
         } else { //Mensaje de error
-            res.send({ message: "El usuario que intentas eliminar no existe" });
+            res.send({ message: "El usuario que intentas dejar de seguir no existe" });
         }
     } catch (err) {
         res.send(err);
@@ -41,14 +55,26 @@ exports.Follow_delete = async (req, res) => {
 
 };
 
-//MOSTRAR POR USUARIO
+//MOSTRAR POR SEGUIDORES DEL ARTISTA
 exports.Follow_getByUser = async (req, res) => {
-    const {id} = req.params;
-    const data = await Follow.findById(id).populate();
+    const { user } = req.params;
+    const data = await Follow.find( {_UserFollower: user});
 
-    if(data){ //Si existe
+    if (data) { //Si existe
         res.send(data);
-    }else{
-        res.send({message: "El seguido no existe"})
+    } else {
+        res.send({ message: "No te sigue nadie" })
+    }
+}
+
+//MOSTRAR POR SEGUIDORES DEL ARTISTA
+exports.Follow_getFollows = async (req, res) => {
+    const { user } = req.params;
+    const data = await Follow.find( {_UserFollow: user});
+
+    if (data) { //Si existe
+        res.send(data);
+    } else {
+        res.send({ message: "No sigues a nadie" })
     }
 }
