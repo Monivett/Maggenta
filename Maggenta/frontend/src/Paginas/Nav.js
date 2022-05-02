@@ -1,12 +1,28 @@
-import { Fragment } from "react";
+import { Fragment, useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../auth/useAuth";
+import { Getall } from "../services//CategoryService";
 import './Colores.css';
 
 function Nav() {
 
   const { user } = useAuth();
   const { logout } = useAuth();
+  const [categorias, setCategorias] = useState([]);
+
+  const getCategorias = useCallback(async () => {
+
+    const categorias = await Getall();
+
+    setCategorias(categorias);
+
+  }, [])
+
+  useEffect(() => {
+
+    getCategorias();
+
+  }, [getCategorias]);
 
 
   return (
@@ -63,11 +79,9 @@ function Nav() {
           <div className="row bg8">
             <ul className="navbar-nav    bg  p-1 ">
               <li className="nav-item"><Link className="nav-link text-white" to="/" >Inicio</Link></li>
-              <li className="nav-item"><a className="nav-link text-white" href="#">FanArts</a></li>
-              <li className="nav-item"><a className="nav-link text-white" href="#">Escenarios</a></li>
-              <li className="nav-item"><a className="nav-link text-white" href="#">Sketch</a></li>
-              <li className="nav-item"><a className="nav-link text-white" href="#">Digital</a></li>
-              <li className="nav-item"><a className="nav-link text-white" href="#">Tradicional</a></li>
+              {categorias.map(category => (
+                <li className="nav-item"><a className="nav-link text-white" href="#">{category.Category}</a></li>
+              ))}
             </ul>
 
 
