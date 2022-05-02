@@ -3,30 +3,121 @@ import { useState, useCallback, useEffect, Fragment } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useAuth from "../auth/useAuth";
 import { GetUserId } from '../services/UserService';
+import { IsFollow } from "../services/FollowService";
+import { UserFollowers } from "../services/FollowService";
+import { UserFollows } from "../services/FollowService";
+import { axiosBase as axios } from "../services/Config";
 
 function Perfil() {
   const { id } = useParams();
   const [userData, setUserData] = useState([]);
+  const [isFollowed, setIsFollowed] = useState(false);
+  const [followersNumber, setFollowersNumber] = useState(0);
+  const [followsNumber, setFollowsNumber] = useState(0);
+  const { user } = useAuth();
 
   const getUser = useCallback(async (id) => {
 
-    const user = await GetUserId(id);
+    const usuario = await GetUserId(id);
 
-    setUserData(user);
-
-
-
+    setUserData(usuario);
+    userFollowers(id);
+    userFollows(id);
+    if (user.userData._id !== id) {
+      isUserFollowed(id, user.userData._id)
+    }
   }, [])
 
+  //Mostrar la cantidad de seguidores 
+  const userFollowers = (userId) => {
+
+    async function fetchData() {
+
+      const isFollow = await UserFollowers(userId);
+
+      setFollowersNumber(isFollow.length);
+    }
+    fetchData();
+  }
+  //Mostrar la cantidad de artistas que el usuario ha seguido
+  const userFollows = (userId) => {
+
+    async function fetchData() {
+
+      const isFollow = await UserFollows(userId);
+
+      setFollowsNumber(isFollow.length);
+    }
+    fetchData();
+  }
+  //Seguir al artista 
+  const followUser = () => {
+    axios.post('/Seguir', {
+      _UserFollow: userData._id,
+      _UserFollower: user.userData._id
+    })
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data !== '') {
+          console.log('Se ha seguido a ' + userData.Usuario);
+          setIsFollowed(true);
+          userFollowers( userData._id);
+        }
+        else {
+          alert('¡No se pudo seguir a este artista!');
+        }
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  //Dejar de seguir al artista
+  const unFollowUser = () => {
+    axios.delete(`/Seguir/${userData._id}/${user.userData._id}`)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data !== '') {
+          console.log('Se ha dejado de seguir a ' + userData.Usuario);
+          setIsFollowed(false);
+          userFollowers( userData._id);
+        }
+        else {
+          alert('¡No se puede dejar de seguir a este artista!');
+        }
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  //¿Sigues a este artista?
+  const isUserFollowed = (follow, follower) => {
+
+    async function fetchData() {
+
+      const isFollow = await IsFollow(follow, follower);
+
+      if (isFollow.length === 0) {
+        console.log('No lo has seguido');
+        setIsFollowed(false);
+
+      } else {
+        console.log('Ya esta seguido')
+        setIsFollowed(true);
+      }
+    }
+    fetchData();
+
+  }
 
   useEffect(() => {
 
     getUser(id);
+
   }, [getUser]);
 
 
-
-  const { user } = useAuth();
 
   return (
     <div className="container-fluid bg4 ">
@@ -43,11 +134,11 @@ function Perfil() {
           <div className="row align-items-stretch">
             <div className="col text-center  m-1 ">
               <h3 className="fw-bold text-center  TCR"> Seguidores </h3>
-              <h3 className="fw-bold text-center  TCR"> 500K </h3>
+              <h3 className="fw-bold text-center  TCR"> {followersNumber} </h3>
             </div>
             <div className="col text-center   m-2 ">
               <h3 className="fw-bold text-center  TCR"> Seguidos </h3>
-              <h3 className="fw-bold text-center TCR"> 400K </h3>
+              <h3 className="fw-bold text-center TCR"> {followsNumber} </h3>
             </div>
           </div>
         </div>
@@ -56,9 +147,9 @@ function Perfil() {
       <div className="row text-center  bg5   ">
         <div className="col-4 ">
           <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
-            <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {user ? user.userData.FechaNac : '24-03-2000'} </h5>
+            <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
             <h5 className="fw-light text-center mt-3"> {userData.Correo} </h5>
-            {user.userData.id == userData._id ?
+            {user.userData._id == userData._id ?
               <Fragment>
                 <Link to="/EditarPerfil">
                   <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
@@ -69,7 +160,8 @@ function Perfil() {
               </Fragment>
               :
 
-              <button className="btn btn-outline-info m-1" type="submit">Seguir Artista</button>
+              isFollowed ? <button className="btn btn-outline-info-danger m-1" type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
+                : <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
             }
 
           </div>

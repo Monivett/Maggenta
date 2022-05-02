@@ -46,9 +46,14 @@ function Chat() {
 
   }
 
-  const searchUsername = async (usernmae) =>{
-    const usuarios = await GetUsername(usernmae);
+  const searchUsername = async (username) => {
 
+    if (username != '') {
+      const usuarios = await GetUsername(username);
+      setUsers(usuarios)
+    }else{
+      fetchData();
+    }
   }
   //Al dar click al botón enviar
   function submitHandler(event) {
@@ -97,7 +102,7 @@ function Chat() {
                       </svg>
                     </span>
                   </div>
-                  <input type="text" className="form-control" placeholder="Buscar..." />
+                  <input type="text" className="form-control" placeholder="Buscar..." onChange={event => searchUsername(event.target.value)} />
                 </div>
                 <ul className="list-unstyled chat-list mt-2 mb-0">
                   {/*Muestra todos los usuarios disponibles: */}
@@ -144,7 +149,7 @@ function Chat() {
                           </li>
                       )
                       )}
-   
+
                     </ul>
                     /*Si no hay mensajes muestra: */
                     :
