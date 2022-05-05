@@ -26,11 +26,11 @@ function SubirPub() {
         <div className="row">
           <div className="col m-2">
             <div className="row">
-              <img className=" img" src={require("../IMG/tbchoi2.jpg")}
-                alt="Card image cap " width="300" height="500" />
+              <img className="img" src={require("../IMG/tbchoi2.jpg")}
+                alt="Card image cap " width="300" height="500"  />
               <form>
                 <div className="form-group m-5 text-center">
-                  <label for="exampleFormControlFile1">Abrir Imagen</label>
+                  <label for="exampleFormControlFile1">Abrir Imagen</label> 
                   <input type="file" className="form-control-file" id="exampleFormControlFile1" />
                 </div>
               </form>
