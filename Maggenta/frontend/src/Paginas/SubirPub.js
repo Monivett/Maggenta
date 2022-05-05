@@ -19,6 +19,29 @@ function SubirPub() {
 
   }, [getCategorias]);
 
+
+
+
+  const handleOnSubmitSchool = (event) => {
+    event.preventDefault();
+    console.log("le dió click enviar")
+
+    /*  guardar los datos en la BD */
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
 
     <Fragment>
@@ -27,10 +50,10 @@ function SubirPub() {
           <div className="col m-2">
             <div className="row">
               <img className="img" src={require("../IMG/tbchoi2.jpg")}
-                alt="Card image cap " width="300" height="500"  />
+                alt="Card image cap " width="300" height="500" />
               <form>
                 <div className="form-group m-5 text-center">
-                  <label for="exampleFormControlFile1">Abrir Imagen</label> 
+                  <label htmlFor="exampleFormControlFile1">Abrir Imagen</label>
                   <input type="file" className="form-control-file" id="exampleFormControlFile1" />
                 </div>
               </form>
@@ -38,27 +61,35 @@ function SubirPub() {
           </div>
           <div className="col bg2 m-2">
             <div className="col p-5 text-white  rounded shadow  mt-5 " id="Margen">
-              <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">
-                <h5 className="card-text text-white fw-bold text-center mt-5"> Descripcion de la Imagen</h5>
-                <div className="form-group m-1">
-                  <textarea className="form-control mt-2" rows="7"></textarea>
+
+              <form onSubmit={handleOnSubmitSchool}>
+
+
+                <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">
+                  <h5 className="card-text text-white fw-bold text-center mt-5"> Descripcion de la Imagen</h5>
+                  <div className="form-group m-1">
+                    <textarea className="form-control mt-2" rows="7"></textarea>
+                  </div>
+                  <div className="text-center m-3 ">
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      {categorias.map(category => (
+                        <option value={category._id} selected>{category.Category}</option>
+                      ))}
+
+                    </select>
+
+                  </div>
+                  <div className="text-center mb-5 ">
+                    <button className="btn btn-outline-info m-2 " type="submit">Crear Publicacion</button>
+                  </div>
                 </div>
-                <div className="text-center m-3 ">
-                  <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    {categorias.map(category => (
-                      <option value={category._id} selected>{category.Category}</option>
-                    ))}
-
-                  </select>
-
-                </div>
-                <div className="text-center mb-5 ">
-                  <button className="btn btn-outline-info m-2 " type="submit">Crear Publicacion</button>
-
-                </div>
 
 
-              </div>
+
+              </form>
+
+
+
             </div>
 
           </div>
