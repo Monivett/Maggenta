@@ -54,7 +54,7 @@ function SubirPub() {
               <form>
                 <div className="form-group m-5 text-center">
                   <label htmlFor="exampleFormControlFile1">Abrir Imagen</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" />
+                  <input type="file" className="form-control-file p-3" id="exampleFormControlFile1" />
                 </div>
               </form>
             </div>
