@@ -84,12 +84,23 @@ exports.Post_getById = async (req, res) => {
 // Post_getByUserID
 
 exports.Post_getByUserId = async (req, res) => {
-    const { Userid } = req.params;
-    const data = await Post.find({ _User: Userid }); //.populate()
+    try {
+        const { id } = req.params;
+        const data = await Post.findById(id).populate("_User");
+        //res.send({ mensaje: req.params.UserId })
 
-    if (data) { //Si existe
-        res.send(data);
-    } else {
-        res.send({ message: "Publicaciones de usuario no existen" })
+
+        
+        if (data) { //Si existe
+            res.send(data);
+        } else {
+            res.send({ message: "Publicaciones de usuario no existen" });
+        }
     }
+    catch (err) {
+        res.send({ message: "error" });
+    }
+
+
+
 }

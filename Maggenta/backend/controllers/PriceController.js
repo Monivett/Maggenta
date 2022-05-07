@@ -2,6 +2,12 @@
 
 const Price = require("../models/PriceSchemas");
 
+exports.Price_getall = async (req, res) => {
+    const data = await Price.find(); //Busca dentro de la base de datos
+    res.send(data);
+}
+
+
 //INSERTAR
 exports.Price_create = async (req, res) => {
     const { body } = req;
@@ -74,3 +80,4 @@ exports.Price_getByUser = async (req, res) => {
         res.send({message: "Tipo de comisión no existe"})
     }
 }
+
