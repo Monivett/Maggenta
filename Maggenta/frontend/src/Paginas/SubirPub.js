@@ -64,7 +64,7 @@ function SubirPub() {
 
   // 2. Subir foto a Firebase
   const uploadToFirebase = (event) => {
-    const uploadTask = storage.ref(`Userimages/${image.name}`).put(image); // se sube
+    const uploadTask = storage.ref(`PostsImages/${image.name}`).put(image); // se sube
     uploadTask.on(
       "state_changed",
       snapshot => { },
@@ -72,7 +72,7 @@ function SubirPub() {
         console.log(error);
       },
       () => {
-        storage.ref('Userimages').child(image.name).getDownloadURL().then(url => { // se descarga la URL
+        storage.ref('PostsImages').child(image.name).getDownloadURL().then(url => { // se descarga la URL
           if (url !== undefined) { // si existe
             Registrar(event, url);  // → 3. 
           }

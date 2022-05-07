@@ -17,22 +17,14 @@ function Perfil() {
   const [followsNumber, setFollowsNumber] = useState(0);
   const { user } = useAuth();
 
-  // aqui se guardan las publicaci
+  // aqui se guardan las publicaciones
   const [publicaciones, setPublicaciones] = useState([]);
 
-  const getPublicaciones = useCallback(async () => {
-    const publicaciones = await GetPostByUserID();
+  const getPublicaciones = useCallback(async (id) => {
+    const publicaciones = await GetPostByUserID(id);
     setPublicaciones(publicaciones);
 
   }, [])
-
-  useEffect(() => {
-
-    getPublicaciones();
-
-  }, [getPublicaciones]);
-
-
 
 
   const getUser = useCallback(async (id) => {
@@ -42,6 +34,7 @@ function Perfil() {
     setUserData(usuario);
     userFollowers(id);
     userFollows(id);
+    getPublicaciones(id)
     if (user.userData._id !== id) {
       isUserFollowed(id, user.userData._id)
     }
@@ -184,7 +177,7 @@ function Perfil() {
             }
 
           </div>
-          <Link to="/ComisionesHoja">
+          <Link to={`/ComisionesHoja/${userData._id}`}>
             <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
           </Link>
 
@@ -202,7 +195,7 @@ function Perfil() {
  */}
 
 
-          {publicaciones.map(tuPost => (
+          {publicaciones && publicaciones.map(tuPost => (
             <Link to="/Publicacion">
               <div className="d-inline-flex m-3 " >
                 <img className="img" src={tuPost.Imagen}

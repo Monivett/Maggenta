@@ -6,7 +6,7 @@ export const GetComisionByUserID = async (id) => {
     
     try {
         
-        const response = await axios.get(`/Precio`);  ///Precio/${id}
+        const response = await axios.get(`Precio/usuario/${id}`);  ///Precio/${id}
         if (response.status = 200) {
             return response.data;
         }

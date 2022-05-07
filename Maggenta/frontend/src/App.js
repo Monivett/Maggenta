@@ -15,6 +15,7 @@ import ComisionesHoja from "./Paginas/ComisionesHoja";
 import AuthProvider from "./auth/AuthProvider";
 import EditarPerfil from "./Paginas/EditarPerfil";
 import Pago from './Paginas/Pago';
+import EditarComision from "./Paginas/EditarComision";
 
 function App() {
   return (
@@ -31,8 +32,9 @@ function App() {
           <Route path="Registro" element={<Registro />} />
           <Route path="Comision" element={<Comision />} />
           <Route path="EditarPerfil" element={<EditarPerfil />} />
-          <Route path="ComisionesHoja" element={<ComisionesHoja />} />
+          <Route path="ComisionesHoja/:id" element={<ComisionesHoja />} />
           <Route path="Pago" element={<Pago />} />
+          <Route path="EditarComision/:id" element={<EditarComision />} />
         </Routes>
         <Foot />
       </AuthProvider>

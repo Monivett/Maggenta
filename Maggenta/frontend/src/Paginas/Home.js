@@ -1,18 +1,16 @@
 import { Fragment, useEffect, useState, useCallback } from "react";
 import "./Home.css";
 import { Link } from 'react-router-dom';
-import { Getall } from '../services/UserService';
+import { GetAll } from '../services/PublicacionesService';
 import { GetPostByUserID } from "../services/PublicacionesService";
 
 function Home() {
-
-
 
     // aqui se guardan las publicaci
     const [publicaciones, setPublicaciones] = useState([]);
 
     const getPublicaciones = useCallback(async () => {
-        const publicaciones = await GetPostByUserID();
+        const publicaciones = await GetAll();
         setPublicaciones(publicaciones);
 
     }, [])
@@ -23,13 +21,6 @@ function Home() {
 
     }, [getPublicaciones]);
 
-    useEffect(() => {
-        async function fetchData() {
-            await Getall();
-        }
-        fetchData();
-
-    }, []);
     return (
         <Fragment>
             <div className="row">

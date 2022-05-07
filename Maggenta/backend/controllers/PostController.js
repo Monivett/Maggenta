@@ -85,8 +85,8 @@ exports.Post_getById = async (req, res) => {
 
 exports.Post_getByUserId = async (req, res) => {
     try {
-        const { id } = req.params;
-        const data = await Post.findById(id).populate("_User");
+        const { UserId } = req.params;
+        const data = await Post.find({_User: UserId});
         //res.send({ mensaje: req.params.UserId })
 
 

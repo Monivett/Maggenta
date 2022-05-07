@@ -12,8 +12,6 @@ function Comision() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-
-
     //Cuando la foto cambia
     function handleChange(e) {
         if (e.target.files[0]) {
