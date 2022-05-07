@@ -11,6 +11,10 @@ const PriceSchemas = new mongoose.Schema({
         type: String,
         required: true
     },
+    Imagen: {
+        type: String,
+        required: true
+    },
     _User: [
         {
             type: mongoose.Types.ObjectId,

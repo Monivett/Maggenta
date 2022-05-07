@@ -21,8 +21,8 @@ function Registro() {
     }
 
     //Subir foto a Firebase
-    const uploadToFirebase = (event) => {
-        const uploadTask = storage.ref(`Userimages/${image.name}`).put(image);
+    const uploadToFirebase = (event) => {  // 3.
+        const uploadTask = storage.ref(`Userimages/${image.name}`).put(image); // se sube
         uploadTask.on(
             "state_changed",
             snapshot => { },
@@ -30,9 +30,9 @@ function Registro() {
                 console.log(error);
             },
             () => {
-                storage.ref('Userimages').child(image.name).getDownloadURL().then(url => {
-                    if (url !== undefined) {
-                        Registrar(event, url);
+                storage.ref('Userimages').child(image.name).getDownloadURL().then(url => { // se descarga la URL
+                    if (url !== undefined) { // si existe
+                        Registrar(event, url);  // → 4. 
                     }
 
                 })
@@ -42,9 +42,17 @@ function Registro() {
     }
 
     //Cuando oprimo el botón registrar
-    function submitHandler(event) {
+    function submitHandler(event) { // 1.
 
         event.preventDefault();
+        /*
+                console.log("nombre", event.target.Nombre.value);
+                console.log("Apellidos", event.target.Apellidos.value);
+                console.log("Usuario", event.target.Usuario.value);
+                console.log("Correo", event.target.Correo.value);
+                console.log("Contraseña", event.target.Contraseña.value);
+                console.log("des", event.target.FechaNac.value);
+                console.log("image", event.target.image.value);*/
 
         if (event.target.Nombre.value !== '' && event.target.Apellidos.value !== '' && event.target.Usuario.value !== '' && event.target.Correo.value !== '' && event.target.Contraseña.value !== '' && event.target.FechaNac.value && event.target.image.value !== '') {
             setError('');
@@ -60,9 +68,9 @@ function Registro() {
 
     }
 
-    function BuscarCorreoValido(pMail, event) {
+    function BuscarCorreoValido(pMail, event) {  // 2. 
         async function fetchData() {
-            const Emails = await GetEmail(pMail);
+            const Emails = await GetEmail(pMail); // esto te trae todos los correos de la tabla usuario(?)
             if (Emails.length === 0) { //Si el email es único
                 setError('Registrando...');
                 uploadToFirebase(event);
@@ -74,7 +82,7 @@ function Registro() {
     }
 
     //Registra los datos a MongoDB
-    function Registrar(event, url) {
+    function Registrar(event, url) {  // 4. 
 
         axios.post('/Usuario', {
             Nombre: event.target.Nombre.value,
@@ -111,6 +119,7 @@ function Registro() {
                     </div>
                 </div>
                 <div className="col bg text-center">
+                    {/** --------> el Form <------------------*/}
                     <form onSubmit={submitHandler} method="POST" id="form" className="registrarse">
                         <h1 id="letraTitulo">REGISTRO</h1>
                         <div className="row m-2">
@@ -123,37 +132,37 @@ function Registro() {
                         <div className="form">
                             <div className="grupo">
                                 <label htmlFor="">Nombre(s):</label><br />
-                                <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." />
+                                <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." required />
                             </div>
                             <div className="grupo">
                                 <label htmlFor="">Apellidos:</label><br />
-                                <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." />
+                                <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." required />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Usuario:</label><br />
-                                <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." />
+                                <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." required />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Correo electrónico:</label><br />
-                                <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." />
+                                <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." required />
 
                             </div>
                             <div className="grupo">
                                 <label htmlFor="">Contraseña: </label><br />
-                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)} />
+                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)} required />
 
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Fecha de Nacimiento:</label><br />
-                                <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" />
+                                <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" required />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Foto de perfil:</label><br />
-                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} />
+                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} required />
                             </div>
 
                             <br />
@@ -161,6 +170,8 @@ function Registro() {
                             <button type="submit" className="btn btn-light btn-lg" id="registro">Registrarme</button>
                         </div>
                     </form>
+
+
                 </div>
             </div>
         </Fragment>

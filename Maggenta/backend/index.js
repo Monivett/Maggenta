@@ -21,10 +21,10 @@ const Comision_router = require('./routes/ComisionRoutes');
 
 app.use(bodyParser.json());
 
-app.use('/api', User_router);
-app.use('/api', Chat_router);
+app.use('/api', User_router);  //ya
+app.use('/api', Chat_router);  //ya
 app.use('/api', Follow_router);
-app.use('/api', Category_router);
+app.use('/api', Category_router);  //ya
 app.use('/api', Post_router);
 app.use('/api', Like_router);
 app.use('/api', Comment_router);
