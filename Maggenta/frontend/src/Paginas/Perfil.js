@@ -7,6 +7,7 @@ import { IsFollow } from "../services/FollowService";
 import { UserFollowers } from "../services/FollowService";
 import { UserFollows } from "../services/FollowService";
 import { axiosBase as axios } from "../services/Config";
+import { GetPostByUserID } from "../services/PublicacionesService";
 
 function Perfil() {
   const { id } = useParams();
@@ -15,6 +16,24 @@ function Perfil() {
   const [followersNumber, setFollowersNumber] = useState(0);
   const [followsNumber, setFollowsNumber] = useState(0);
   const { user } = useAuth();
+
+  // aqui se guardan las publicaci
+  const [publicaciones, setPublicaciones] = useState([]);
+
+  const getPublicaciones = useCallback(async () => {
+    const publicaciones = await GetPostByUserID();
+    setPublicaciones(publicaciones);
+
+  }, [])
+
+  useEffect(() => {
+
+    getPublicaciones();
+
+  }, [getPublicaciones]);
+
+
+
 
   const getUser = useCallback(async (id) => {
 
@@ -61,7 +80,7 @@ function Perfil() {
         if (response.data !== '') {
           console.log('Se ha seguido a ' + userData.Usuario);
           setIsFollowed(true);
-          userFollowers( userData._id);
+          userFollowers(userData._id);
         }
         else {
           alert('¡No se pudo seguir a este artista!');
@@ -80,7 +99,7 @@ function Perfil() {
         if (response.data !== '') {
           console.log('Se ha dejado de seguir a ' + userData.Usuario);
           setIsFollowed(false);
-          userFollowers( userData._id);
+          userFollowers(userData._id);
         }
         else {
           alert('¡No se puede dejar de seguir a este artista!');
@@ -171,24 +190,30 @@ function Perfil() {
 
         </div>
         <div className="col-7 text-center   m-2 ">
-          <Link to="/Publicacion">
+
+          {  /** 
+ * 
+ *   <Link to="/Publicacion">
             <div className="d-inline-flex m-3 " >
               <img className="img" src={require("../IMG/1.png")}
                 alt="" width="300" height="300" />
             </div>
           </Link>
-          <div className="d-inline-flex m-3 " >
-            <img className="img" src={require("../IMG/4.png")}
-              alt="" width="300" height="300" />
-          </div>
-          <div className="d-inline-flex m-3 " >
-            <img className="img" src={require("../IMG/2.png")}
-              alt="" width="300" height="300" />
-          </div>
-          <div className="d-inline-flex m-3 " >
-            <img className="img" src={require("../IMG/9.png")}
-              alt="" width="300" height="300" />
-          </div>
+ */}
+
+
+          {publicaciones.map(tuPost => (
+            <Link to="/Publicacion">
+              <div className="d-inline-flex m-3 " >
+                <img className="img" src={tuPost.Imagen}
+                  alt="" width="300" height="300" />
+              </div>
+            </Link>
+          ))}
+
+          
+
+
         </div>
       </div>
     </div>

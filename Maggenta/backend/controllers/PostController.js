@@ -53,12 +53,12 @@ exports.Post_update = async (req, res) => {
 exports.Post_delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const Postdb = await Post.findById({id});
-        
+        const Postdb = await Post.findById({ id });
+
         if (Postdb) { //Proceso de actualizar
 
-            const data = await Post.deleteOne({_id: id});
-            
+            const data = await Post.deleteOne({ _id: id });
+
             res.send({ message: "Publicación eliminada exitosamente", data })
         } else { //Mensaje de error
             res.send({ message: "La publicación que intentas eliminar no existe" });
@@ -71,12 +71,25 @@ exports.Post_delete = async (req, res) => {
 
 //MOSTRAR POR ID
 exports.Post_getById = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const data = await Post.findById(id).populate();
 
-    if(data){ //Si existe
+    if (data) { //Si existe
         res.send(data);
-    }else{
-        res.send({message: "Publicación no existe"})
+    } else {
+        res.send({ message: "Publicación no existe" })
+    }
+}
+
+// Post_getByUserID
+
+exports.Post_getByUserId = async (req, res) => {
+    const { Userid } = req.params;
+    const data = await Post.find({ _User: Userid }); //.populate()
+
+    if (data) { //Si existe
+        res.send(data);
+    } else {
+        res.send({ message: "Publicaciones de usuario no existen" })
     }
 }
