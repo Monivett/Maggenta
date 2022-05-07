@@ -45,6 +45,14 @@ function Registro() {
     function submitHandler(event) { // 1.
 
         event.preventDefault();
+        /*
+                console.log("nombre", event.target.Nombre.value);
+                console.log("Apellidos", event.target.Apellidos.value);
+                console.log("Usuario", event.target.Usuario.value);
+                console.log("Correo", event.target.Correo.value);
+                console.log("Contraseña", event.target.Contraseña.value);
+                console.log("des", event.target.FechaNac.value);
+                console.log("image", event.target.image.value);*/
 
         if (event.target.Nombre.value !== '' && event.target.Apellidos.value !== '' && event.target.Usuario.value !== '' && event.target.Correo.value !== '' && event.target.Contraseña.value !== '' && event.target.FechaNac.value && event.target.image.value !== '') {
             setError('');
@@ -124,37 +132,37 @@ function Registro() {
                         <div className="form">
                             <div className="grupo">
                                 <label htmlFor="">Nombre(s):</label><br />
-                                <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." required/>
+                                <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." required />
                             </div>
                             <div className="grupo">
                                 <label htmlFor="">Apellidos:</label><br />
-                                <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." required/>
+                                <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." required />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Usuario:</label><br />
-                                <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." required/>
+                                <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." required />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Correo electrónico:</label><br />
-                                <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." required/>
+                                <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." required />
 
                             </div>
                             <div className="grupo">
                                 <label htmlFor="">Contraseña: </label><br />
-                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)}  required />
+                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)} required />
 
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Fecha de Nacimiento:</label><br />
-                                <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" required/>
+                                <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" required />
                             </div>
 
                             <div className="grupo">
                                 <label htmlFor="">Foto de perfil:</label><br />
-                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} required/>
+                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} required />
                             </div>
 
                             <br />
