@@ -6,8 +6,26 @@ body{
 
 .dibujin{
     width: 290px;
+   height:fit-content;
+    margin-top: 80px;
+    margin-left: 100px;
+  
     
 }
+
+
+.superfit{
+    width:290px;
+    position:relative;
+    right: 13px;
+    top: -1px;
+    
+  }
+
+  .minipadding{
+      padding-left: 5px;
+      padding-right: 10px;
+  }
 
 .dibujin2{
     width: 290px;
@@ -28,6 +46,8 @@ body{
 .dibujo1{
     margin-top: 180px;
     margin-left: 100px;
+
+   
 }
 
 .dibujo2{
