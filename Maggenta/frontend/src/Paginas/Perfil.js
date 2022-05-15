@@ -8,14 +8,34 @@ import { UserFollowers } from "../services/FollowService";
 import { UserFollows } from "../services/FollowService";
 import { axiosBase as axios } from "../services/Config";
 import { GetPostByUserID } from "../services/PublicacionesService";
+import './Modal_Followers.css';
+import Modal from './Modal_Followers';
 
 function Perfil() {
+
   const { id } = useParams();
+
   const [userData, setUserData] = useState([]);
+
   const [isFollowed, setIsFollowed] = useState(false);
   const [followersNumber, setFollowersNumber] = useState(0);
   const [followsNumber, setFollowsNumber] = useState(0);
+
   const { user } = useAuth();
+
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showModalInfo, setShowModalInfo] = useState('');
+
+  const handleClose = () => setShowFollowers(false);
+
+  const handleShow = (data) => {
+    setShowFollowers(true);
+    setShowModalInfo(data);
+  }
+ 
+  
+
+console.log('perfil')
 
   // aqui se guardan las publicaciones
   const [publicaciones, setPublicaciones] = useState([]);
@@ -47,7 +67,7 @@ function Perfil() {
 
       const isFollow = await UserFollowers(userId);
 
-      setFollowersNumber(isFollow.length);
+      setFollowersNumber(isFollow);
     }
     fetchData();
   }
@@ -58,7 +78,7 @@ function Perfil() {
 
       const isFollow = await UserFollows(userId);
 
-      setFollowsNumber(isFollow.length);
+      setFollowsNumber(isFollow);
     }
     fetchData();
   }
@@ -132,59 +152,62 @@ function Perfil() {
 
 
   return (
-    <div className="container-fluid bg4 ">
-      <div className="row align-items-stretch">
-        <div className="col m-3 text-center ">
-          <img className="img rounded-circle" alt="100x100" src={userData.Foto}
-            width="150" height="150" />
-          <h3 className="fw-bold text-center mt-3 TCR"> {userData.Nombre} {userData.Apellidos}</h3>
-          <h5 className="fw-bold text-center mt-3 TCR"> @{userData.Usuario}</h5>
+    <Fragment>
+      {showFollowers && <Modal show={showFollowers} onClose={handleClose} info={showModalInfo}>
+      </Modal>}
+      <div className="container-fluid bg4 ">
+        <div className="row align-items-stretch">
+          <div className="col m-3 text-center ">
+            <img className="img rounded-circle" alt="100x100" src={userData.Foto}
+              width="150" height="150" />
+            <h3 className="fw-bold text-center mt-3 TCR"> {userData.Nombre} {userData.Apellidos}</h3>
+            <h5 className="fw-bold text-center mt-3 TCR"> @{userData.Usuario}</h5>
+          </div>
         </div>
-      </div>
-      <div className="row align-items-stretch">
-        <div className="col text-center   m-2 ">
-          <div className="row align-items-stretch">
-            <div className="col text-center  m-1 ">
-              <h3 className="fw-bold text-center  TCR"> Seguidores </h3>
-              <h3 className="fw-bold text-center  TCR"> {followersNumber} </h3>
-            </div>
-            <div className="col text-center   m-2 ">
-              <h3 className="fw-bold text-center  TCR"> Seguidos </h3>
-              <h3 className="fw-bold text-center TCR"> {followsNumber} </h3>
+        <div className="row align-items-stretch">
+          <div className="col text-center   m-2 ">
+            <div className="row align-items-stretch">
+              <div className="col text-center  m-1 ">
+                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followersNumber)}> Seguidores </h3>
+                <h3 className="fw-bold text-center  TCR"> {followersNumber.length} </h3>
+              </div>
+              <div className="col text-center   m-2 ">
+                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followsNumber)}> Seguidos </h3>
+                <h3 className="fw-bold text-center TCR"> {followsNumber.length} </h3>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="row text-center  bg5   ">
-        <div className="col-4 ">
-          <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
-            <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
-            <h5 className="fw-light text-center mt-3"> {userData.Correo} </h5>
-            {user.userData._id == userData._id ?
-              <Fragment>
-                <Link to="/EditarPerfil">
-                  <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
-                </Link>
-                <Link to="/Comision">
-                  <button className="btn btn-outline-info m-1" type="submit">Agregar Comisión</button>
-                </Link>
-              </Fragment>
-              :
+        <div className="row text-center  bg5   ">
+          <div className="col-4 ">
+            <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
+              <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
+              <h5 className="fw-light text-center mt-3"> {userData.Correo} </h5>
+              {user.userData._id == userData._id ?
+                <Fragment>
+                  <Link to="/EditarPerfil">
+                    <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
+                  </Link>
+                  <Link to="/Comision">
+                    <button className="btn btn-outline-info m-1" type="submit">Agregar Comisión</button>
+                  </Link>
+                </Fragment>
+                :
 
-              isFollowed ? <button className="btn btn-outline-info-danger m-1" type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
-                : <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
-            }
+                isFollowed ? <button className="btn btn-outline-info-danger m-1" type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
+                  : <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
+              }
+
+            </div>
+            <Link to={`/ComisionesHoja/${userData._id}`}>
+              <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
+            </Link>
 
           </div>
-          <Link to={`/ComisionesHoja/${userData._id}`}>
-            <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
-          </Link>
+          <div className="col-7 text-center   m-2 ">
 
-        </div>
-        <div className="col-7 text-center   m-2 ">
-
-          {  /** 
+            {  /** 
  * 
  *   <Link to="/Publicacion">
             <div className="d-inline-flex m-3 " >
@@ -195,21 +218,23 @@ function Perfil() {
  */}
 
 
-          {publicaciones && publicaciones.map(tuPost => (
-            <Link to="/Publicacion">
-              <div className="d-inline-flex m-3 " >
-                <img className="img" src={tuPost.Imagen}
-                  alt="" width="300" height="300" />
-              </div>
-            </Link>
-          ))}
-
-          
+            {publicaciones && publicaciones.map(tuPost => (
+              <Link to="/Publicacion">
+                <div className="d-inline-flex m-3 " >
+                  <img className="img" src={tuPost.Imagen}
+                    alt="" width="300" height="300" />
+                </div>
+              </Link>
+            ))}
 
 
+
+
+          </div>
         </div>
       </div>
-    </div>
+    </Fragment>
+
   );
 }
 
