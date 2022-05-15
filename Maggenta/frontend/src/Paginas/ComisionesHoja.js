@@ -12,6 +12,7 @@ function ComisionesHoja() {
     const { user } = useAuth();
     // aqui se guardan las comisiones
     const [comisiones, setComisiones] = useState([]);
+    console.log(comisiones);
 
     const getUser = useCallback(async (id) => {
 
@@ -42,7 +43,7 @@ function ComisionesHoja() {
                     </div>
                     <div className="col-10 bg2  align-items-center m-2 p-5">
 
-                        {comisiones.map(tusComisiones => (
+                        {comisiones && comisiones.map(tusComisiones => (
                             <div className="card d-inline-flex CC m-4" >
                                 <img className="" src={tusComisiones.Imagen} alt="caray! no se pudo cargar." width="300" height="300" />
                                 <div className="card-body">
@@ -52,8 +53,8 @@ function ComisionesHoja() {
                                         <Fragment>
                                             <button className="btn btn-outline-info m-1">Borrar</button>
                                             <Link to={`/EditarComision/${tusComisiones._id}`}>
-                                            <button className="btn btn-outline-info m-1">Editar</button>
-                                        </Link>
+                                                <button className="btn btn-outline-info m-1">Editar</button>
+                                            </Link>
                                         </Fragment>
                                         :
                                         <Link to="/Pago">

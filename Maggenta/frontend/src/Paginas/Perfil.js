@@ -25,12 +25,14 @@ function Perfil() {
 
   const [showFollowers, setShowFollowers] = useState(false);
   const [showModalInfo, setShowModalInfo] = useState('');
+  const [typeModalInfo, setTypeModalInfo] = useState('');
 
   const handleClose = () => setShowFollowers(false);
 
-  const handleShow = (data) => {
+  const handleShow = (data, tipo) => {
     setShowFollowers(true);
     setShowModalInfo(data);
+    setTypeModalInfo(tipo);
   }
  
   
@@ -153,7 +155,7 @@ console.log('perfil')
 
   return (
     <Fragment>
-      {showFollowers && <Modal show={showFollowers} onClose={handleClose} info={showModalInfo}>
+      {showFollowers && <Modal show={showFollowers} onClose={handleClose} info={showModalInfo} tipo = {typeModalInfo}>
       </Modal>}
       <div className="container-fluid bg4 ">
         <div className="row align-items-stretch">
@@ -168,11 +170,11 @@ console.log('perfil')
           <div className="col text-center   m-2 ">
             <div className="row align-items-stretch">
               <div className="col text-center  m-1 ">
-                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followersNumber)}> Seguidores </h3>
+                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followersNumber, 'Seguidores')}> Seguidores </h3>
                 <h3 className="fw-bold text-center  TCR"> {followersNumber.length} </h3>
               </div>
               <div className="col text-center   m-2 ">
-                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followsNumber)}> Seguidos </h3>
+                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followsNumber, 'Seguidos')}> Seguidos </h3>
                 <h3 className="fw-bold text-center TCR"> {followsNumber.length} </h3>
               </div>
             </div>
