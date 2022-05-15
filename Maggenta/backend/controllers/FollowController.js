@@ -58,7 +58,7 @@ exports.Follow_delete = async (req, res) => {
 //MOSTRAR POR SEGUIDORES DEL ARTISTA
 exports.Follow_getByUser = async (req, res) => {
     const { user } = req.params;
-    const data = await Follow.find( {_UserFollower: user});
+    const data = await Follow.find( {_UserFollower: user}).populate("_UserFollow");
 
     if (data) { //Si existe
         res.send(data);
@@ -70,7 +70,7 @@ exports.Follow_getByUser = async (req, res) => {
 //MOSTRAR POR SEGUIDORES DEL ARTISTA
 exports.Follow_getFollows = async (req, res) => {
     const { user } = req.params;
-    const data = await Follow.find( {_UserFollow: user});
+    const data = await Follow.find( {_UserFollow: user}).populate("_UserFollower");
 
     if (data) { //Si existe
         res.send(data);
