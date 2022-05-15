@@ -57,10 +57,10 @@ exports.User_email = async (req, res) => {
        
     }
 };
-//BUSCAR POR CORREO
+//BUSCAR POR USERNAME
 exports.User_username= async (req, res) => {
     const { username } = req.params;
-    const data = await User.find({Usuario: username});
+    const data = await User.find({Usuario: {$regex: `${username}.*`}});
 
     if (data) { //Si existe
         res.send(data);

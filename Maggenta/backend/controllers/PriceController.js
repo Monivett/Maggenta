@@ -65,8 +65,8 @@ exports.Price_delete = async (req, res) => {
 
 //MOSTRAR POR ID
 exports.Price_getByUser = async (req, res) => {
-    const {id} = req.params;
-    const data = await Price.findById(id).populate();
+    const {username} = req.params;
+    const data = await Price.find({_User:username});
 
     if(data){ //Si existe
         res.send(data);
