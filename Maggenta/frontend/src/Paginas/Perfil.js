@@ -25,17 +25,19 @@ function Perfil() {
 
   const [showFollowers, setShowFollowers] = useState(false);
   const [showModalInfo, setShowModalInfo] = useState('');
+  const [typeModalInfo, setTypeModalInfo] = useState('');
 
   const handleClose = () => setShowFollowers(false);
 
-  const handleShow = (data) => {
+  const handleShow = (data, tipo) => {
     setShowFollowers(true);
     setShowModalInfo(data);
+    setTypeModalInfo(tipo);
   }
- 
-  
 
-console.log('perfil')
+
+
+  console.log('perfil')
 
   // aqui se guardan las publicaciones
   const [publicaciones, setPublicaciones] = useState([]);
@@ -153,7 +155,7 @@ console.log('perfil')
 
   return (
     <Fragment>
-      {showFollowers && <Modal show={showFollowers} onClose={handleClose} info={showModalInfo}>
+      {showFollowers && <Modal show={showFollowers} onClose={handleClose} info={showModalInfo} tipo={typeModalInfo}>
       </Modal>}
       <div className="container-fluid bg4 ">
         <div className="row align-items-stretch">
@@ -168,11 +170,11 @@ console.log('perfil')
           <div className="col text-center   m-2 ">
             <div className="row align-items-stretch">
               <div className="col text-center  m-1 ">
-                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followersNumber)}> Seguidores </h3>
+                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) => handleShow(followersNumber, 'Seguidores')}> Seguidores </h3>
                 <h3 className="fw-bold text-center  TCR"> {followersNumber.length} </h3>
               </div>
               <div className="col text-center   m-2 ">
-                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) =>  handleShow(followsNumber)}> Seguidos </h3>
+                <h3 className="fw-bold text-center  TCR TCRH" onClick={(e) => handleShow(followsNumber, 'Seguidos')}> Seguidos </h3>
                 <h3 className="fw-bold text-center TCR"> {followsNumber.length} </h3>
               </div>
             </div>
@@ -184,13 +186,18 @@ console.log('perfil')
             <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
               <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
               <h5 className="fw-light text-center mt-3"> {userData.Correo} </h5>
-              {user.userData._id == userData._id ?
+              {user && user.userData._id == userData._id ?
                 <Fragment>
                   <Link to="/EditarPerfil">
                     <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
                   </Link>
                   <Link to="/Comision">
                     <button className="btn btn-outline-info m-1" type="submit">Agregar Comisión</button>
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link to={`/MisPedidos/${userData._id}`}>
+                    <button className="btn btn-outline-info m-1" type="submit">Mis pedidos</button>
                   </Link>
                 </Fragment>
                 :
@@ -203,6 +210,7 @@ console.log('perfil')
             <Link to={`/ComisionesHoja/${userData._id}`}>
               <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
             </Link>
+
 
           </div>
           <div className="col-7 text-center   m-2 ">

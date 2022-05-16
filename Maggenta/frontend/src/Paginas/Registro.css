@@ -16,6 +16,9 @@ body{
 .error{
     color: #282828;
 }
+.errorwhite{
+    color: white;
+}
 .hola{
     margin-top: 140px;
     margin-left: 190px;
