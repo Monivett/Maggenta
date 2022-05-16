@@ -15,19 +15,19 @@ function FollowModal(props) {
                     <div className="contenido" id="scroll">
                         {props.info.map(user => (
                             user._UserFollow.Foto !== undefined ?
-                                <Link to={`/Perfil/${user._UserFollow._id}`} style={{ textDecoration: 'none' }}>
+                                <a href={`/Perfil/${user._UserFollow._id}`} style={{ textDecoration: 'none' }}>
                                     <div className="usuarioInfo">
                                         <img src={user._UserFollow.Foto} alt="" height="50px" width="50px" />
                                         <p>{user._UserFollow.Usuario}</p>
                                     </div>
                                     
-                                </Link>
-                                : <Link to={`/Perfil/${user._UserFollower._id}`} style={{ textDecoration: 'none' }}>
+                                </a>
+                                : <a href={`/Perfil/${user._UserFollower._id}`} style={{ textDecoration: 'none' }}>
                                     <div className="usuarioInfo">
                                         <img src={user._UserFollower.Foto} alt="" height="50px" width="50px" />
                                         <p>{user._UserFollower.Usuario}</p>
                                     </div>
-                                </Link>
+                                </a>
                         ))}
                     </div>
                 </div>

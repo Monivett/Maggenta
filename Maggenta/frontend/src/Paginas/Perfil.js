@@ -12,7 +12,7 @@ import './Modal_Followers.css';
 import Modal from './Modal_Followers';
 
 function Perfil() {
-
+ 
   const { id } = useParams();
 
   const [userData, setUserData] = useState([]);
@@ -22,7 +22,7 @@ function Perfil() {
   const [followsNumber, setFollowsNumber] = useState(0);
 
   const { user } = useAuth();
-
+  
   const [showFollowers, setShowFollowers] = useState(false);
   const [showModalInfo, setShowModalInfo] = useState('');
   const [typeModalInfo, setTypeModalInfo] = useState('');
@@ -146,7 +146,7 @@ console.log('perfil')
   }
 
   useEffect(() => {
-
+ 
     getUser(id);
 
   }, [getUser]);
@@ -186,7 +186,7 @@ console.log('perfil')
             <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
               <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
               <h5 className="fw-light text-center mt-3"> {userData.Correo} </h5>
-              {user.userData._id == userData._id ?
+              {user && user.userData._id == userData._id ?
                 <Fragment>
                   <Link to="/EditarPerfil">
                     <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
