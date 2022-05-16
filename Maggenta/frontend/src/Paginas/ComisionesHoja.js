@@ -43,7 +43,7 @@ function ComisionesHoja() {
                     </div>
                     <div className="col-10 bg2  align-items-center m-2 p-5">
 
-                        {comisiones && comisiones.map(tusComisiones => (
+                        {comisiones.length!==0 ? comisiones.map(tusComisiones => (
                             <div className="card d-inline-flex CC m-4" >
                                 <img className="" src={tusComisiones.Imagen} alt="caray! no se pudo cargar." width="300" height="300" />
                                 <div className="card-body">
@@ -66,7 +66,9 @@ function ComisionesHoja() {
 
                                 </div>
                             </div>
-                        ))}
+                        )):
+                        <h5 className="card-title" >No hay hoja de comisiones </h5>
+                        }
 
 
 
