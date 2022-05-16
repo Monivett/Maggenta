@@ -9,7 +9,6 @@ router.get("/Precio", Price_controller.Price_getall);//
 router.post("/Precio", Price_controller.Price_create); //Agregar
 router.put("/Precio/:id", Price_controller.Price_update); //Modificar (recibe ID)
 router.delete("/Precio/:id", Price_controller.Price_delete); //Eliminar (recibe ID)
-router.get("/Precio/usuario/:id", Price_controller.Price_getByUser); //Buscar hoja de comisiones por usuario
-
+router.get("/Precio/usuario/:username", Price_controller.Price_getByUser); //Buscar por username
 
 module.exports = router;

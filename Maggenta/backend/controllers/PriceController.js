@@ -53,12 +53,12 @@ exports.Price_update = async (req, res) => {
 exports.Price_delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const Pricedb = await Price.findById({id});
-        
+        const Pricedb = await Price.findById({ id });
+
         if (Pricedb) { //Proceso de actualizar
 
-            const data = await Price.deleteOne({_id: id});
-            
+            const data = await Price.deleteOne({ _id: id });
+
             res.send({ message: "Tipo de comisión eliminada exitosamente", data })
         } else { //Mensaje de error
             res.send({ message: "El tipo de comisión que intentas eliminar no existe" });
@@ -69,15 +69,16 @@ exports.Price_delete = async (req, res) => {
 
 };
 
-//MOSTRAR POR ID
+//MOSTRAR POR USUARIO
 exports.Price_getByUser = async (req, res) => {
-    const {id} = req.params;
-    const data = await Price.find({_User: id});
 
-    if(data){ //Si existe
+    const { username } = req.params;
+    const data = await Price.find({ _User: username });
+
+    if (data) { //Si existe
         res.send(data);
-    }else{
-        res.send({message: "Este usuario no tiene ejemplos de comisión"})
+    } else {
+        res.send({ message: "Este usuario no tiene ejemplos de comisión" })
     }
 }
 

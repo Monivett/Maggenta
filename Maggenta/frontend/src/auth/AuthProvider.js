@@ -20,9 +20,10 @@ export default function AuthProvider({ children }) {
                 if (response.data[0] !== undefined) {
                     const userData = response.data[0];
                     setUser({ userData });
+                    sessionStorage.setItem('user-token',  JSON.stringify(userData));
                     alert('Has iniciado sesión correctamente');
                     navigate("/");
-                }else{
+                } else {
                     alert('Datos incorrectos');
                 }
                 return response.data;
@@ -35,12 +36,37 @@ export default function AuthProvider({ children }) {
         }
 
     }
-    const logout = () => setUser(null);
+    const Islogin = async (Pmail, Ppassword) => {
+
+        try {
+            const response = await axios.get(`/Usuario/login/${Pmail}/${Ppassword}`);
+            if (response.status = 200) {
+
+                if (response.data[0] !== undefined) {
+                    const userData = response.data[0];
+                    setUser({ userData });
+                    sessionStorage.setItem('user-token',  JSON.stringify(userData));
+                } 
+                return response.data;
+            }
+            console.log("Login" + response.data);
+        }
+        catch (err) {
+            console.log(err);
+            return (err);
+        }
+
+    }
+    const logout = () => {
+        setUser(null);
+        sessionStorage.removeItem('user-token');
+    }
 
     const contextvalue = {
         user,
         login,
-        logout
+        logout,
+        Islogin
     };
     return <AuthContext.Provider value={contextvalue}>{children}</AuthContext.Provider>
 }

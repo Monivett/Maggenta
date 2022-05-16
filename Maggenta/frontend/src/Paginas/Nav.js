@@ -1,10 +1,15 @@
 import { Fragment, useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../auth/AuthProvider";
 import useAuth from "../auth/useAuth";
 import { Getall } from "../services//CategoryService";
 import './Colores.css';
 
 function Nav() {
+
+  const userToken = JSON.parse(sessionStorage.getItem('user-token'));
+
+  const { Islogin } = useAuth();
 
   const { user } = useAuth();
   const { logout } = useAuth();
@@ -19,6 +24,11 @@ function Nav() {
   }, [])
 
   useEffect(() => {
+    if (user === null) {
+      if (userToken) {
+        Islogin(userToken.Correo, userToken.Contraseña);
+      }
+    }
 
     getCategorias();
 
@@ -26,7 +36,7 @@ function Nav() {
 
 
   return (
-    <Fragment>
+
       <nav className="navbar-fluid sticky-top navbar-expand-md   ">
         <div className="container-fluid ">
           <div className="row bg2">
@@ -70,10 +80,10 @@ function Nav() {
             </div>
 
             <div className="col-auto m-2 " >
-              {user && <Link to={`/Perfil/${user.userData._id}`}>
+              {user && <a href={`/Perfil/${user.userData._id}`}>
                 <img className="img-thumbnail" src={user.userData.Foto}
                   alt="" width="50" />
-              </Link>}
+              </a>}
             </div>
           </div>
           <div className="row bg8">
@@ -89,8 +99,6 @@ function Nav() {
         </div>
       </nav >
 
-
-    </Fragment >
 
   );
 }
