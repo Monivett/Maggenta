@@ -16,6 +16,7 @@ import AuthProvider from "./auth/AuthProvider";
 import EditarPerfil from "./Paginas/EditarPerfil";
 import Pago from './Paginas/Pago';
 import EditarComision from "./Paginas/EditarComision";
+import MisPedidos from "./Paginas/MisPedidos";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="Comision" element={<Comision />} />
           <Route path="EditarPerfil" element={<EditarPerfil />} />
           <Route path="ComisionesHoja/:id" element={<ComisionesHoja />} />
+          <Route path="MisPedidos/:id" element={<MisPedidos />} />
           <Route path="Pago" element={<Pago />} />
           <Route path="EditarComision/:id" element={<EditarComision />} />
         </Routes>

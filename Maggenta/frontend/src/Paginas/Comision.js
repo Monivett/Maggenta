@@ -16,11 +16,8 @@ function Comision() {
     function handleChange(e) {
         if (e.target.files[0]) {
             setImage(e.target.files[0])
-
         }
     }
-
-
 
     // 1. Cuando oprimo el botón crear
     const handleOnSubmitSchool = (event) => {
@@ -38,19 +35,19 @@ function Comision() {
             //
             if (event.target.tipo.value.length >= 3 && event.target.tipo.value.length <= 40) {
                 if (event.target.precio.value.length >= 1 && event.target.precio.value.length <= 10) {
-                    setError('Creando Comision ejemplo...');
+                    setError('Creando comision ejemplo...');
                     uploadToFirebase(event);
                 } else {
-                    setError('campo de Costo mínima 1 y máxima 10 caracteres');
+                    setError('Campo de costo mínimo 1 y máximo 10 caracteres');
                 }
             } else {
-                setError('Tipo de comisión mínima 3 y máxima 40 caracteres');
+                setError('Tipo de comisión mínimo 3 y máximo 40 caracteres');
             }
             //
             //
         }
         else {
-            setError('¡te falta completar campos!');
+            setError('¡Te falta completar campos!');
         }
 
 
@@ -91,7 +88,7 @@ function Comision() {
                 console.log(response.data);
                 if (response.data !== '') {
                     alert('Muy bien, se ha creado tu comision ejemplo.');
-                    navigate("/");
+                    navigate(`/ComisionesHoja/${user.userData._id}`);
                 }
                 else {
                     setError('¡No se pudo crear tu comision!');
@@ -117,17 +114,17 @@ function Comision() {
                                 <h2 >AGREGA UN TIPO DE COMISIÓN:</h2><br />
                                 <div className="form-group">
                                     <label for="formGroupExampleInput" id="letraTIPO" >Tipo de comisión:</label>
-                                    <input type="text" name="tipo" className="form-control" id="formGroupExampleInput" placeholder="Tipo..." required />
+                                    <input type="text" name="tipo" className="form-control" id="formGroupExampleInput" placeholder="Tipo..."  />
                                 </div><br />
                                 <div className="form-group">
                                     <label for="formGroupExampleInput" id="letraPRECIO" >Costo:</label>
-                                    <input type="number" name="precio" className="form-control" id="formGroupExampleInput" placeholder="Costo..." required />
+                                    <input type="number" name="precio" className="form-control" id="formGroupExampleInput" placeholder="Costo..."  />
                                 </div><br />
                                 <div className="form-group">
                                     <label for="formGroupExampleInput" id="letraEJEMPLO" >Ejemplo:</label><br />
-                                    <input id="foto" name="imagen" className="input-file" type="file" onChange={handleChange} required />
+                                    <input id="foto" name="imagen" className="input-file" type="file" onChange={handleChange}  />
                                 </div><br />
-                                <p className="error">{error}</p>
+                                <p className="errorwhite">{error}</p>
                                 <button type="submit" className="btn btn-light btn-lg" id="agregar">Agregar</button>
                             </form>
                         </div>
