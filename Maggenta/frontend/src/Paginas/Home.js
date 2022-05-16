@@ -3,8 +3,11 @@ import "./Home.css";
 import { Link } from 'react-router-dom';
 import { GetAll } from '../services/PublicacionesService';
 import { GetPostByUserID } from "../services/PublicacionesService";
+import useAuth from "../auth/useAuth";
+
 
 function Home() {
+    const { user } = useAuth();
 
     // aqui se guardan las publicaci
     const [publicaciones, setPublicaciones] = useState([]);
@@ -30,7 +33,7 @@ function Home() {
                     <Fragment>
 
                         <div className="card dibujin">
-                            <Link to="/Publicacion">
+                            <Link to={`/Publicacion/${tuPost._id}`}>
                                 <img src={tuPost.Imagen} className="card-img-top superfit" alt="ups no cargo" />
                             </Link>
 
