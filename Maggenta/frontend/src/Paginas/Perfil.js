@@ -217,19 +217,8 @@ function Perfil() {
           </div>
           <div className="col-7 text-center   m-2 ">
 
-            {  /** 
- * 
- *   <Link to="/Publicacion">
-            <div className="d-inline-flex m-3 " >
-              <img className="img" src={require("../IMG/1.png")}
-                alt="" width="300" height="300" />
-            </div>
-          </Link>
- */}
-
-
             {publicaciones && publicaciones.map(tuPost => (
-              <Link to="/Publicacion">
+              <Link to={`/Publicacion/${tuPost._id}`}>
                 <div className="d-inline-flex m-3 " >
                   <img className="img" src={tuPost.Imagen}
                     alt="" width="300" height="300" />

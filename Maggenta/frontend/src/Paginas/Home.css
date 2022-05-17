@@ -1,63 +1,59 @@
-body{
+body {
     background: #282828;
     font-family: Arial Black;
 }
 
 
-.dibujin{
+.dibujin {
     width: 290px;
-   height:fit-content;
+    height: fit-content;
     margin-top: 80px;
-    margin-left: 100px;
-  
+    margin-left: 60px;
     
 }
 
 
-.superfit{
-    width:290px;
-    position:relative;
+.superfit {
+    width: 290px;
+    position: relative;
     right: 13px;
     top: -1px;
-    
-  }
 
-  .minipadding{
-      padding-left: 5px;
-      padding-right: 10px;
-  }
+}
 
-.dibujin2{
+.minipadding {
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.dibujin2 {
     width: 290px;
 }
 
-.dibujin3{
+.dibujin3 {
     width: 290px;
 }
 
-.dibujin4{
+.dibujin4 {
     width: 290px;
 }
 
-.dibujin5{
+.dibujin5 {
     width: 290px;
 }
 
-.dibujo1{
-    margin-top: 180px;
-    margin-left: 100px;
-
-   
+.homePage {
+    margin: auto;
 }
 
-.dibujo2{
+.dibujo2 {
     margin-top: 180px;
 }
 
-.dibujo3{
+.dibujo3 {
     margin-top: 180px;
 }
 
-.dibujo4{
+.dibujo4 {
     margin-top: 180px;
 }
