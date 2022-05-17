@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
 
 const ComisionSchemas = new mongoose.Schema({
-    
+
+    Descripcion: {
+        type: String,
+        required: true
+    },
+    Imagen: {
+        type: String,
+        required: true
+    },
     _Type: {
         type: String,
         ref: "Precio",
@@ -14,7 +22,7 @@ const ComisionSchemas = new mongoose.Schema({
             required: true
         }
     ],
-    _User:[
+    _User: [
         {
             type: mongoose.Types.ObjectId,
             ref: "Usuario",

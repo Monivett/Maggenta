@@ -21,16 +21,48 @@ exports.Comision_create = async (req, res) => {
 
 //NO SE PUEDEN MODIFICAR LAS COMISIONES
 
-//NO SE PUEDEN ELIMINAR LAS COMISIONES
+//DELETE
+exports.Comision_delete = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const Comisiondb = await Comision.findById(id);
+
+        if (Comisiondb) { //Proceso de actualizar
+
+            const data = await Comision.deleteOne({ _id: id });
+
+            res.send({ message: "Pedido eliminado exitosamente", data })
+        } else { //Mensaje de error
+            res.send({ message: "No se puede eliminar tu pedido" });
+        }
+    } catch (err) {
+        res.send(err);
+    }
+
+};
 
 //MOSTRAR POR ARTISTA
 exports.Comision_getByUser = async (req, res) => {
-    const {id} = req.params;
-    const data = await Comision.findById(id).populate();
+    const {user} = req.params;
+
+    const data = await Comision.find( {_Artist: user}).populate("_Artist").populate("_Type").populate("_User");
 
     if(data){ //Si existe
         res.send(data);
     }else{
-        res.send({message: "Comisión no existe"})
+        res.send({message: "Este pedido no existe"})
+    }
+}
+
+//MOSTRAR LAS COMISIONES QUE TU HAZ PEDIDO
+exports.Comision_getPedidoByUser = async (req, res) => {
+    const {user} = req.params;
+
+    const data = await Comision.find( {_User: user}).populate("_Artist").populate("_Type").populate("_User");
+
+    if(data){ //Si existe
+        res.send(data);
+    }else{
+        res.send({message: "Este pedido no existe"})
     }
 }

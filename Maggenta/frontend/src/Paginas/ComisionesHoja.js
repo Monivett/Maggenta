@@ -57,13 +57,10 @@ function ComisionesHoja() {
                                             </Link>
                                         </Fragment>
                                         :
-                                        <Link to="/Pago">
+                                        <Link to={`/Pago/${tusComisiones._id}`}>
                                             <button className="btn btn-outline-info m-1">Comisionar</button>
                                         </Link>
                                     }
-
-
-
                                 </div>
                             </div>
                         )):

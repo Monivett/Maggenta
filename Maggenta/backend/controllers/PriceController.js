@@ -82,3 +82,16 @@ exports.Price_getByUser = async (req, res) => {
     }
 }
 
+//MOSTRAR POR USUARIO
+exports.Price_getById = async (req, res) => {
+
+    const { id } = req.params;
+    const data = await Price.findById(id).populate('_User');
+
+    if (data) { //Si existe
+        res.send(data);
+    } else {
+        res.send({ message: "Este usuario no tiene ejemplos de comisión" })
+    }
+}
+

@@ -35,10 +35,6 @@ function Perfil() {
     setTypeModalInfo(tipo);
   }
 
-
-
-  console.log('perfil')
-
   // aqui se guardan las publicaciones
   const [publicaciones, setPublicaciones] = useState([]);
 
@@ -191,14 +187,22 @@ function Perfil() {
                   <Link to="/EditarPerfil">
                     <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
                   </Link>
+                  <br></br>
+                  <br></br>
                   <Link to="/Comision">
-                    <button className="btn btn-outline-info m-1" type="submit">Agregar Comisión</button>
+                    <button className="btn btn-outline-info m-1" type="submit">Agregar tipo de comisión</button>
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Link to={`/Ordenes/${userData._id}`}>
+                    <button className="btn btn-outline-info m-1" type="submit">Comisiones ordenadas</button>
                   </Link>
                   <br></br>
                   <br></br>
                   <Link to={`/MisPedidos/${userData._id}`}>
-                    <button className="btn btn-outline-info m-1" type="submit">Mis pedidos</button>
+                    <button className="btn btn-outline-info m-1" type="submit">Comisiones pedidas</button>
                   </Link>
+                  
                 </Fragment>
                 :
 
@@ -210,8 +214,6 @@ function Perfil() {
             <Link to={`/ComisionesHoja/${userData._id}`}>
               <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
             </Link>
-
-
           </div>
           <div className="col-7 text-center   m-2 ">
 
