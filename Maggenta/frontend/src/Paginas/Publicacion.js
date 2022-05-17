@@ -1,25 +1,63 @@
-import {  useState, useCallback, useEffect, Fragment } from "react";
-import {  useParams } from 'react-router-dom';
+import { useState, useCallback, useEffect, Fragment } from "react";
+import { useParams } from 'react-router-dom';
 import { getOnePublicacion } from "../services/PublicacionesService";
+import { axiosBase as axios } from "../services/Config";
+import useAuth from "../auth/useAuth";
 
 
 function Publicacion() {
   const { id } = useParams();
- 
-   // aqui se guardan las publicaci
-   const [publicaciones, setPublicaciones] = useState([]);
+  const [error, setError] = useState('');
+  const { user } = useAuth();
 
-   const getPublicaciones = useCallback(async (id) => {
-       const DatoPublicaciones = await getOnePublicacion(id);
-       setPublicaciones(DatoPublicaciones);
+  // aqui se guardan las publicaci
+  const [publicaciones, setPublicaciones] = useState([]);
 
-   }, [])
+  const getPublicaciones = useCallback(async (id) => {
+    const DatoPublicaciones = await getOnePublicacion(id);
+    setPublicaciones(DatoPublicaciones);
 
-   useEffect(() => {
+  }, [])
 
-       getPublicaciones(id);
+  useEffect(() => {
 
-   }, [getPublicaciones]);
+    getPublicaciones(id);
+
+  }, [getPublicaciones]);
+
+  //Al dar click al botón enviar
+  function submitHandler(event) {
+
+    event.preventDefault();
+
+    if (event.target.message.value !== '') {
+      setError('');
+      axios.post('/Publicacion/:id', {
+        Contenido: event.target.message.value,
+        _User: user.userData._id,
+        _Post: publicaciones._id
+      })
+        .then(function (response) {
+          console.log(response.data);
+          if (response.data !== '') {
+            event.target.message.value = '';
+           // showMessages(currentChat[0], user.userData._id)
+          }
+          else {
+            setError('¡No se pudo enviar el mensaje!');
+          }
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    else {
+      setError('¡No escribiste ningun mensaje!');
+    }
+
+  }
+
 
   return (
 
@@ -30,9 +68,9 @@ function Publicacion() {
           <div className="col m-2">
 
             <div className="row m-5">
-           
-             <img className=" reg-publ" src={publicaciones.Imagen}
-               alt="No se pudo cargar..." width="300" height="500" />
+
+              <img className=" reg-publ" src={publicaciones.Imagen}
+                alt="No se pudo cargar..." width="300" height="500" />
 
               <div className="card mt-5 " >
                 <div className="row">
@@ -40,10 +78,10 @@ function Publicacion() {
                   <div className="col">
 
                     <div className="card-body ">
-                    <p className="card-text text-dark">{publicaciones.Contenido}</p>
-                    {/*console.log(publicaciones._User[0].Usuario)*/}
-                     
-                     
+                      <p className="card-text text-dark">{publicaciones.Contenido}</p>
+                      {/*console.log(publicaciones._User[0].Usuario)*/}
+
+
                     </div>
                   </div>
                 </div>
@@ -63,7 +101,7 @@ function Publicacion() {
                 </svg></button>
               </div>
             </div>
-
+            {/** FOR DE COMENTARIOS */}
             <div className="card  m-2  " >
               <div className="row">
                 <div className="col-md-3 m-2 ">
@@ -102,22 +140,24 @@ function Publicacion() {
                 </div>
               </div>
             </div>
-
+            {/** FORM */}
             <div className="col p-3 text-white  rounded shadow ">
 
               <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">
 
                 <h5 className="card-text text-white fw-bold text-center "> Comentar </h5>
+                <form onSubmit={submitHandler}>
+                  <div className="form-group m-1">
 
-                <div className="form-group m-1">
+                    <textarea className="form-control mt-2" rows="7" name="message" ></textarea>
+                  </div>
 
-                  <textarea className="form-control mt-2" rows="7"></textarea>
-                </div>
+                  <div className="text-center ">
+                    <button className="btn btn-outline-info m-2 " type="submit">Publicar Comentario</button>
 
-                <div className="text-center ">
-                  <button className="btn btn-outline-info m-2 " type="submit">Publicar Comentario</button>
+                  </div>
+                </form>
 
-                </div>
 
 
               </div>
