@@ -1,7 +1,26 @@
-import { Fragment } from "react";
+import {  useState, useCallback, useEffect, Fragment } from "react";
+import {  useParams } from 'react-router-dom';
+import { getOnePublicacion } from "../services/PublicacionesService";
 
 
 function Publicacion() {
+  const { id } = useParams();
+ 
+   // aqui se guardan las publicaci
+   const [publicaciones, setPublicaciones] = useState([]);
+
+   const getPublicaciones = useCallback(async (id) => {
+       const DatoPublicaciones = await getOnePublicacion(id);
+       setPublicaciones(DatoPublicaciones);
+
+   }, [])
+
+   useEffect(() => {
+
+       getPublicaciones(id);
+
+   }, [getPublicaciones]);
+
   return (
 
     <Fragment>
@@ -11,9 +30,9 @@ function Publicacion() {
           <div className="col m-2">
 
             <div className="row m-5">
-
-              <img className=" img" src={require("../IMG/tbchoi.jpg")}
-                alt="Card image cap " width="300" height="500" />
+           
+             <img className=" reg-publ" src={publicaciones.Imagen}
+               alt="No se pudo cargar..." width="300" height="500" />
 
               <div className="card mt-5 " >
                 <div className="row">
@@ -21,7 +40,10 @@ function Publicacion() {
                   <div className="col">
 
                     <div className="card-body ">
-                      <p className="card-text text-dark">Dibujo bonito y muy pro</p>
+                    <p className="card-text text-dark">{publicaciones.Contenido}</p>
+                    {/*console.log(publicaciones._User[0].Usuario)*/}
+                     
+                     
                     </div>
                   </div>
                 </div>
@@ -46,7 +68,7 @@ function Publicacion() {
               <div className="row">
                 <div className="col-md-3 m-2 ">
                   <img className=" img" src={require("../IMG/1.png")}
-                    alt="Card image cap " width="60" height="60" />
+                    alt="no se pudo cargar" width="60" height="60" />
 
 
                   <div className="card-body ">

@@ -33,3 +33,22 @@ export const GetPostByUserID = async (id) => {
         return (err);
     }
 }
+
+//getOnePublicacion
+
+export const getOnePublicacion = async (id) => {
+    
+    try {
+        
+        const response = await axios.get(`/Publicacion/${id}`);  
+        if (response.status = 200) {
+            return response.data;
+        }
+
+        console.log("Publicacion" + response.data);
+    }
+    catch (err) {
+        console.log(err);
+        return (err);
+    }
+}

@@ -29,7 +29,7 @@ function App() {
           <Route path="Perfil/:id" element={<Perfil />} />
           <Route path="Chat" element={<Chat />} />
           <Route path="SubirPub" element={<SubirPub />} />
-          <Route path="Publicacion" element={<Publicaion />} />
+          <Route path="Publicacion/:id" element={<Publicaion />} />
           <Route path="login" element={<Login />} />
           <Route path="Registro" element={<Registro />} />
           <Route path="Comision" element={<Comision />} />
