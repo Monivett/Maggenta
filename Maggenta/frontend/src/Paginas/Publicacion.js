@@ -14,12 +14,14 @@ function Publicacion() {
   const [publicaciones, setPublicaciones] = useState([]);
   //Imagen del usuario que la publicó
   const [userImg, setUserImg] = useState([]);
+  const [userName, setUserName] = useState([]);
 
   const getPublicaciones = useCallback(async (id) => {
 
     const DatoPublicaciones = await getOnePublicacion(id);
     setPublicaciones(DatoPublicaciones);
     setUserImg(DatoPublicaciones._User[0].Foto);
+    setUserName(DatoPublicaciones._User[0].Usuario);
 
   }, [])
 
@@ -82,8 +84,22 @@ function Publicacion() {
                   <div className="col">
 
                     <div className="card-body userInfoPub">
-                      <img src={userImg} width='50' height='50'></img>
-                      <p className="card-text text-dark">{publicaciones.Contenido}</p>
+                    <div className="row contornos pt-2">
+                      
+                      <div className="mini-inline">
+                        <img src={userImg} width='50' alt="no se cargo" height='50'></img>
+                      </div>
+                      <div className="mini-inline">
+                      <p className="card-text text-dark">{userName}</p>
+                      </div>
+                    </div>
+                      
+                      <div className="mini-block ">
+                        <p className="card-text text-dark">{publicaciones.Contenido}</p>
+                      </div>
+
+
+
                     </div>
                   </div>
                 </div>
