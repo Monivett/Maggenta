@@ -1,0 +1,12 @@
+.userInfoPub {
+    display: flex;
+}
+
+.userInfoPub img {
+    border-radius: 100px;
+    margin-right: 10px;
+}
+
+.userInfoPub p {
+    margin-top: 10px;
+}

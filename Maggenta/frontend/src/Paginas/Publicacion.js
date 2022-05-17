@@ -3,19 +3,23 @@ import { useParams } from 'react-router-dom';
 import { getOnePublicacion } from "../services/PublicacionesService";
 import { axiosBase as axios } from "../services/Config";
 import useAuth from "../auth/useAuth";
-
+import './Publicacion.css'
 
 function Publicacion() {
   const { id } = useParams();
   const [error, setError] = useState('');
   const { user } = useAuth();
 
-  // aqui se guardan las publicaci
+  // Aquí se guardan las publicaciones
   const [publicaciones, setPublicaciones] = useState([]);
+  //Imagen del usuario que la publicó
+  const [userImg, setUserImg] = useState([]);
 
   const getPublicaciones = useCallback(async (id) => {
+
     const DatoPublicaciones = await getOnePublicacion(id);
     setPublicaciones(DatoPublicaciones);
+    setUserImg(DatoPublicaciones._User[0].Foto);
 
   }, [])
 
@@ -41,7 +45,7 @@ function Publicacion() {
           console.log(response.data);
           if (response.data !== '') {
             event.target.message.value = '';
-           // showMessages(currentChat[0], user.userData._id)
+            // showMessages(currentChat[0], user.userData._id)
           }
           else {
             setError('¡No se pudo enviar el mensaje!');
@@ -77,11 +81,9 @@ function Publicacion() {
 
                   <div className="col">
 
-                    <div className="card-body ">
+                    <div className="card-body userInfoPub">
+                      <img src={userImg} width='50' height='50'></img>
                       <p className="card-text text-dark">{publicaciones.Contenido}</p>
-                      {/*console.log(publicaciones._User[0].Usuario)*/}
-
-
                     </div>
                   </div>
                 </div>

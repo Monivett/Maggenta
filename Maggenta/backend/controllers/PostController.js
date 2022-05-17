@@ -72,7 +72,7 @@ exports.Post_delete = async (req, res) => {
 //MOSTRAR POR ID
 exports.Post_getById = async (req, res) => {
     const { id } = req.params;
-    const data = await Post.findById(id).populate();
+    const data = await Post.findById(id).populate("_User");
 
     if (data) { //Si existe
         res.send(data);
@@ -108,7 +108,7 @@ exports.Post_getOne= async (req, res) => {
     try {
         const { id } = req.params;
        // const data = await Post.find({_id: PostId});
-        const data = await Post.findById(id).populate("_User","Usuario");
+        const data = await Post.findById(id).populate("_User");
         //res.send({ mensaje: req.params.UserId })
 
 
