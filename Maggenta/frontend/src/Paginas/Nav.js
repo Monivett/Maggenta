@@ -1,6 +1,5 @@
 import { Fragment, useState, useCallback, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../auth/AuthProvider";
+import { Link} from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import { Getall } from "../services//CategoryService";
 import './Colores.css';
@@ -41,7 +40,7 @@ function Nav() {
         <div className="container-fluid ">
           <div className="row bg2">
             <div className="col m-3 " >
-              <Link to="/">
+              <Link to="/0">
                 <img src={require("../IMG/Logo.png")}
                   alt="" width="150" />
               </Link>
@@ -59,7 +58,7 @@ function Nav() {
               {!user && <Link to="/Registro">
                 <button className="btn btn-outline-info m-1" type="submit">Registrarse</button>
               </Link>}
-              {user && <Link to="/">
+              {user && <Link to="/0">
                 <button onClick={logout} className="btn btn-outline-info m-1" type="submit">Cerrar Sesión</button>
               </Link>}
               {user && <Link to="/SubirPub">
@@ -88,9 +87,9 @@ function Nav() {
           </div>
           <div className="row bg8">
             <ul className="navbar-nav    bg  p-1 ">
-              <li className="nav-item"><Link className="nav-link text-white" to="/" >Inicio</Link></li>
+              <li className="nav-item"><Link className="nav-link text-white" to="/0" >Inicio</Link></li>
               {categorias.map(category => (
-                <li className="nav-item"><a className="nav-link text-white" href="#">{category.Category}</a></li>
+                <li className="nav-item"><Link className="nav-link text-white" to={`/${category._id}`}>{category.Category}</Link></li>
               ))}
             </ul>
 

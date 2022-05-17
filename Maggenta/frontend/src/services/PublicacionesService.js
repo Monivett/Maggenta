@@ -52,3 +52,21 @@ export const getOnePublicacion = async (id) => {
         return (err);
     }
 }
+
+//Muestra publicaciones por categoría
+export const GetPostByCategory = async (id) => {
+    
+    try {
+        
+        const response = await axios.get(`/Publicacion/category/${id}`); 
+        if (response.status = 200) {
+            return response.data;
+        }
+
+        console.log("Publicacion" + response.data);
+    }
+    catch (err) {
+        console.log(err);
+        return (err);
+    }
+}

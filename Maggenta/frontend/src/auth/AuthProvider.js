@@ -22,7 +22,7 @@ export default function AuthProvider({ children }) {
                     setUser({ userData });
                     sessionStorage.setItem('user-token',  JSON.stringify(userData));
                     alert('Has iniciado sesión correctamente');
-                    navigate("/");
+                    navigate("/0");
                 } else {
                     alert('Datos incorrectos');
                 }

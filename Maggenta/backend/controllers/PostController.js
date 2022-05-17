@@ -126,3 +126,25 @@ exports.Post_getOne= async (req, res) => {
 
 
 }
+exports.Post_getByCategory= async (req, res) => {
+    try {
+        const { id } = req.params;
+       // const data = await Post.find({_id: PostId});
+        const data = await Post.find({_Category: id}).populate("_Category");
+        //res.send({ mensaje: req.params.UserId })
+
+
+        
+        if (data) { //Si existe
+            res.send(data);
+        } else {
+            res.send({ message: "Publicacion no existe." });
+        }
+    }
+    catch (err) {
+        res.send({ message: "error" });
+    }
+
+
+
+}

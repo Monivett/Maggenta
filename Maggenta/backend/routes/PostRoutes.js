@@ -11,5 +11,6 @@ router.put("/Publicacion/:id", Post_controller.Post_update); //Modificar (recibe
 router.delete("/Publicacion/:id", Post_controller.Post_delete); //Eliminar (recibe ID)
 router.get("/Publicacion/usuario/:UserId", Post_controller.Post_getByUserId); //Buscar por ID del usuario
 router.get("/Publicacion/:id", Post_controller.Post_getOne);// Mostrar un solo post por IdPost
+router.get("/Publicacion/category/:id", Post_controller.Post_getByCategory);// Mostrar publicaciones por categorías
 
 module.exports = router;

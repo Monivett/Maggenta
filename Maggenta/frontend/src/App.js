@@ -25,7 +25,7 @@ function App() {
       <AuthProvider>
         <Nav />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/:idCategory" element={<Home />} />
           <Route path="Perfil/:id" element={<Perfil />} />
           <Route path="Chat" element={<Chat />} />
           <Route path="SubirPub" element={<SubirPub />} />
