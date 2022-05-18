@@ -65,7 +65,7 @@ function Publicacion() {
     if(user){
        isUserLiked(user.userData._id, id)
     }
-  },);
+  },[user]);
 
   //Al dar click al botón enviar
   function submitHandler(event) {
@@ -124,9 +124,7 @@ function Publicacion() {
   }
   //Al dar click al botón de unLike
   function UnLike(user, post) {
-
-    axios.delete(`/Like/${user}/${post}`, {
-    })
+    axios.delete(`/Like/${user}/${post}`)
       .then(function (response) {
         console.log(response.data);
         if (response.data !== '') {

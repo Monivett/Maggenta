@@ -24,12 +24,13 @@ exports.Like_create = async (req, res) => {
 //DELETE
 exports.Like_delete = async (req, res) => {
     const { id } = req.params;
+    const { post } = req.params;
     try {
         const Likedb = await Like.find({_User: id, _Post:post});
         
         if (Likedb) { //Proceso de actualizar
 
-            const data = await Like.deleteOne({_id: id});
+            const data = await Like.deleteOne({_User: id, _Post:post});
             
             res.send({ message: "Like eliminado exitosamente", data })
         } else { //Mensaje de error
