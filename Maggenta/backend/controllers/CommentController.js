@@ -66,7 +66,7 @@ exports.Comment_delete = async (req, res) => {
 //MOSTRAR POR PUBLICACIÓN
 exports.Comment_getByPost = async (req, res) => {
     const {id} = req.params;
-    const data = await Comment.findById(id).populate();
+    const data = await Comment.find({_Post: id}).populate("_User");
 
     if(data){ //Si existe
         res.send(data);

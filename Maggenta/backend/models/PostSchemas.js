@@ -20,6 +20,12 @@ const PostSchemas = new mongoose.Schema({
             type: mongoose.Types.ObjectId,
             ref: "Categoria"
         }
+    ],
+    _Comentarios:[ // los comentarios de esta publicacion
+        {
+            type: mongoose.Types.ObjectId,
+            ref:"Comentario"
+        }
     ]
 });
 

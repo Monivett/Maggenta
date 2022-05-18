@@ -20,3 +20,26 @@ img{
 .reg-publ{
   object-fit: contain;
 }
+
+.mini-inline {
+display: inline;
+
+  
+}
+.mini-block {
+ display: block;
+ width: 100% !important;
+ height: auto;
+ margin-left: 3%;
+  padding: 25px;
+  border-radius: 15px;   
+  background-color: #96d0db27; 
+}
+.contornos{
+  width: auto !important;
+  padding-left: 10px;
+  height: auto;
+  border-radius: 15px;
+   
+   background-color: #96d0db27; 
+ }

@@ -10,4 +10,5 @@ router.put("/Comentario/:id", Comment_controller.Comment_update); //Modificar (r
 router.delete("/Comentario/:id", Comment_controller.Comment_delete); //Eliminar (recibe ID)
 router.get("/Comentario/:id", Comment_controller.Comment_getByPost); //Buscar por publicación
 
+
 module.exports = router;
