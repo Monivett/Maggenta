@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, Fragment } from "react";
 import { useParams } from 'react-router-dom';
-import { getOnePublicacion } from "../services/PublicacionesService";
+import { getOnePublicacion, GetComentario } from "../services/PublicacionesService";
 import { axiosBase as axios } from "../services/Config";
 import useAuth from "../auth/useAuth";
 import './Publicacion.css'
@@ -16,6 +16,8 @@ function Publicacion() {
   const [userImg, setUserImg] = useState([]);
   const [userName, setUserName] = useState([]);
 
+  const [coment, setComentario] = useState([]);
+
   const getPublicaciones = useCallback(async (id) => {
 
     const DatoPublicaciones = await getOnePublicacion(id);
@@ -23,13 +25,28 @@ function Publicacion() {
     setUserImg(DatoPublicaciones._User[0].Foto);
     setUserName(DatoPublicaciones._User[0].Usuario);
 
+    const comentario = await GetComentario(id);
+    setComentario(comentario);
+
+    
+
   }, [])
+  /*
+    const MuestraComentarios = useCallback(async (postId) => {
+  
+     
+    //  console.log(Messages);
+  
+    }, [])*/
 
   useEffect(() => {
 
     getPublicaciones(id);
 
   }, [getPublicaciones]);
+
+
+
 
   //Al dar click al botón enviar
   function submitHandler(event) {
@@ -47,7 +64,7 @@ function Publicacion() {
           console.log(response.data);
           if (response.data !== '') {
             event.target.message.value = '';
-            // showMessages(currentChat[0], user.userData._id)
+            getPublicaciones(publicaciones._id)
           }
           else {
             setError('¡No se pudo enviar el mensaje!');
@@ -63,6 +80,7 @@ function Publicacion() {
     }
 
   }
+
 
 
   return (
@@ -84,16 +102,16 @@ function Publicacion() {
                   <div className="col">
 
                     <div className="card-body userInfoPub">
-                    <div className="row contornos pt-2">
-                      
-                      <div className="mini-inline">
-                        <img src={userImg} width='50' alt="no se cargo" height='50'></img>
+                      <div className="row contornos pt-2">
+
+                        <div className="mini-inline">
+                          <img src={userImg} width='50' alt="no se cargo" height='50'></img>
+                        </div>
+                        <div className="mini-inline">
+                          <p className="card-text text-dark">{userName}</p>
+                        </div>
                       </div>
-                      <div className="mini-inline">
-                      <p className="card-text text-dark">{userName}</p>
-                      </div>
-                    </div>
-                      
+
                       <div className="mini-block ">
                         <p className="card-text text-dark">{publicaciones.Contenido}</p>
                       </div>
@@ -120,44 +138,29 @@ function Publicacion() {
               </div>
             </div>
             {/** FOR DE COMENTARIOS */}
-            <div className="card  m-2  " >
-              <div className="row">
-                <div className="col-md-3 m-2 ">
-                  <img className=" img" src={require("../IMG/1.png")}
-                    alt="no se pudo cargar" width="60" height="60" />
+           
+            {coment.map(ElComentario => (
+              <div className="card  m-2  " >
+                <div className="row">
+                  <div className="col-md-3 m-2 ">
+                    <img className=" img" src={require("../IMG/1.png")}
+                      alt="no se pudo cargar" width="60" height="60" />
 
-
-                  <div className="card-body ">
-                    <a href="#" className="text-decoration-none ">Andrew Drei</a>
+{ /**console.log(ElComentario._User.Usuario)*/}
+                    <div className="card-body ">
+                      <a href="#" className="text-decoration-none ">Andrew Drei</a>
+                    </div>
                   </div>
-                </div>
-                <div className="col">
+                  <div className="col">
 
-                  <div className="card-body">
-                    <p className="card-text text-dark">Que chido dibujo</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="card  m-2  " >
-              <div className="row">
-                <div className="col-md-3 m-2 ">
-                  <img className=" img " src={require("../IMG/2.png")}
-                    alt="Card image cap " width="60" height="60" />
-
-
-                  <div className="card-body ">
-                    <a href="#" className="text-decoration-none">AntonioElPro</a>
-                  </div>
-                </div>
-                <div className="col">
-
-                  <div className="card-body">
-                    <p className="card-text text-dark">Puede mejorar:v</p>
+                    <div className="card-body">
+                      <p className="card-text text-dark">{ElComentario.Contenido}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
+
             {/** FORM */}
             <div className="col p-3 text-white  rounded shadow ">
 

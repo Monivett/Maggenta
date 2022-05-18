@@ -70,3 +70,19 @@ export const GetPostByCategory = async (id) => {
         return (err);
     }
 }
+
+export const GetComentario = async (idPost) => {
+     
+    try {
+        const response = await axios.get(`/Comentario/${idPost}`);
+        if (response.status = 200) {
+            return response.data;
+        }
+
+        console.log(response.data);
+    }
+    catch (err) {
+        console.log(err);
+        return (err);
+    }
+}

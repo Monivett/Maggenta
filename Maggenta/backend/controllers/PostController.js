@@ -108,7 +108,7 @@ exports.Post_getOne= async (req, res) => {
     try {
         const { id } = req.params;
        // const data = await Post.find({_id: PostId});
-        const data = await Post.findById(id).populate("_User");
+        const data = await Post.findById(id).populate("_User").populate("_Comentarios");
         //res.send({ mensaje: req.params.UserId })
 
 
