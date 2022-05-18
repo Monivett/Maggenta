@@ -2,13 +2,13 @@ import { Fragment, useEffect, useState, useCallback } from "react";
 import "./Home.css";
 import { Link, useParams } from "react-router-dom";
 import { GetAll } from '../services/PublicacionesService';
-import { GetPostByCategory } from "../services/PublicacionesService";
+import { GetPostByDescripcion } from "../services/PublicacionesService";
 import useAuth from "../auth/useAuth";
 
 
-function Home() {
+function Buscar() {
 
-    const { idCategory } = useParams();
+    const { Contenido } = useParams();
     const { user } = useAuth();
 
     // aqui se guardan las publicaci
@@ -20,21 +20,19 @@ function Home() {
 
     }, [])
 
-    const getPublicacionesCategory = useCallback(async (id) => {
-        const publicaciones = await GetPostByCategory(id);
+    const getPublicacionesContenido = useCallback(async (id) => {
+        const publicaciones = await GetPostByDescripcion(id);
         setPublicaciones(publicaciones);
 
     }, [])
 
     useEffect(() => {
-        if (idCategory === undefined) {
-            getPublicaciones();
-        } else {
-            getPublicacionesCategory(idCategory);
-        }
+      
+        getPublicacionesContenido(Contenido);
+    
 
 
-    }, [getPublicaciones, idCategory]);
+    }, [getPublicaciones]);
 
     return (
         <Fragment>
@@ -69,4 +67,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Buscar;

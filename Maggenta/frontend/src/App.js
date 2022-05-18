@@ -18,6 +18,7 @@ import Pago from './Paginas/Pago';
 import EditarComision from "./Paginas/EditarComision";
 import Ordenes from "./Paginas/Ordenes";
 import MisPedidos from './Paginas/MisPedidos';
+import Busqueda from './Paginas/Busqueda';
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
       <AuthProvider>
         <Nav />
         <Routes>
+        <Route path="/" element={<Home />} />
           <Route path="/:idCategory" element={<Home />} />
+          <Route path="/Busqueda/:Contenido" element={<Busqueda />} />
           <Route path="Perfil/:id" element={<Perfil />} />
           <Route path="Chat" element={<Chat />} />
           <Route path="SubirPub" element={<SubirPub />} />

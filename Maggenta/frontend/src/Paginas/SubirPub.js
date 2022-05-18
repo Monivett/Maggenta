@@ -96,7 +96,7 @@ function SubirPub() {
         console.log(response.data);
         if (response.data !== '') {
           alert('Muy bien, se ha creado tu post.');
-          navigate("/0");
+          navigate("/");
         }
         else {
           setError('¡No se pudo crear tu post!');

@@ -86,11 +86,11 @@ exports.Post_getById = async (req, res) => {
 exports.Post_getByUserId = async (req, res) => {
     try {
         const { UserId } = req.params;
-        const data = await Post.find({_User: UserId});
+        const data = await Post.find({ _User: UserId });
         //res.send({ mensaje: req.params.UserId })
 
 
-        
+
         if (data) { //Si existe
             res.send(data);
         } else {
@@ -104,15 +104,15 @@ exports.Post_getByUserId = async (req, res) => {
 
 
 }
-exports.Post_getOne= async (req, res) => {
+exports.Post_getOne = async (req, res) => {
     try {
         const { id } = req.params;
-       // const data = await Post.find({_id: PostId});
+        // const data = await Post.find({_id: PostId});
         const data = await Post.findById(id).populate("_User");
         //res.send({ mensaje: req.params.UserId })
 
 
-        
+
         if (data) { //Si existe
             res.send(data);
         } else {
@@ -126,15 +126,15 @@ exports.Post_getOne= async (req, res) => {
 
 
 }
-exports.Post_getByCategory= async (req, res) => {
+exports.Post_getByCategory = async (req, res) => {
     try {
         const { id } = req.params;
-       // const data = await Post.find({_id: PostId});
-        const data = await Post.find({_Category: id}).populate("_Category");
+        // const data = await Post.find({_id: PostId});
+        const data = await Post.find({ _Category: id }).populate("_Category");
         //res.send({ mensaje: req.params.UserId })
 
 
-        
+
         if (data) { //Si existe
             res.send(data);
         } else {
@@ -147,4 +147,20 @@ exports.Post_getByCategory= async (req, res) => {
 
 
 
+}
+exports.Post_getByDescription = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const data = await Post.find({ Contenido: { $regex: `.*${id}.*` } });
+
+        if (data) { //Si existe
+            res.send(data);
+        } else {
+            res.send({ message: "Publicacion no existe." });
+        }
+    }
+    catch (err) {
+        res.send({ message: "error" });
+    }
 }
