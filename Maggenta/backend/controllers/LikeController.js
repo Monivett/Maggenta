@@ -25,7 +25,7 @@ exports.Like_create = async (req, res) => {
 exports.Like_delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const Likedb = await Like.findById({id});
+        const Likedb = await Like.find({_User: id, _Post:post});
         
         if (Likedb) { //Proceso de actualizar
 
@@ -44,7 +44,20 @@ exports.Like_delete = async (req, res) => {
 //MOSTRAR POR PUBLICACIÓN
 exports.Like_getByPost = async (req, res) => {
     const {id} = req.params;
-    const data = await Like.findById(id).populate();
+    const data = await Like.find({_Post: id});
+
+    if(data){ //Si existe
+        res.send(data);
+    }else{
+        res.send({message: "Like no existe"})
+    }
+}
+
+//MOSTRAR SI EL USUARIO DIO LIKE A ESTA PUBLICACIÓN
+exports.Like_getByUser = async (req, res) => {
+    const {id} = req.params;
+    const {post} = req.params;
+    const data = await Like.find({_User: id, _Post:post});
 
     if(data){ //Si existe
         res.send(data);

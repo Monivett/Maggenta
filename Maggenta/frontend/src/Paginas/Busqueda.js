@@ -37,7 +37,7 @@ function Buscar() {
     return (
         <Fragment>
             <div className="row homePage">
-                {publicaciones.map(tuPost => (
+                {publicaciones.length !==0 ? publicaciones.map(tuPost => (
                     <Fragment>
 
                         <div className="card dibujin">
@@ -61,7 +61,8 @@ function Buscar() {
                         </div>
                         <br />
                     </Fragment>
-                ))}
+                )):
+                <p className="errorwhite" style={{marginTop: '10px'}}>No se encontraron resultados de: " {Contenido} "</p>}
             </div>
         </Fragment>
     );

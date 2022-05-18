@@ -53,9 +53,7 @@ function Perfil() {
     userFollowers(id);
     userFollows(id);
     getPublicaciones(id)
-    if (user.userData._id !== id) {
-      isUserFollowed(id, user.userData._id)
-    }
+
   }, [])
 
   //Mostrar la cantidad de seguidores 
@@ -122,7 +120,7 @@ function Perfil() {
       });
   }
   //¿Sigues a este artista?
-  const isUserFollowed = (follow, follower) => {
+  const isUserFollowed = useCallback(async (follow, follower) => {
 
     async function fetchData() {
 
@@ -139,15 +137,21 @@ function Perfil() {
     }
     fetchData();
 
-  }
+  }, [])
+
 
   useEffect(() => {
 
     getUser(id);
+ 
 
   }, [getUser]);
 
-
+  useEffect(() => {
+    if (user) {
+      isUserFollowed(id, user.userData._id)
+    }
+  },);
 
   return (
     <Fragment>
@@ -176,7 +180,6 @@ function Perfil() {
             </div>
           </div>
         </div>
-
         <div className="row text-center  bg5   ">
           <div className="col-4 ">
             <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
@@ -202,21 +205,17 @@ function Perfil() {
                   <Link to={`/MisPedidos/${userData._id}`}>
                     <button className="btn btn-outline-info m-1" type="submit">Comisiones pedidas</button>
                   </Link>
-                  
                 </Fragment>
                 :
-
                 isFollowed ? <button className="btn btn-outline-info-danger m-1" type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
                   : <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
               }
-
             </div>
             <Link to={`/ComisionesHoja/${userData._id}`}>
               <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
             </Link>
           </div>
           <div className="col-7 text-center   m-2 ">
-
             {publicaciones && publicaciones.map(tuPost => (
               <Link to={`/Publicacion/${tuPost._id}`}>
                 <div className="d-inline-flex m-3 " >
@@ -225,15 +224,10 @@ function Perfil() {
                 </div>
               </Link>
             ))}
-
-
-
-
           </div>
         </div>
       </div>
     </Fragment>
-
   );
 }
 

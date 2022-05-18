@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, Fragment } from "react";
 import { useParams } from 'react-router-dom';
 import { getOnePublicacion, GetComentario } from "../services/PublicacionesService";
+import { IsLiked } from "../services/LikeService";
 import { axiosBase as axios } from "../services/Config";
 import useAuth from "../auth/useAuth";
 import './Publicacion.css'
@@ -18,6 +19,9 @@ function Publicacion() {
 
   const [coment, setComentario] = useState([]);
 
+  //Si el usuario dio Like
+  const [isLiked, setIsLiked] = useState(false);
+
   const getPublicaciones = useCallback(async (id) => {
 
     const DatoPublicaciones = await getOnePublicacion(id);
@@ -29,22 +33,39 @@ function Publicacion() {
     setComentario(comentario);
 
   }, [])
-  /*
-    const MuestraComentarios = useCallback(async (postId) => {
-  
-     
-    //  console.log(Messages);
-  
-    }, [])*/
+
+  //¿Le diste like a la publicación?
+  const isUserLiked = useCallback(async (user, post) => {
+
+    async function fetchData() {
+
+      const isLiked = await IsLiked(user, post);
+
+      if (isLiked.length === 0) {
+        console.log('No le has dado like');
+        setIsLiked(false);
+
+      } else {
+        console.log('Ya le diste like')
+        setIsLiked(true);
+      }
+    }
+    fetchData();
+
+  }, [])
 
   useEffect(() => {
 
     getPublicaciones(id);
 
+   
   }, [getPublicaciones]);
 
-
-
+  useEffect(() => {
+    if(user){
+       isUserLiked(user.userData._id, id)
+    }
+  },);
 
   //Al dar click al botón enviar
   function submitHandler(event) {
@@ -76,6 +97,51 @@ function Publicacion() {
     else {
       setError('¡No escribiste ningun mensaje!');
     }
+  }
+
+  //Al dar click al botón de Like
+  function Like(user, post) {
+
+    axios.post('/Like', {
+      _User: user,
+      _Post: post
+    })
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data !== '') {
+          console.log('Has dado Like');
+          setIsLiked(true);
+        }
+        else {
+          setError('¡No se pudo dar Like!');
+        }
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
+  //Al dar click al botón de unLike
+  function UnLike(user, post) {
+
+    axios.delete(`/Like/${user}/${post}`, {
+    })
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data !== '') {
+          console.log('Has dado UnLike');
+          setIsLiked(false);
+        }
+        else {
+          setError('¡No se pudo dar UnLike!');
+        }
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   }
   return (
 
@@ -111,9 +177,16 @@ function Publicacion() {
 
             <div className=" m-2  " >
               <div className="">
-                <button className="btn btn-outline-info m-2 " type="submit"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-heart-fill" viewBox="0 0 16 16">
-                  <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                </svg></button>
+                {isLiked ? <button className="btn btn-outline-info-danger m-2" type="button" onClick={e => UnLike(user.userData._id, publicaciones._id)}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586ZM7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77Z" />
+                  </svg>
+                </button>
+                  : <button className="btn btn-outline-info m-2 " type="button" onClick={e => Like(user.userData._id, publicaciones._id)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-heart-fill" viewBox="0 0 16 16">
+                      <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                    </svg>
+                  </button>}
               </div>
             </div>
             {/** FOR DE COMENTARIOS */}
@@ -123,7 +196,6 @@ function Publicacion() {
                   <div className="col-md-3 m-2 ">
                     <img className=" img" src={ElComentario._User[0].Foto}
                       alt="no se pudo cargar" width="60" height="60" />
-                    { console.log(ElComentario._User[0].Usuario)}
                     <div className="card-body ">
                       <a href="#" className="text-decoration-none ">{ElComentario._User[0].Usuario}</a>
                     </div>
