@@ -9,6 +9,7 @@ function SubirPub() {
 
   const [categorias, setCategorias] = useState([]);
   const [image, setImage] = useState();
+  const [DisplayImage, setDisplayImage] = useState();
   const { user } = useAuth();
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -26,8 +27,9 @@ function SubirPub() {
   //Cuando la foto cambia
   function handleChange(e) {
     if (e.target.files[0]) {
-      setImage(e.target.files[0])
-
+      setImage(e.target.files[0]);
+      setDisplayImage(URL.createObjectURL(e.target.files[0]));
+      console.log(e.target.files[0]);
     }
   }
 
@@ -58,7 +60,7 @@ function SubirPub() {
       setError('¡te falta completar campos!');
     }
 
-    
+
 
   };
 
@@ -129,12 +131,18 @@ function SubirPub() {
           <div className="row">
             <div className="col m-2">
               <div className="row">
+                {!image ?
+                  <img className="reg-publ"
+                    src={require("../IMG/tbchoi2.jpg")}
+                    alt="no se pudo cargar :("
+                    width="300" height="500" />
+                  :
+                  <img className="reg-publ"
+                    src={DisplayImage}
+                    alt="no se pudo cargar :("
+                    width="300" height="500" />
+                }
 
-                <img className="reg-publ"
-                  src={require("../IMG/tbchoi2.jpg")}
-                  alt="no se pudo cargar :("
-                  width="300" height="500"
-                />
 
                 { /**    Imagen     */}
 
