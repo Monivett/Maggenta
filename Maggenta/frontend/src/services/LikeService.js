@@ -16,10 +16,10 @@ export const IsLiked = async (userId, postId) => {
     }
 }
 
-//Mostrar los seguidores del usuario
-export const UserFollowers = async (user) => {
+//Mostrar la cantidad de Likes de la publicación
+export const LikesNumber = async (post) => {
     try {
-        const response = await axios.get(`/Seguir/${user}`);
+        const response = await axios.get(`/Like/${post}`);
         if (response.status = 200) {
             return response.data;
         }
@@ -32,18 +32,3 @@ export const UserFollowers = async (user) => {
     }
 }
 
-//Mostrar los seguidores del usuario
-export const UserFollows = async (user) => {
-    try {
-        const response = await axios.get(`/Usuario/seguidores/${user}`);
-        if (response.status = 200) {
-            return response.data;
-        }
-
-        console.log("Seguidos" + response.data);
-    }
-    catch (err) {
-        console.log(err);
-        return (err);
-    }
-}

@@ -58,14 +58,14 @@ function Publicacion() {
 
     getPublicaciones(id);
 
-   
+
   }, [getPublicaciones]);
 
   useEffect(() => {
-    if(user){
-       isUserLiked(user.userData._id, id)
+    if (user) {
+      isUserLiked(user.userData._id, id)
     }
-  },[user]);
+  }, [user]);
 
   //Al dar click al botón enviar
   function submitHandler(event) {
@@ -173,7 +173,7 @@ function Publicacion() {
           </div>
           <div className="col">
 
-            <div className=" m-2  " >
+           {user && <div className=" m-2  " >
               <div className="">
                 {isLiked ? <button className="btn btn-outline-info-danger m-2" type="button" onClick={e => UnLike(user.userData._id, publicaciones._id)}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
@@ -186,7 +186,7 @@ function Publicacion() {
                     </svg>
                   </button>}
               </div>
-            </div>
+            </div>}
             {/** FOR DE COMENTARIOS */}
             {coment.map(ElComentario => (
               <div className="card  m-2  " >
@@ -209,27 +209,19 @@ function Publicacion() {
             ))}
 
             {/** FORM */}
-            <div className="col p-3 text-white  rounded shadow ">
-
+            {user && <div className="col p-3 text-white  rounded shadow ">
               <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">
-
                 <h5 className="card-text text-white fw-bold text-center "> Comentar </h5>
                 <form onSubmit={submitHandler}>
                   <div className="form-group m-1">
-
                     <textarea className="form-control mt-2" rows="7" name="message" ></textarea>
                   </div>
-
                   <div className="text-center ">
                     <button className="btn btn-outline-info m-2 " type="submit">Publicar Comentario</button>
-
                   </div>
                 </form>
-
-
-
               </div>
-            </div>
+            </div>}
 
           </div>
 

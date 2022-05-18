@@ -10,7 +10,7 @@ function Nav() {
   const userToken = JSON.parse(sessionStorage.getItem('user-token'));
 
   const { Islogin } = useAuth();
-  
+
   const navigate = useNavigate();
 
   const { user } = useAuth();
@@ -27,8 +27,8 @@ function Nav() {
 
   const BuscarPublicacion = (event) => {
     event.preventDefault();
-    if(event.target.Buscar.value!==""){
-        window.location.href = `/Busqueda/${event.target.Buscar.value}` 
+    if (event.target.Buscar.value !== "") {
+      window.location.href = `/Busqueda/${event.target.Buscar.value}`
     }
   }
 
@@ -50,10 +50,10 @@ function Nav() {
       <div className="container-fluid ">
         <div className="row bg2">
           <div className="col m-3 " >
-            <Link to="/">
+            <a href="/">
               <img src={require("../IMG/Logo.png")}
                 alt="" width="150" />
-            </Link>
+            </a>
           </div>
           <form onSubmit={BuscarPublicacion} className="col  mt-3 formulario">
             <div className="col  mt-3 ">
@@ -71,9 +71,9 @@ function Nav() {
             {!user && <Link to="/Registro">
               <button className="btn btn-outline-info m-1" type="submit">Registrarse</button>
             </Link>}
-            {user && <Link to="/">
+            {user && <a href="/">
               <button onClick={logout} className="btn btn-outline-info m-1" type="submit">Cerrar Sesión</button>
-            </Link>}
+            </a>}
             {user && <Link to="/SubirPub">
               < button className="btn btn-outline-info m-1" >
                 < svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-brush-fill" viewBox="0 0 16 16">
@@ -98,9 +98,9 @@ function Nav() {
         </div>
         <div className="row bg8">
           <ul className="navbar-nav    bg  p-1 ">
-            <li className="nav-item"><Link className="nav-link text-white" to="/" >Inicio</Link></li>
-            {categorias.map(category => (
-              <li className="nav-item"><Link className="nav-link text-white" to={`/${category._id}`}>{category.Category}</Link></li>
+            <li className="nav-item"><a className="nav-link text-white" href="/" >Inicio</a></li>
+            {categorias.map((category, i) => (
+              <li className="nav-item" key={i}><a className="nav-link text-white" href={`/${category._id}`}>{category.Category}</a></li>
             ))}
           </ul>
 
