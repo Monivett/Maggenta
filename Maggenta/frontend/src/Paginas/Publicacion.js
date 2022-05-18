@@ -28,8 +28,6 @@ function Publicacion() {
     const comentario = await GetComentario(id);
     setComentario(comentario);
 
-    
-
   }, [])
   /*
     const MuestraComentarios = useCallback(async (postId) => {
@@ -78,32 +76,21 @@ function Publicacion() {
     else {
       setError('¡No escribiste ningun mensaje!');
     }
-
   }
-
-
-
   return (
 
     <Fragment>
-
       <div className="container-fluid bg4 ">
         <div className="row">
           <div className="col m-2">
-
             <div className="row m-5">
-
               <img className=" reg-publ" src={publicaciones.Imagen}
                 alt="No se pudo cargar..." width="300" height="500" />
-
               <div className="card mt-5 " >
                 <div className="row">
-
                   <div className="col">
-
                     <div className="card-body userInfoPub">
                       <div className="row contornos pt-2">
-
                         <div className="mini-inline">
                           <img src={userImg} width='50' alt="no se cargo" height='50'></img>
                         </div>
@@ -111,22 +98,14 @@ function Publicacion() {
                           <p className="card-text text-dark">{userName}</p>
                         </div>
                       </div>
-
                       <div className="mini-block ">
                         <p className="card-text text-dark">{publicaciones.Contenido}</p>
                       </div>
-
-
-
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
-
-
-
           </div>
           <div className="col">
 
@@ -138,17 +117,15 @@ function Publicacion() {
               </div>
             </div>
             {/** FOR DE COMENTARIOS */}
-           
             {coment.map(ElComentario => (
               <div className="card  m-2  " >
                 <div className="row">
                   <div className="col-md-3 m-2 ">
-                    <img className=" img" src={require("../IMG/1.png")}
+                    <img className=" img" src={ElComentario._User[0].Foto}
                       alt="no se pudo cargar" width="60" height="60" />
-
-{ /**console.log(ElComentario._User.Usuario)*/}
+                    { console.log(ElComentario._User[0].Usuario)}
                     <div className="card-body ">
-                      <a href="#" className="text-decoration-none ">Andrew Drei</a>
+                      <a href="#" className="text-decoration-none ">{ElComentario._User[0].Usuario}</a>
                     </div>
                   </div>
                   <div className="col">
