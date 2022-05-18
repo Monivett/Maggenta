@@ -71,6 +71,23 @@ export const GetPostByCategory = async (id) => {
     }
 }
 
+//Muestra publicaciones por descripción
+export const GetPostByDescripcion = async (id) => {
+    
+    try {
+        
+        const response = await axios.get(`/Publicacion/publicacion/${id}`); 
+        if (response.status = 200) {
+            return response.data;
+        }
+
+        console.log("Publicacion" + response.data);
+    }
+    catch (err) {
+        console.log(err);
+        return (err);
+    }
+}
 export const GetComentario = async (idPost) => {
      
     try {

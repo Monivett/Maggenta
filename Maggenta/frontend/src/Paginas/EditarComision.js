@@ -89,7 +89,7 @@ function EditarComision() {
                 console.log(response.data);
                 if (response.data !== '') {
                     alert('Muy bien, se ha creado tu comision ejemplo.');
-                    navigate("/0");
+                    navigate("/");
                 }
                 else {
                     setError('¡No se pudo crear tu comision!');
