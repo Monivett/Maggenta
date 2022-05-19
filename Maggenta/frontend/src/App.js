@@ -19,6 +19,8 @@ import EditarComision from "./Paginas/EditarComision";
 import Ordenes from "./Paginas/Ordenes";
 import MisPedidos from './Paginas/MisPedidos';
 import Busqueda from './Paginas/Busqueda';
+import Reglas from './Paginas/Reglas';
+import EditarReglas from "./Paginas/EditarReglas";
 
 function App() {
   return (
@@ -26,7 +28,7 @@ function App() {
       <AuthProvider>
         <Nav />
         <Routes>
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/:idCategory" element={<Home />} />
           <Route path="/Busqueda/:Contenido" element={<Busqueda />} />
           <Route path="Perfil/:id" element={<Perfil />} />
@@ -40,6 +42,8 @@ function App() {
           <Route path="ComisionesHoja/:id" element={<ComisionesHoja />} />
           <Route path="Ordenes/:id" element={<Ordenes />} />
           <Route path="Pago/:id" element={<Pago />} />
+          <Route path="Reglas" element={<Reglas />} />
+          <Route path="EditarReglas" element={<EditarReglas />} />
           <Route path="EditarComision/:id" element={<EditarComision />} />
           <Route path="MisPedidos/:id" element={<MisPedidos />} />
         </Routes>

@@ -8,8 +8,9 @@ import { UserFollowers } from "../services/FollowService";
 import { UserFollows } from "../services/FollowService";
 import { axiosBase as axios } from "../services/Config";
 import { GetPostByUserID } from "../services/PublicacionesService";
-import './Modal_Followers.css';
+import { GetRules } from "../services/RulesService";
 import Modal from './Modal_Followers';
+import './Modal_Followers.css';
 
 function Perfil() {
 
@@ -26,6 +27,8 @@ function Perfil() {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showModalInfo, setShowModalInfo] = useState('');
   const [typeModalInfo, setTypeModalInfo] = useState('');
+
+  const [rules, setRules] = useState([]);
 
   const handleClose = () => setShowFollowers(false);
 
@@ -53,6 +56,7 @@ function Perfil() {
     userFollowers(id);
     userFollows(id);
     getPublicaciones(id)
+    getRules(id);
 
   }, [])
 
@@ -139,19 +143,21 @@ function Perfil() {
 
   }, [])
 
+  //Checa si el usuario ya hizo reglas
+  const getRules = useCallback(async () => {
+    const reglas = await GetRules(id);
+    setRules(reglas);
+  }, [])
 
   useEffect(() => {
-
     getUser(id);
- 
-
   }, [getUser]);
 
   useEffect(() => {
     if (user) {
       isUserFollowed(id, user.userData._id)
     }
-  },);
+  });
 
   return (
     <Fragment>
@@ -185,7 +191,7 @@ function Perfil() {
             <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
               <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
               <h5 className="fw-light text-center mt-3"> {userData.Correo} </h5>
-              {user && user.userData._id == userData._id ?
+              {user && user.userData._id == userData._id ? /*SI TU ERES EL DUEÑO DEL PERFIL*/
                 <Fragment>
                   <Link to="/EditarPerfil">
                     <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
@@ -197,6 +203,15 @@ function Perfil() {
                   </Link>
                   <br></br>
                   <br></br>
+                  {rules.length === 0 ? <Link to="/Reglas">
+                    <button className="btn btn-outline-info m-1" type="submit">Publicar reglas</button>
+                  </Link> : 
+                    <Link to="/EditarReglas">
+                      <button className="btn btn-outline-info m-1" type="submit">Editar reglas</button>
+                    </Link>
+                  }
+                  <br></br>
+                  <br></br>
                   <Link to={`/Ordenes/${userData._id}`}>
                     <button className="btn btn-outline-info m-1" type="submit">Comisiones ordenadas</button>
                   </Link>
@@ -206,7 +221,7 @@ function Perfil() {
                     <button className="btn btn-outline-info m-1" type="submit">Comisiones pedidas</button>
                   </Link>
                 </Fragment>
-                :
+                : /*SI TU NO ERES EL DUEÑO DEL PERFIL*/
                 isFollowed ? <button className="btn btn-outline-info-danger m-1" type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
                   : <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
               }

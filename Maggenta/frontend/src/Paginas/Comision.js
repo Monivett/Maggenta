@@ -100,10 +100,6 @@ function Comision() {
             });
     }
 
-
-
-
-
     return (
         <Fragment>
             <div className="container  m-auto">
@@ -122,7 +118,7 @@ function Comision() {
                                 </div><br />
                                 <div className="form-group">
                                     <label for="formGroupExampleInput" id="letraEJEMPLO" >Ejemplo:</label><br />
-                                    <input id="foto" name="imagen" className="input-file" type="file" onChange={handleChange}  />
+                                    <input id="foto" name="imagen" className="input-file" type="file" accept="image/*" onChange={handleChange}  />
                                 </div><br />
                                 <p className="errorwhite">{error}</p>
                                 <button type="submit" className="btn btn-light btn-lg" id="agregar">Agregar</button>

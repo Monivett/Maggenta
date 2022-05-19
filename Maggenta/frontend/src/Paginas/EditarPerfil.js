@@ -21,9 +21,8 @@ function EditarPerfil() {
     const [showModal, setShowModal] = useState(false);
     const handleClose = () => setShowModal(false);
 
-
+    const [DisplayImage, setDisplayImage] = useState();
     const [image, setImage] = useState();
-
     const [error, setError] = useState('');
 
     //MUESTRA LOS DATOS DEL USUARIO LOGEADO
@@ -40,6 +39,7 @@ function EditarPerfil() {
         if (e.target.files[0]) {
             setImage(e.target.files[0])
             setImageUploaded(true);
+            setDisplayImage(URL.createObjectURL(e.target.files[0]));
         } else {
             setImageUploaded(false);
         }
@@ -147,7 +147,10 @@ function EditarPerfil() {
                 <div className="col hola">
                     <div className="align-self-center">
                         <div className="mt-auto" id="usuarioFoto">
-                            <img src={user && user.userData.Foto} alt="" height="720" width="590" />
+                            {!image ?
+                                <img src={user && user.userData.Foto} alt="" height="720" width="590" /> :
+                                <img src={DisplayImage} alt="" height="720" width="590" />
+                            }
                         </div>
                     </div>
                 </div>
@@ -182,7 +185,7 @@ function EditarPerfil() {
 
                             <div className="grupo">
                                 <label htmlFor="">Foto de perfil:</label><br />
-                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} />
+                                <input id="foto" name="image" className="input-file" type="file" accept="image/*" onChange={handleChange} />
                             </div>
                             <br />
                             <p className="error">{error}</p>

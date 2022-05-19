@@ -14,7 +14,7 @@ const Comment_router = require('./routes/CommentRoutes');
 const Follow_router = require('./routes/FollowRoutes');
 const Like_router = require('./routes/LikeRoutes');
 const Post_router = require('./routes/PostRoutes');
-const Share_router = require('./routes/ShareRouter');
+const Rules_router = require('./routes/RulesRouter');
 const User_router = require('./routes/UserRoutes');
 const Price_router = require('./routes/PriceRoutes');
 const Comision_router = require('./routes/ComisionRoutes');
@@ -28,7 +28,7 @@ app.use('/api', Category_router);  //ya
 app.use('/api', Post_router);
 app.use('/api', Like_router);
 app.use('/api', Comment_router);
-app.use('/api', Share_router);
+app.use('/api', Rules_router);
 app.use('/api', Price_router);
 app.use('/api', Comision_router);
 

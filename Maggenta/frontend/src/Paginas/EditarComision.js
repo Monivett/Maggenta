@@ -123,7 +123,7 @@ function EditarComision() {
                                 </div><br />
                                 <div className="form-group">
                                     <label for="formGroupExampleInput" id="letraEJEMPLO" >Ejemplo:</label><br />
-                                    <input id="foto" name="imagen" className="input-file" type="file" onChange={handleChange} required />
+                                    <input id="foto" name="imagen" className="input-file" type="file" accept="image/*" onChange={handleChange} required />
                                 </div><br />
                                 <p className="error">{error}</p>
                                 <button type="submit" className="btn btn-light btn-lg" id="agregar">Agregar</button>

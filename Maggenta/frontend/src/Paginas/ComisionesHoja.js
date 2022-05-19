@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import './Colores.css';
 import useAuth from "../auth/useAuth";
 import { GetComisionByUserID } from "../services/ComisionesService";
+import { GetRules } from "../services/RulesService";
 import { GetUserId } from '../services/UserService';
 
 function ComisionesHoja() {
@@ -12,7 +13,7 @@ function ComisionesHoja() {
     const { user } = useAuth();
     // aqui se guardan las comisiones
     const [comisiones, setComisiones] = useState([]);
-    console.log(comisiones);
+    const [rules, setRules] = useState([]);
 
     const getUser = useCallback(async (id) => {
 
@@ -27,13 +28,18 @@ function ComisionesHoja() {
         setComisiones(publicaciones);
     }, [])
 
+    const getRules = useCallback(async () => {
+        const reglas = await GetRules(id);
+        setRules(reglas);
+    }, [])
+
     useEffect(() => {
 
         getUser(id);
         getComisiones();
+        getRules();
 
-    }, [getComisiones, getUser]);
-
+    }, [getComisiones, getUser, getRules]);
 
     return (
         <Fragment>
@@ -42,8 +48,23 @@ function ComisionesHoja() {
                     <div className="col m-2">
                     </div>
                     <div className="col-10 bg2  align-items-center m-2 p-5">
-
-                        {comisiones.length!==0 ? comisiones.map(tusComisiones => (
+                        <div className="Reglas">
+                            {rules.length !== 0 ? <h1>REGLAS</h1> : <h1>No hay reglas</h1>}
+                            {rules.map(Reglas => (
+                                    <ul>
+                                        <li>
+                                            <h5>Dibujo: {Reglas.SiDibujo}</h5>
+                                        </li>
+                                        <li>
+                                            <h5>NO dibujo: {Reglas.NoDibujo}</h5>
+                                        </li>
+                                        <li>
+                                            <h5>Extra: {Reglas.Extra}</h5>
+                                        </li>
+                                    </ul>
+                            ))}
+                        </div>
+                        {comisiones.length !== 0 ? comisiones.map(tusComisiones => (
                             <div className="card d-inline-flex CC m-4" >
                                 <img className="" src={tusComisiones.Imagen} alt="caray! no se pudo cargar." width="300" height="300" />
                                 <div className="card-body">
@@ -63,8 +84,8 @@ function ComisionesHoja() {
                                     }
                                 </div>
                             </div>
-                        )):
-                        <h5 className="card-title" >No hay hoja de comisiones </h5>
+                        )) :
+                            <h5 className="card-title" >No hay hoja de comisiones </h5>
                         }
 
 

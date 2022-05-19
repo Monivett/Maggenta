@@ -165,7 +165,7 @@ function Registro() {
 
                             <div className="grupo">
                                 <label htmlFor="">Foto de perfil:</label><br />
-                                <input id="foto" name="image" className="input-file" type="file" onChange={handleChange} required />
+                                <input id="foto" name="image" className="input-file" type="file" accept="image/*" onChange={handleChange} required />
                             </div>
 
                             <br />

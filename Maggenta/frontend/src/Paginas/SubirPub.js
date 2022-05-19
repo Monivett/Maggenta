@@ -10,8 +10,10 @@ function SubirPub() {
   const [categorias, setCategorias] = useState([]);
   const [image, setImage] = useState();
   const [DisplayImage, setDisplayImage] = useState();
-  const { user } = useAuth();
   const [error, setError] = useState('');
+
+  const { user } = useAuth();
+
   const navigate = useNavigate();
 
   const getCategorias = useCallback(async () => {
@@ -23,7 +25,6 @@ function SubirPub() {
     getCategorias();
   }, [getCategorias]);
 
-
   //Cuando la foto cambia
   function handleChange(e) {
     if (e.target.files[0]) {
@@ -32,7 +33,6 @@ function SubirPub() {
       console.log(e.target.files[0]);
     }
   }
-
 
   // 1. Cuando oprimo el botón crear
   const handleOnSubmitSchool = (event) => {
@@ -54,13 +54,10 @@ function SubirPub() {
         setError('Descripcion mínima 8 y máxima 280 caracteres');
       }
 
-
     }
     else {
       setError('¡te falta completar campos!');
     }
-
-
 
   };
 
@@ -110,23 +107,10 @@ function SubirPub() {
       });
   }
 
-
-
-
-
-
-
-
-
-
-
-
   return (
-
     <Fragment>
       <div className="container-fluid bg4 ">
-
-        {/** aqui el Form */}
+        {/** Aqui el Form */}
         <form onSubmit={handleOnSubmitSchool}>
           <div className="row">
             <div className="col m-2">
@@ -142,13 +126,9 @@ function SubirPub() {
                     alt="no se pudo cargar :("
                     width="300" height="500" />
                 }
-
-
                 { /**    Imagen     */}
-
                 <div className="form-group m-5 text-center">
                   <label htmlFor="exampleFormControlFile1">Abrir Imagen</label>
-
                   <input
                     type="file"
                     className="form-control-file p-3"
@@ -156,27 +136,19 @@ function SubirPub() {
                     name="image"
                     onChange={handleChange}
                     required
+                    accept="image/*"
                   />
                 </div>
-
-
-
               </div>
             </div>
             <div className="col bg2 m-2">
               <div className="col p-5 text-white  rounded shadow  mt-5 " id="Margen">
-
-
-
-
                 <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">
                   <h5 className="card-text text-white fw-bold text-center mt-5"> Descripcion de la Imagen</h5>
-
                   { /* Descripcion */}
                   <div className="form-group m-1">
                     <textarea className="form-control mt-2" rows="7" name="descripcion" required ></textarea>
                   </div>
-
                   { /* Categoria*/}
                   <div className="text-center m-3 " name="categoria">
                     <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="categoria" required  >
@@ -185,37 +157,18 @@ function SubirPub() {
                       ))}
                     </select>
                   </div>
-
                   <div className="text-center mb-5 ">
                     <p className="error">{error}</p>
                     <button className="btn btn-outline-info m-2 " type="submit">Crear Publicacion</button>
                   </div>
                 </div>
-
-
-
-
-
-
-
               </div>
-
             </div>
-
-
-
-
-
-
           </div>
-
         </form>
         {/** fin del Form */}
       </div>
-
-
     </Fragment>
-
   );
 }
 

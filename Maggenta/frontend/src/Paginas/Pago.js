@@ -118,7 +118,7 @@ function Pago() {
                             <br />
                             <div className="form-group">
                                 <label id="letrasTITULAR" for="">Imagen de referencia: </label>
-                                <input type="file" name='image' className="form-control" id="exampleInputDate" onChange={handleChange}/>
+                                <input type="file" name='image'  accept="image/*"className="form-control" id="exampleInputDate" onChange={handleChange}/>
                             </div>
                             <br />
                             <div className="form-group">
