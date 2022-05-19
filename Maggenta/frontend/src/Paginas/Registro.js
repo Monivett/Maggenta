@@ -4,9 +4,11 @@ import { axiosBase as axios } from "../services/Config";
 import { storage } from "../Firebase";
 import { useNavigate } from "react-router-dom";
 import { GetEmail } from "../services/UserService";
+
 function Registro() {
 
     const [image, setImage] = useState();
+    const [DisplayImage, setDisplayImage] = useState();
 
     const [error, setError] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +19,7 @@ function Registro() {
     function handleChange(e) {
         if (e.target.files[0]) {
             setImage(e.target.files[0])
+            setDisplayImage(URL.createObjectURL(e.target.files[0]));
         }
     }
 
@@ -45,14 +48,6 @@ function Registro() {
     function submitHandler(event) { // 1.
 
         event.preventDefault();
-        /*
-                console.log("nombre", event.target.Nombre.value);
-                console.log("Apellidos", event.target.Apellidos.value);
-                console.log("Usuario", event.target.Usuario.value);
-                console.log("Correo", event.target.Correo.value);
-                console.log("Contraseña", event.target.Contraseña.value);
-                console.log("des", event.target.FechaNac.value);
-                console.log("image", event.target.image.value);*/
 
         if (event.target.Nombre.value !== '' && event.target.Apellidos.value !== '' && event.target.Usuario.value !== '' && event.target.Correo.value !== '' && event.target.Contraseña.value !== '' && event.target.FechaNac.value && event.target.image.value !== '') {
             setError('');
@@ -111,10 +106,18 @@ function Registro() {
     return (
         <Fragment>
             <div className="row" id="registroForm">
+
                 <div className="col hola">
                     <div className="align-self-center">
                         <div className="mt-auto" id="usuarioFoto">
-                            <img src={require('../imag/imagPRUEBA.png')} alt="" height="720" width="590" />
+                            {!image ?
+                                <img src={require('../imag/imagPRUEBA.png')} alt="" height="720" width="590" />
+                                :
+                                <img className="mt-auto"  id="usuarioFoto"
+                                    src={DisplayImage}
+                                    alt="no se pudo cargar :("
+                                    height="720" width="590" />
+                            }
                         </div>
                     </div>
                 </div>
