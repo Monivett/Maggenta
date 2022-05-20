@@ -187,11 +187,6 @@ function Publicacion() {
                       </svg>
                     </button>}
                 </div>
-                <div className="">
-                  <button className="btn btn-outline-info m-2 " type="button">
-                    Compartir imagen
-                  </button>
-                </div>
               </div>
             }
             {/** FOR DE COMENTARIOS */}

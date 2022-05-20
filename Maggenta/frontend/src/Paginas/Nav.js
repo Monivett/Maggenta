@@ -1,8 +1,7 @@
-import { Fragment, useState, useCallback, useEffect } from "react";
+import {useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import { Getall } from "../services//CategoryService";
-import { useNavigate } from "react-router-dom";
 import './Colores.css';
 
 function Nav() {
@@ -10,8 +9,6 @@ function Nav() {
   const userToken = JSON.parse(sessionStorage.getItem('user-token'));
 
   const { Islogin } = useAuth();
-
-  const navigate = useNavigate();
 
   const { user } = useAuth();
   const { logout } = useAuth();
@@ -35,7 +32,7 @@ function Nav() {
   useEffect(() => {
     if (user === null) {
       if (userToken) {
-        Islogin(userToken.Correo, userToken.Contraseña);
+        Islogin(userToken);
       }
     }
 

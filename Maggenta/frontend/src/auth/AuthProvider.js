@@ -20,7 +20,7 @@ export default function AuthProvider({ children }) {
                 if (response.data[0] !== undefined) {
                     const userData = response.data[0];
                     setUser({ userData });
-                    sessionStorage.setItem('user-token',  JSON.stringify(userData));
+                    sessionStorage.setItem('user-token',  JSON.stringify(userData._id));
                     alert('Has iniciado sesión correctamente');
                     navigate("/");
                 } else {
@@ -36,16 +36,16 @@ export default function AuthProvider({ children }) {
         }
 
     }
-    const Islogin = async (Pmail, Ppassword) => {
+    const Islogin = async (id) => {
 
         try {
-            const response = await axios.get(`/Usuario/login/${Pmail}/${Ppassword}`);
+            const response = await axios.get(`/Usuario/id/${id}`);
             if (response.status = 200) {
 
-                if (response.data[0] !== undefined) {
-                    const userData = response.data[0];
+                if (response.data !== undefined) {
+                    const userData = response.data;
                     setUser({ userData });
-                    sessionStorage.setItem('user-token',  JSON.stringify(userData));
+                    sessionStorage.setItem('user-token',  JSON.stringify(userData._id));
                 } 
                 return response.data;
             }

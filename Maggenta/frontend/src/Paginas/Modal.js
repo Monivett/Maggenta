@@ -45,7 +45,7 @@ function ModalPassword(props) {
             .then(function (response) {
                 console.log(response.data);
                 if (response.data !== '') {
-                    Islogin(user.userData.Correo, event.target.Contraseña.value);
+                    Islogin(user.userData._id);
                     alert('Se han modificado la contraseña correctamente');
                     navigate(`/Perfil/${user.userData._id}`);
                 }
