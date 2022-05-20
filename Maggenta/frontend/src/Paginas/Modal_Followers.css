@@ -78,3 +78,34 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+
+#scroll2 {
+    border: 1px solid;
+    height: 350px;
+    width: 250px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+#Tchat {
+    border: 1px solid;
+    height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+#Tchat2 {
+    border: 1px solid;
+    height: 600px;
+  
+}
+
+
+#Tfoto {
+    
+    height: 50px;
+    width: 50px;
+}
