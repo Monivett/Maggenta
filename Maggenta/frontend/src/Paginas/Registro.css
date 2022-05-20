@@ -27,3 +27,15 @@ body{
 #registroForm{
     margin-bottom: 100px;
 }
+
+@media (max-width: 768px) { 
+    .hola{
+        margin-top: 140px;
+        margin-left: 10px;
+    }
+
+    .registrarse{
+        margin-top: 40px;
+        margin-left: 30px;
+    }
+}
