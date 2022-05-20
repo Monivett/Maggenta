@@ -89,12 +89,12 @@ function Chat() {
   }
   return (
     <Fragment>
-      <div className="container-fluid mt-5 mb-5 ">
-        <div className="row clearfix">
-          <div className="col-lg-12">
-            <div className="card chat-app">
+      <div className="container-fluid mt-5 mb-5 " >
+        <div className="row clearfix"  >
+          <div className="col-lg-12" >
+            <div className="card chat-app " id="Tchat2" >
               <div id="plist" className="people-list">
-                <div className="input-group mt-3">
+                <div className="input-group mt-3" >
                   <div className="input-group-prepend">
                     <span className="input-group-text">
                       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
@@ -104,7 +104,7 @@ function Chat() {
                   </div>
                   <input type="text" className="form-control" placeholder="Buscar..." onChange={event => searchUsername(event.target.value)} />
                 </div>
-                <ul className="list-unstyled chat-list mt-2 mb-0">
+                <ul className="list-unstyled chat-list mt-2 mb-0" id="scroll2">
                   {/*Muestra todos los usuarios disponibles: */}
                   {Users.filter(data => data._id !== user.userData._id).map(data => (
                     <li className="clearfix" onClick={() => changeCurrentChat(data._id, data.Foto, data.Usuario)}>
@@ -116,14 +116,14 @@ function Chat() {
                   ))}
                 </ul>
               </div>
-              <div className="chat">
-                <div className="chat-header clearfix">
-                  <div className="row">
+              <div className="chat" >
+                <div className="chat-header clearfix" >
+                  <div className="row" >
                     {/*Si eligio a un usuario para chatear, muestra: */}
                     {currentChat.length != 0 &&
-                      <div className="col-lg-6">
+                      <div className="col-lg-6" >
                         <Link to={`/Perfil/${currentChat[0]}`} data-toggle="modal" data-target="#view_info">
-                          <img className=" img" src={currentChat[1]} alt="avatar " />
+                          <img className=" img" src={currentChat[1]} alt="avatar "  height="50" width="50" />
                         </Link>
                         <div className="chat-about">
                           <h6 className="m-b-0">{currentChat[2]}</h6>
@@ -133,7 +133,7 @@ function Chat() {
 
                   </div>
                 </div>
-                <div className="chat-history">
+                <div className="chat-history"  id="Tchat">
                   {currentChat.length != 0 ?
                     <ul className="m-b-0 m-5">
                       {/*Si hay mensajes muestra: */}
