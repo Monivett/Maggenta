@@ -61,7 +61,7 @@ export const GetMisPedidosByUserID = async (id) => {
     
     try {
         
-        const response = await axios.get(`Comision/pedido/${id}`); 
+        const response = await axios.get(`Price/pedido/${id}`); 
         if (response.status = 200) {
             return response.data;
         }

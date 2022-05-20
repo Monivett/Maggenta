@@ -36,7 +36,7 @@ function Pago() {
 
       //Subir foto a Firebase
       const uploadToFirebase = (event) => {  // 3.
-        const uploadTask = storage.ref(`Userimages/${image.name}`).put(image); // se sube
+        const uploadTask = storage.ref(`ImagenReferencia/${image.name}`).put(image); // se sube
         uploadTask.on(
             "state_changed",
             snapshot => { },
@@ -84,7 +84,7 @@ function Pago() {
                 console.log(response.data);
                 if (response.data !== '') {
                     alert('Se ha pagado tu comisión correctamente');
-                    navigate(`/Perfil/${comisionData._User[0]._id}`);
+                    navigate(`/MisPedidos/${user.userData._id}`);
                 }
                 else {
                     setError('¡No se pudo pagar esta comisión!');

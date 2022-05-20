@@ -86,7 +86,7 @@ exports.Price_getByUser = async (req, res) => {
 exports.Price_getById = async (req, res) => {
 
     const { id } = req.params;
-    const data = await Price.findById(id);
+    const data = await Price.findById(id).populate('_User');
 
     if (data) { //Si existe
         res.send(data);

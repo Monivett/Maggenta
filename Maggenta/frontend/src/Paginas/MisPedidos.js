@@ -39,6 +39,7 @@ function MisPedidos() {
     }
 
     useEffect(() => {
+
         getComisiones();
 
     }, [getComisiones]);
@@ -52,20 +53,20 @@ function MisPedidos() {
                     </div>
                     <div className="col-10 bg2  align-items-center m-2 p-5">
                         <h3 style={{ color: '#ffffff' }}>Mis pedidos</h3>
-                        {comisiones.length !== 0 ? comisiones.map(tusComisiones => (
+                        {comisiones.length !== 0 ? comisiones.map((tusComisiones)=> (
                             <div className="card d-inline-flex CC m-4">
                                 <img className="card-img" src={tusComisiones.Imagen} alt="caray! no se pudo cargar." width="300" height="300" />
                                 <div className="card-body">
                                     <h5 className="card-text">Tipo: {tusComisiones._Type.Tipo}</h5>
                                     <p className="card-title" style={{ width: '300px' }}><b>Descripción: </b>{tusComisiones.Descripcion} </p>
-                                    <Link to={`/Perfil/${tusComisiones._Artist[0]._id}`} style={{ textDecoration: 'none' }}>
+                                    {tusComisiones._Artist[0] && <Link to={`/Perfil/${tusComisiones._Artist[0]._id}`} style={{ textDecoration: 'none' }}>
                                         <div className="usuariNFO">
                                             <img className="FotoUsuer" src={tusComisiones._Artist[0].Foto}></img>
                                             <p className="card-title" style={{ width: '300px' }}><b>Usuario: </b>{tusComisiones._Artist[0].Usuario} </p>
                                         </div>
-                                    </Link>
+                                    </Link>}
                                     <br></br>
-                                    <button className="btn btn-outline-info m-1" onClick={e=>MarcarCompleta(tusComisiones._id)}>Marcar como completa</button>
+                                    <button className="btn btn-outline-info m-1" onClick={e => MarcarCompleta(tusComisiones._id)}>Marcar como completa</button>
                                 </div>
                             </div>
                         )) :
