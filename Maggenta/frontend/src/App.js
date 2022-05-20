@@ -23,7 +23,7 @@ import Reglas from './Paginas/Reglas';
 import EditarReglas from "./Paginas/EditarReglas";
 
 function App() {
-  return (
+  return ( 
     <Fragment>
       <AuthProvider>
         <Nav />
