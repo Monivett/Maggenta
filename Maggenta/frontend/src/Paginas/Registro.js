@@ -128,7 +128,7 @@ function Registro() {
                         <div className="row m-2">
                             <div className="col d-flex flex-column">
                                 <div className="">
-                                    <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" />
+                                    <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" id="imagensita" />
                                 </div>
                             </div>
                         </div>

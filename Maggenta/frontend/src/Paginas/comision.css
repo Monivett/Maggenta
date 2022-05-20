@@ -33,3 +33,17 @@ body{
 h2,label{
     color:#ffffff;
 }
+
+@media (max-width: 768px) { 
+    h2{
+        width: 60%;
+    }
+
+    .form-group input{
+        width: 55%;
+    }
+
+    #agregar{
+        margin-left: 100px;
+    }
+}
