@@ -41,7 +41,7 @@ exports.Comision_delete = async (req, res) => {
 
 };
 
-//MOSTRAR POR ARTISTA
+//MOSTRAR LAS COMISIONES QUE TE ENCARGARON
 exports.Comision_getByUser = async (req, res) => {
     const {user} = req.params;
 
@@ -51,6 +51,19 @@ exports.Comision_getByUser = async (req, res) => {
         res.send(data);
     }else{
         res.send({message: "Este pedido no existe"})
+    }
+}
+
+//MOSTRAR SI TE ENCARGARON ESTA COMISION
+exports.Comision_UserHasComision = async (req, res) => {
+    const {user} = req.params;
+    const {id} = req.params;
+    const data = await Comision.find( {_Artist: user, _Type: id});
+
+    if(data){ //Si existe
+        res.send(data);
+    }else{
+        res.send({message: "No te han encargado comisiones de este tipo"})
     }
 }
 

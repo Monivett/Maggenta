@@ -34,7 +34,7 @@ exports.Price_update = async (req, res) => {
 
         if (Pricedb) { //Proceso de actualizar
 
-            const data = await Category.findOneAndUpdate(
+            const data = await Price.findOneAndUpdate(
                 { _id: id }, //Criterio de busqueda (select * from where) 
                 body,
                 { returnOriginal: false }); //Configuraciones que no retorne el original
@@ -86,7 +86,7 @@ exports.Price_getByUser = async (req, res) => {
 exports.Price_getById = async (req, res) => {
 
     const { id } = req.params;
-    const data = await Price.findById(id).populate('_User');
+    const data = await Price.findById(id);
 
     if (data) { //Si existe
         res.send(data);

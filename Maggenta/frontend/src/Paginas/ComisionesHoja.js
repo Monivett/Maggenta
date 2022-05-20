@@ -2,9 +2,11 @@ import { Fragment, useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import './Colores.css';
 import useAuth from "../auth/useAuth";
-import { GetComisionByUserID } from "../services/ComisionesService";
+import { GetComisionByUserID, UserHasComision } from "../services/ComisionesService";
 import { GetRules } from "../services/RulesService";
 import { GetUserId } from '../services/UserService';
+import { useNavigate } from "react-router-dom";
+import { axiosBase as axios } from "../services/Config";
 
 function ComisionesHoja() {
 
@@ -14,6 +16,8 @@ function ComisionesHoja() {
     // aqui se guardan las comisiones
     const [comisiones, setComisiones] = useState([]);
     const [rules, setRules] = useState([]);
+
+    const navigate = useNavigate();
 
     const getUser = useCallback(async (id) => {
 
@@ -33,6 +37,42 @@ function ComisionesHoja() {
         setRules(reglas);
     }, [])
 
+    const EditarComision = useCallback(async (user, id) => {
+        const pedidos = await UserHasComision(user, id);
+        if (pedidos.length !== 0) {
+            alert('No puedes editar esta comisión porque tienes pedidos pendientes');
+        } else {
+            navigate(`/EditarComision/${id}`)
+        }
+
+    }, [])
+
+    const BorrarComision = useCallback(async (user, id) => {
+        const pedidos = await UserHasComision(user, id);
+        if (pedidos.length !== 0) {
+            alert('No puedes borrar esta comisión porque tienes pedidos pendientes');
+        } else {
+            axios.delete(`/Precio/${id}`)
+            .then(function (response) {
+                console.log(response.data);
+                if (response.data !== '') {
+                    alert('Se ha borrado tu comisión correctamente');
+                    window.location.href = `/ComisionesHoja/${user}`;
+                }
+                else {
+                   alert('¡No se pudo borrar la comisión!');
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+
+    }, [])
+
+  
+
     useEffect(() => {
 
         getUser(id);
@@ -51,17 +91,17 @@ function ComisionesHoja() {
                         <div className="Reglas">
                             {rules.length !== 0 ? <h1>REGLAS</h1> : <h1>No hay reglas</h1>}
                             {rules.map(Reglas => (
-                                    <ul>
-                                        <li>
-                                            <h5>Dibujo: {Reglas.SiDibujo}</h5>
-                                        </li>
-                                        <li>
-                                            <h5>NO dibujo: {Reglas.NoDibujo}</h5>
-                                        </li>
-                                        <li>
-                                            <h5>Extra: {Reglas.Extra}</h5>
-                                        </li>
-                                    </ul>
+                                <ul>
+                                    <li>
+                                        <h5>Dibujo: {Reglas.SiDibujo}</h5>
+                                    </li>
+                                    <li>
+                                        <h5>NO dibujo: {Reglas.NoDibujo}</h5>
+                                    </li>
+                                    <li>
+                                        <h5>Extra: {Reglas.Extra}</h5>
+                                    </li>
+                                </ul>
                             ))}
                         </div>
                         {comisiones.length !== 0 ? comisiones.map(tusComisiones => (
@@ -72,10 +112,10 @@ function ComisionesHoja() {
                                     <p className="card-text">$ {tusComisiones.Precio} MXN</p>
                                     {user.userData._id === userData._id ?
                                         <Fragment>
-                                            <button className="btn btn-outline-info m-1">Borrar</button>
-                                            <Link to={`/EditarComision/${tusComisiones._id}`}>
-                                                <button className="btn btn-outline-info m-1">Editar</button>
-                                            </Link>
+                                            <button className="btn btn-outline-info m-1" onClick={ e=> BorrarComision(user.userData._id, tusComisiones._id)}>Borrar</button>
+
+                                            <button className="btn btn-outline-info m-1" onClick={ e=> EditarComision(user.userData._id, tusComisiones._id)}>Editar</button>
+
                                         </Fragment>
                                         :
                                         <Link to={`/Pago/${tusComisiones._id}`}>
