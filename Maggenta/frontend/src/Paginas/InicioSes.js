@@ -5,29 +5,27 @@ import classes from "./InicioSes.css";
 const userCredentials = {};
 
 function Login() {
-  
-const {login} = useAuth();
+
+  const { login } = useAuth();
 
   function submitHandler(event) {
 
     event.preventDefault();
 
-    login(event.target.Correo.value,event.target.Contraseña.value);
- 
-}
+    login(event.target.Correo.value, event.target.Contraseña.value);
+
+  }
   return (
     <Fragment>
 
       <form onSubmit={submitHandler} method="POST" id="login">
-
         <div className="row m-2">
           <div className="col d-flex flex-column">
             <div className="logoFORMS">
-              <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" />
+              <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" id="LogoLogin" />
             </div>
           </div>
         </div>
-
         <div id="form">
           <h1 id="letraTitulo" >INICIO DE SESIÓN</h1>
           <div className="grupo">
@@ -36,10 +34,12 @@ const {login} = useAuth();
           </div>
           <div className="grupo">
             <label id="letraContra" htmlFor="">Contraseña:</label><br />
-            <input type="password" className="form-control"  name="Contraseña"  id="exampleInputPassword1" placeholder="Contraseña..." />
+            <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." />
           </div>
           <br />
-          <button type="submit"  className="btn btn-light btn-lg" id="entrar">Entrar</button>
+          <div className="btn_Registrar">
+            <button type="submit" className="btn btn-light btn-lg" >Entrar</button>
+          </div>
         </div>
       </form>
     </Fragment>

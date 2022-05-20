@@ -105,78 +105,83 @@ function Registro() {
     }
     return (
         <Fragment>
-            <div className="row" id="registroForm">
-
-                <div className="col hola">
-                    <div className="align-self-center">
-                        <div className="mt-auto" id="usuarioFoto">
-                            {!image ?
-                                <img src={require('../imag/imagPRUEBA.png')} alt="" height="720" width="590" />
-                                :
-                                <img className="mt-auto"  id="usuarioFoto"
-                                    src={DisplayImage}
-                                    alt="no se pudo cargar :("
-                                    height="720" width="590" />
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div className="col bg text-center">
-                    {/** --------> el Form <------------------*/}
-                    <form onSubmit={submitHandler} method="POST" id="form" className="registrarse">
-                        <h1 id="letraTitulo">REGISTRO</h1>
-                        <div className="row m-2">
-                            <div className="col d-flex flex-column">
-                                <div className="">
-                                    <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" id="imagensita" />
+            <div className="container FormRegistro ">
+                <div className="Registro">
+                    <div>
+                        <div className="col FotoUser">
+                            <div className="align-self-center">
+                                <div className="mt-auto" id="usuarioFoto">
+                                    {!image ?
+                                        <img src={require('../imag/imagPRUEBA.png')} alt="" height="720" width="590" />
+                                        :
+                                        <img className="mt-auto" id="usuarioFoto"
+                                            src={DisplayImage}
+                                            alt="no se pudo cargar :("
+                                            height="720" width="590" />
+                                    }
                                 </div>
                             </div>
                         </div>
-                        <div className="form">
-                            <div className="grupo">
-                                <label htmlFor="">Nombre(s):</label><br />
-                                <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." required />
-                            </div>
-                            <div className="grupo">
-                                <label htmlFor="">Apellidos:</label><br />
-                                <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." required />
-                            </div>
+                    </div>
+                    <div>
+                        <div className="col bg text-center">
+                            {/** --------> el Form <------------------*/}
+                            <form onSubmit={submitHandler} method="POST" id="form" className="registrarse">
+                                <h1 id="letraTitulo">REGISTRO</h1>
+                                <div className="row m-2">
+                                    <div className="col d-flex flex-column">
+                                        <div className="">
+                                            <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" id="imagensita" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form">
+                                    <div className="grupo">
+                                        <label htmlFor="">Nombre(s):</label><br />
+                                        <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." required />
+                                    </div>
+                                    <div className="grupo">
+                                        <label htmlFor="">Apellidos:</label><br />
+                                        <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." required />
+                                    </div>
 
-                            <div className="grupo">
-                                <label htmlFor="">Usuario:</label><br />
-                                <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." required />
-                            </div>
+                                    <div className="grupo">
+                                        <label htmlFor="">Usuario:</label><br />
+                                        <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." required />
+                                    </div>
 
-                            <div className="grupo">
-                                <label htmlFor="">Correo electrónico:</label><br />
-                                <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." required />
+                                    <div className="grupo">
+                                        <label htmlFor="">Correo electrónico:</label><br />
+                                        <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." required />
 
-                            </div>
-                            <div className="grupo">
-                                <label htmlFor="">Contraseña: </label><br />
-                                <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)} required />
+                                    </div>
+                                    <div className="grupo">
+                                        <label htmlFor="">Contraseña: </label><br />
+                                        <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)} required />
 
-                            </div>
+                                    </div>
 
-                            <div className="grupo">
-                                <label htmlFor="">Fecha de Nacimiento:</label><br />
-                                <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" required />
-                            </div>
+                                    <div className="grupo">
+                                        <label htmlFor="">Fecha de Nacimiento:</label><br />
+                                        <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" required />
+                                    </div>
 
-                            <div className="grupo">
-                                <label htmlFor="">Foto de perfil:</label><br />
-                                <input id="foto" name="image" className="input-file" type="file" accept="image/*" onChange={handleChange} required />
-                            </div>
+                                    <div className="grupo">
+                                        <label htmlFor="">Foto de perfil:</label><br />
+                                        <input id="foto" name="image" className="input-file" type="file" accept="image/*" onChange={handleChange} required />
+                                    </div>
 
-                            <br />
-                            <p className="error">{error}</p>
-                            <button type="submit" className="btn btn-light btn-lg" id="registro">Registrarme</button>
+                                    <br />
+                                    <p className="error">{error}</p>
+                                    <button type="submit" className="btn btn-light btn-lg" id="registro">Registrarme</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-
-
+                    </div>
                 </div>
             </div>
+
+
         </Fragment>
     );
 }
