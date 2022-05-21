@@ -47,12 +47,10 @@ function SubirPub() {
     if (event.target.image.value !== '' && event.target.descripcion.value !== '' && event.target.categoria.value !== '') {
       setError('');
 
-      if (event.target.descripcion.value.length >= 8 && event.target.descripcion.value.length <= 280) {
+     
         setError('Creando Publicacion...');
         uploadToFirebase(event);
-      } else {
-        setError('Descripcion mínima 8 y máxima 280 caracteres');
-      }
+  
 
     }
     else {

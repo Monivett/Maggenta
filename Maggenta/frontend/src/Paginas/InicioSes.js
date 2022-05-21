@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import useAuth from "../auth/useAuth";
 import classes from "./InicioSes.css";
 
@@ -7,12 +7,16 @@ const userCredentials = {};
 function Login() {
 
   const { login } = useAuth();
+  const [error, setError] = useState('');
 
   function submitHandler(event) {
 
     event.preventDefault();
-
-    login(event.target.Correo.value, event.target.Contraseña.value);
+    if (event.target.Correo.value !== '' && event.target.Contraseña.value != '') {
+      login(event.target.Correo.value, event.target.Contraseña.value);
+    } else {
+      setError('¡Hay campos vacíos!');
+    }
 
   }
   return (
@@ -37,6 +41,7 @@ function Login() {
             <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." />
           </div>
           <br />
+          {error && <p className="errorwhite">{error}</p>}
           <div className="btn_Registrar">
             <button type="submit" className="btn btn-light btn-lg" >Entrar</button>
           </div>

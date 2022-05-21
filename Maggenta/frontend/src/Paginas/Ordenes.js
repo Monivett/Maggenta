@@ -33,7 +33,7 @@ function Ordenes() {
                     <div className="col-10 bg2  align-items-center m-2 p-5">
                         <h3 style={{ color: '#ffffff' }}>Comisiones ordenadas</h3>
                         {comisiones.length !== 0 ? comisiones.map(tusComisiones => (
-                            <div className="card d-inline-flex CC m-4">
+                            <div className="card d-inline-flex CC m-4 Hoja">
                                 <img className="card-img" src={tusComisiones.Imagen} alt="caray! no se pudo cargar." width="300" height="300" />
                                 <div className="card-body">
                                     <h5 className="card-text">Tipo: {tusComisiones._Type.Tipo}</h5>

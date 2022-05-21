@@ -16,6 +16,8 @@ function Pago() {
     const [image, setImage] = useState();
     const [error, setError] = useState('');
 
+    const [tarjeta, setTarjeta] = useState('');
+
     const navigate = useNavigate();
 
     const getComision = useCallback(async (id) => {
@@ -34,8 +36,8 @@ function Pago() {
         }
     }
 
-      //Subir foto a Firebase
-      const uploadToFirebase = (event) => {  // 3.
+    //Subir foto a Firebase
+    const uploadToFirebase = (event) => {  // 3.
         const uploadTask = storage.ref(`ImagenReferencia/${image.name}`).put(image); // se sube
         uploadTask.on(
             "state_changed",
@@ -61,8 +63,13 @@ function Pago() {
         event.preventDefault();
 
         if (event.target.descripcion.value !== '' && event.target.numTarjeta.value !== '' && event.target.image.value !== '') {
-            setError('Pagando comisión...');
-            uploadToFirebase(event);
+
+            if (tarjeta.length >= 16) {
+                setError('Pagando comisión...');
+                uploadToFirebase(event);
+            } else {
+                setError('¡Tarjeta mínimo de 16 dígitos');
+            }
         }
         else {
             setError('¡Hay campos vacíos!');
@@ -70,8 +77,8 @@ function Pago() {
 
     }
 
-       //Registra los datos a MongoDB
-       function Registrar(event, url) {  // 4. 
+    //Registra los datos a MongoDB
+    function Registrar(event, url) {  // 4. 
 
         axios.post('/Comision', {
             Descripcion: event.target.descripcion.value,
@@ -118,12 +125,12 @@ function Pago() {
                             <br />
                             <div className="form-group">
                                 <label id="letrasTITULAR" for="">Imagen de referencia: </label>
-                                <input type="file" name='image'  accept="image/*"className="form-control" id="exampleInputDate" onChange={handleChange}/>
+                                <input type="file" name='image' accept="image/*" className="form-control" id="exampleInputDate" onChange={handleChange} />
                             </div>
                             <br />
                             <div className="form-group">
                                 <label id="letrasTITULAR" for="">Numero de Tarjeta: </label>
-                                <input type="text" className="form-control" id="exampleInputDate" name='numTarjeta' placeholder="Numero de la tarjeta" />
+                                <input type="number" className="form-control" id="exampleInputDate" name='numTarjeta' placeholder="Numero de la tarjeta"  onChange={event => setTarjeta(event.target.value)}/>
                             </div>
                             <label id="letrasTITULAR" for="">Costo: ${comisionData.Precio} MXN  </label>
                             <br />

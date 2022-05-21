@@ -1,12 +1,23 @@
-.NavPerfil{
-background-color: #f54a7e;
-align-items: center;
-color: white;
+.NavPerfil {
+    background-color: #f54a7e;
+    align-items: center;
+    color: white;
+
 }
 
-.botonSeguir{
+.botonSeguir {
     margin: auto;
     width: 50%;
 
     text-align: center;
+}
+
+.Navegador {
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.nav-item{
+    color: white;
 }

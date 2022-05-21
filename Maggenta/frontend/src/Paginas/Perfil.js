@@ -194,34 +194,34 @@ function Perfil() {
         {user && user.userData._id == userData._id ?  /*SI TU ERES EL DUEÑO DEL PERFIL*/
           <nav class="navbar navbar-expand-lg navbar-light NavPerfil ">
             <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
-              <div className="navbar-nav">
+              <div className="navbar-nav Navegador">
 
                 <Fragment>
-                  <Link to="/EditarPerfil" className="nav-item nav-link">
+                  <Link to="/EditarPerfil" className="nav-item nav-link" style={{ color: '#FFF' }}>
                     Editar Perfil
                   </Link>
                   <br></br>
                   <br></br>
-                  <Link to="/Comision" className="nav-item nav-link">
+                  <Link to="/Comision" className="nav-item nav-link" style={{ color: '#FFF' }}>
                     Agregar tipo de comisión
                   </Link>
                   <br></br>
                   <br></br>
-                  {rules.length === 0 ? <Link to="/Reglas" className="nav-item nav-link">
+                  {rules.length === 0 ? <Link to="/Reglas" className="nav-item nav-link" style={{ color: '#FFF' }}>
                     Publicar Reglas
                   </Link> :
-                    <Link to="/EditarReglas" className="nav-item nav-link">
+                    <Link to="/EditarReglas" className="nav-item nav-link" style={{ color: '#FFF' }}>
                       Editar Reglas
                     </Link>
                   }
                   <br></br>
                   <br></br>
-                  <Link to={`/Ordenes/${userData._id}`} className="nav-item nav-link">
+                  <Link to={`/Ordenes/${userData._id}`} className="nav-item nav-link" style={{ color: '#FFF' }}>
                     Comisiones que te han ordenado
                   </Link>
                   <br></br>
                   <br></br>
-                  <Link to={`/MisPedidos/${userData._id}`} className="nav-item nav-link">
+                  <Link to={`/MisPedidos/${userData._id}`} className="nav-item nav-link" style={{ color: '#FFF' }}>
                     Comisiones que tu has pedido
                   </Link>
                 </Fragment>
@@ -233,16 +233,16 @@ function Perfil() {
             <div className='botonSeguir'>
               <button className="btn btn-outline-info-danger m-1 " type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
             </div>
-            : <div className='botonSeguir'>
+            : user && <div className='botonSeguir'>
               <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
             </div>
         }
-        <div className='botonSeguir mt-2'>
+        {user && <div className='botonSeguir mt-2'>
           <Link to={`/ComisionesHoja/${userData._id}`}>
             <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
           </Link>
 
-        </div>
+        </div>}
 
         <div className="row text-center    ">
           <div className="col text-center d-flex align-content-start flex-wrap m-2 ">

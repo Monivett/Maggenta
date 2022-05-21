@@ -104,7 +104,7 @@ console.log('hola')
                             ))}
                         </div>
                         {comisiones.length !== 0 ? comisiones.map(tusComisiones => (
-                            <div className="card d-inline-flex CC m-4" >
+                            <div className="card d-inline-flex CC m-4 Hoja2" >
                                 <img className="" src={tusComisiones.Imagen} alt="caray! no se pudo cargar." width="300" height="300" />
                                 <div className="card-body">
                                     <h5 className="card-title">{tusComisiones.Tipo} </h5>

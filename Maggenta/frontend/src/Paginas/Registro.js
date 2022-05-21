@@ -138,37 +138,37 @@ function Registro() {
                                 <div className="form">
                                     <div className="grupo">
                                         <label htmlFor="">Nombre(s):</label><br />
-                                        <input className="form-control" name="Nombre" type="text" placeholder="Nombre..." required />
+                                        <input className="form-control" name="Nombre" type="text" placeholder="Nombre..."  />
                                     </div>
                                     <div className="grupo">
                                         <label htmlFor="">Apellidos:</label><br />
-                                        <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..." required />
+                                        <input className="form-control" name="Apellidos" type="text" placeholder="Apellidos..."  />
                                     </div>
 
                                     <div className="grupo">
                                         <label htmlFor="">Usuario:</label><br />
-                                        <input className="form-control" name="Usuario" type="text" placeholder="Usuario..." required />
+                                        <input className="form-control" name="Usuario" type="text" placeholder="Usuario..."  />
                                     </div>
 
                                     <div className="grupo">
                                         <label htmlFor="">Correo electrónico:</label><br />
-                                        <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..." required />
+                                        <input type="email" className="form-control" name="Correo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico..."  />
 
                                     </div>
                                     <div className="grupo">
                                         <label htmlFor="">Contraseña: </label><br />
-                                        <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)} required />
+                                        <input type="password" className="form-control" name="Contraseña" id="exampleInputPassword1" placeholder="Contraseña..." onChange={event => setPassword(event.target.value)}  />
 
                                     </div>
 
                                     <div className="grupo">
                                         <label htmlFor="">Fecha de Nacimiento:</label><br />
-                                        <input type="date" className="form-control" name="FechaNac" id="fechanacimiento" required />
+                                        <input type="date" className="form-control" name="FechaNac" id="fechanacimiento"  />
                                     </div>
 
                                     <div className="grupo">
                                         <label htmlFor="">Foto de perfil:</label><br />
-                                        <input id="foto" name="image" className="input-file" type="file" accept="image/*" onChange={handleChange} required />
+                                        <input id="foto" name="image" className="input-file" type="file" accept="image/*" onChange={handleChange}  />
                                     </div>
 
                                     <br />
