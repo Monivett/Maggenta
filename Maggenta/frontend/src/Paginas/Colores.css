@@ -28,6 +28,7 @@
     background-color: #f4497d !important;
     color: white !important;
 }
+
 .btn-outline-info-danger {
 
     background-color: #f44949 !important;
@@ -38,22 +39,25 @@
     font-weight: bold;
 }
 
-.mainchat{
+.mainchat {
     color: #f4497d;
     margin: auto;
 }
 
-.input-group-prepend{
+.input-group-prepend {
     border: none;
 }
+
 .TCR {
     color: #f4497d;
 
 }
+
 .TCRH:hover {
     color: #ee7d9f;
 
 }
+
 #Margen {
 
     border-width: 5px;
@@ -62,7 +66,7 @@
 
 }
 
-.Reglas{
+.Reglas {
     color: white;
 }
 
@@ -81,6 +85,10 @@ body {
     position: relative;
 
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+}
+
+.vacio {
+    margin-bottom: 50px;
 }
 
 .chat-app .people-list {
@@ -110,6 +118,11 @@ body {
     border-radius: 3px
 }
 
+.people-list img {
+
+    border-radius: 30px
+}
+
 .people-list .chat-list li:hover {
     background: #efefef;
     cursor: pointer
@@ -123,15 +136,8 @@ body {
     font-size: 15px
 }
 
-.people-list .chat-list img {
-    width: 35px;
-  
-
-}
-
 .people-list img {
     float: left;
-   
 }
 
 .people-list .about {
@@ -152,7 +158,7 @@ body {
 .chat .chat-header img {
     float: left;
     border-radius: 40px;
-  
+
 }
 
 .chat .chat-header .chat-about {
@@ -230,7 +236,7 @@ body {
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-bottom-color:#f54a7e;
+    border-bottom-color: #f54a7e;
     border-width: 10px;
     margin-left: -10px
 }
@@ -282,14 +288,44 @@ body {
     height: 0
 }
 
+#scroll2 {
+    border: 1px solid;
+    height: 350px;
+    width: 250px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+#Tchat {
+    border: 1px solid;
+    height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+#Tchat2 {
+    border: 1px solid;
+    height: 600px;
+
+}
+
+
+#Tfoto {
+
+    height: 50px;
+    width: 50px;
+}
+
+
 @media only screen and (max-width: 767px) {
     .chat-app .people-list {
         height: 465px;
         width: 100%;
         overflow-x: auto;
         background: #fff;
-        left: -400px;
-        display: none
+     
     }
 
     .chat-app .people-list.open {
