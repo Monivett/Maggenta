@@ -1,0 +1,12 @@
+.NavPerfil{
+background-color: #f54a7e;
+align-items: center;
+color: white;
+}
+
+.botonSeguir{
+    margin: auto;
+    width: 50%;
+
+    text-align: center;
+}

@@ -44,7 +44,7 @@ function Pago() {
                 console.log(error);
             },
             () => {
-                storage.ref('Userimages').child(image.name).getDownloadURL().then(url => { // se descarga la URL
+                storage.ref('ImagenReferencia').child(image.name).getDownloadURL().then(url => { // se descarga la URL
                     if (url !== undefined) { // si existe
                         Registrar(event, url);  // → 4. 
                     }

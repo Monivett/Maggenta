@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, Fragment } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getOnePublicacion, GetComentario } from "../services/PublicacionesService";
 import { IsLiked } from "../services/LikeService";
 import { axiosBase as axios } from "../services/Config";
@@ -16,6 +16,7 @@ function Publicacion() {
   //Imagen del usuario que la publicó
   const [userImg, setUserImg] = useState([]);
   const [userName, setUserName] = useState([]);
+  const [userId, setUserId] = useState([]);
 
   const [coment, setComentario] = useState([]);
 
@@ -28,7 +29,7 @@ function Publicacion() {
     setPublicaciones(DatoPublicaciones);
     setUserImg(DatoPublicaciones._User[0].Foto);
     setUserName(DatoPublicaciones._User[0].Usuario);
-
+    setUserId(DatoPublicaciones._User[0]._id)
     const comentario = await GetComentario(id);
     setComentario(comentario);
 
@@ -155,12 +156,15 @@ function Publicacion() {
                   <div className="col" >
                     <div className="card-body userInfoPub">
                       <div className="row contornos pt-2">
-                        <div className="mini-inline">
-                          <img src={userImg} width='50' alt="no se cargo" height='50'></img>
-                        </div>
-                        <div className="mini-inline">
-                          <p className="card-text text-dark">{userName}</p>
-                        </div>
+                        <Link  to={`/Perfil/${userId}`}>
+                          <div className="mini-inline">
+                            <img src={userImg} width='50' alt="no se cargo" height='50'></img>
+                          </div>
+                          <div className="mini-inline">
+                            <p className="card-text text-dark">{userName}</p>
+                          </div>
+                        </Link>
+
                       </div>
                       <div className="mini-block ">
                         <p className="card-text text-dark">{publicaciones.Contenido}</p>
@@ -191,28 +195,28 @@ function Publicacion() {
             }
 
 
-<div className=" m-2  "  id="scroll3">
-            {/** FOR DE COMENTARIOS */}
-            {coment.map(ElComentario => (
-              <div className="card  m-2  " >
-                <div className="row">
-                  <div className="col-md-3 m-2 ">
-                    <img className=" img" src={ElComentario._User[0].Foto}
-                      alt="no se pudo cargar" width="60" height="60" />
-                    <div className="card-body ">
-                      <a href="#" className="text-decoration-none ">{ElComentario._User[0].Usuario}</a>
+            <div className=" m-2  " id="scroll3">
+              {/** FOR DE COMENTARIOS */}
+              {coment.map(ElComentario => (
+                <div className="card  m-2  comentarios " >
+                  <div className="row">
+                    <div className="col-md-3 m-2 infoUserComentario">
+                      <img className=" img" src={ElComentario._User[0].Foto}
+                        alt="no se pudo cargar" width="60" height="60" />
+                      <div className="card-body ">
+                        <Link to={`/Perfil/${ElComentario._User[0]._id}`} className="text-decoration-none">{ElComentario._User[0].Usuario}</Link>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col">
+                    <div className="col">
 
-                    <div className="card-body">
-                      <p className="card-text text-dark">{ElComentario.Contenido}</p>
+                      <div className="card-body">
+                        <p className="card-text text-dark">{ElComentario.Contenido}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-</div>
+              ))}
+            </div>
             {/** FORM */}
             {user && <div className="col p-3 text-white  rounded shadow ">
               <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">

@@ -180,8 +180,6 @@ function Registro() {
                     </div>
                 </div>
             </div>
-
-
         </Fragment>
     );
 }

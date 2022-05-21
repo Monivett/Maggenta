@@ -11,7 +11,7 @@ import { GetPostByUserID } from "../services/PublicacionesService";
 import { GetRules } from "../services/RulesService";
 import Modal from './Modal_Followers';
 import './Modal_Followers.css';
-
+import './Perfil.css'
 function Perfil() {
 
   const { id } = useParams();
@@ -171,7 +171,7 @@ function Perfil() {
             <h3 className="fw-bold text-center mt-3 TCR"> {userData.Nombre} {userData.Apellidos}</h3>
             <h5 className="fw-bold text-center mt-2 TCR"> @{userData.Usuario}</h5>
             <h5 className="fw-light text-center mt-2 TCR"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
-              <h5 className="fw-light text-center mt-2 TCR"> {userData.Correo} </h5>
+            <h5 className="fw-light text-center mt-2 TCR"> {userData.Correo} </h5>
           </div>
         </div>
         <div className="row align-items-stretch">
@@ -191,86 +191,73 @@ function Perfil() {
 
 
 
+        {user && user.userData._id == userData._id ?  /*SI TU ERES EL DUEÑO DEL PERFIL*/
+          <nav class="navbar navbar-expand-lg navbar-light NavPerfil ">
+            <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
+              <div className="navbar-nav">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
-    </div>
-  </div>
-</nav>
-
-
-
-
-
-
-        <div className="row text-center  bg5   ">
-         
-            <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
-             
-              {user && user.userData._id == userData._id ? /*SI TU ERES EL DUEÑO DEL PERFIL*/
                 <Fragment>
-                  <Link to="/EditarPerfil">
-                    <button className="btn btn-outline-info m-3" type="submit">Editar Perfil</button>
+                  <Link to="/EditarPerfil" className="nav-item nav-link">
+                    Editar Perfil
                   </Link>
                   <br></br>
                   <br></br>
-                  <Link to="/Comision">
-                    <button className="btn btn-outline-info m-1" type="submit">Agregar tipo de comisión</button>
+                  <Link to="/Comision" className="nav-item nav-link">
+                    Agregar tipo de comisión
                   </Link>
                   <br></br>
                   <br></br>
-                  {rules.length === 0 ? <Link to="/Reglas">
-                    <button className="btn btn-outline-info m-1" type="submit">Publicar reglas</button>
-                  </Link> : 
-                    <Link to="/EditarReglas">
-                      <button className="btn btn-outline-info m-1" type="submit">Editar reglas</button>
+                  {rules.length === 0 ? <Link to="/Reglas" className="nav-item nav-link">
+                    Publicar Reglas
+                  </Link> :
+                    <Link to="/EditarReglas" className="nav-item nav-link">
+                      Editar Reglas
                     </Link>
                   }
                   <br></br>
                   <br></br>
-                  <Link to={`/Ordenes/${userData._id}`}>
-                    <button className="btn btn-outline-info m-1" type="submit">Comisiones ordenadas</button>
+                  <Link to={`/Ordenes/${userData._id}`} className="nav-item nav-link">
+                    Comisiones que te han ordenado
                   </Link>
                   <br></br>
                   <br></br>
-                  <Link to={`/MisPedidos/${userData._id}`}>
-                    <button className="btn btn-outline-info m-1" type="submit">Comisiones pedidas</button>
+                  <Link to={`/MisPedidos/${userData._id}`} className="nav-item nav-link">
+                    Comisiones que tu has pedido
                   </Link>
                 </Fragment>
-                : /*SI TU NO ERES EL DUEÑO DEL PERFIL*/
-                isFollowed ? <button className="btn btn-outline-info-danger m-1" type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
-                  : <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
-              }
-            </div>
-            <Link to={`/ComisionesHoja/${userData._id}`}>
-              <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
-            </Link>
-          </div>
 
-          
+              </div>
+            </div>
+          </nav>
+          : isFollowed ?
+            <div className='botonSeguir'>
+              <button className="btn btn-outline-info-danger m-1 " type="submit" onClick={unFollowUser}>Dejar de seguir artista</button>
+            </div>
+            : <div className='botonSeguir'>
+              <button className="btn btn-outline-info m-1" type="submit" onClick={followUser}>Seguir Artista</button>
+            </div>
+        }
+        <div className='botonSeguir mt-2'>
+          <Link to={`/ComisionesHoja/${userData._id}`}>
+            <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
+          </Link>
+
+        </div>
+
         <div className="row text-center    ">
           <div className="col text-center d-flex align-content-start flex-wrap m-2 ">
             {publicaciones && publicaciones.map(tuPost => (
               <Link to={`/Publicacion/${tuPost._id}`}>
                 <div className="d-inline-flex m-3 " >
                   <img className="img" src={tuPost.Imagen}
-                    alt="" width="570" height="570" />
+                    alt="" width="470" height="470" />
                 </div>
               </Link>
             ))}
           </div>
         </div>
-        </div>
-      
+      </div>
+
     </Fragment>
   );
 }

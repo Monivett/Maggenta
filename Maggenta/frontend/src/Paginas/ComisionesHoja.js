@@ -46,7 +46,7 @@ function ComisionesHoja() {
         }
 
     }, [])
-
+console.log('hola')
     const BorrarComision = useCallback(async (user, id) => {
         const pedidos = await UserHasComision(user, id);
         if (pedidos.length !== 0) {

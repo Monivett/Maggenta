@@ -1,5 +1,6 @@
 .userInfoPub {
-    display: flex;
+    display: flex; 
+     text-decoration: none;
 }
 
 .userInfoPub img {
@@ -9,4 +10,19 @@
 
 .userInfoPub p {
     margin-top: 10px;
+    text-decoration: none;
+}
+
+#scroll3 {
+    border: 1px solid;
+    height: 400px;
+    width: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.comentarios{
+    width: 85%;
+}
+.infoUserComentario{
+  width: 30%;
 }

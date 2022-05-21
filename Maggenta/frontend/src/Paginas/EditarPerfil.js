@@ -143,28 +143,33 @@ function EditarPerfil() {
     return (
         <Fragment>
             {showModal && <Modal show={showModal} onClose={handleClose} />}
-            <div className="row">
-                <div className="col hola">
-                    <div className="align-self-center">
-                        <div className="mt-auto" id="usuarioFoto">
-                            {!image ?
-                                <img src={user && user.userData.Foto} alt="" height="720" width="590" /> :
-                                <img src={DisplayImage} alt="" height="720" width="590" />
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div className="col bg text-center">
-                    <form onSubmit={submitHandler} method="POST" id="form" className="registrarse">
-                        <h1 id="letraTitulo">Editar perfil</h1>
-                        <div className="row m-2">
-                            <div className="col d-flex flex-column">
-                                <div className="">
-                                    <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" />
+            <div className="container FormRegistro ">
+                <div className="Registro">
+                    <div>
+                        <div className="col FotoUser">
+                            <div className="align-self-center">
+                                <div className="mt-auto" id="usuarioFoto">
+                                {!image ?
+                                    <img src={user && user.userData.Foto} alt="" height="720" width="590" /> :
+                                    <img src={DisplayImage} alt="" height="720" width="590" />
+                                }
                                 </div>
                             </div>
                         </div>
-                        <div className="form">
+                    </div>
+                    <div>
+                        <div className="col bg text-center">
+                            {/** --------> el Form <------------------*/}
+                            <form onSubmit={submitHandler} method="POST" id="form" className="registrarse">
+                                <h1 id="letraTitulo">EDITAR PERFIL</h1>
+                                <div className="row m-2">
+                                    <div className="col d-flex flex-column">
+                                        <div className="">
+                                            <img src={require('../imag/maggentaLOGO.png')} alt="" height="70" width="270" id="imagensita" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form">
                             <div className="grupo">
                                 <label htmlFor="">Nombre(s):</label><br />
                                 <input className="form-control" type="text" name="Nombre" placeholder="Nombre..." defaultValue={Name} />
@@ -194,7 +199,9 @@ function EditarPerfil() {
                             <br />
                             <button type="submit" className="btn btn-light btn-lg" id="registro">Editar perfil</button>
                         </div>
-                    </form>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Fragment>

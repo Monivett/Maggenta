@@ -53,7 +53,7 @@ exports.Price_update = async (req, res) => {
 exports.Price_delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const Pricedb = await Price.findById({ id });
+        const Pricedb = await Price.find({ _id: id });
 
         if (Pricedb) { //Proceso de actualizar
 
