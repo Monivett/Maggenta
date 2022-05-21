@@ -5,6 +5,7 @@ import { GetUsername } from '../services/UserService';
 import { GetChats } from '../services/ChatService';
 import { axiosBase as axios } from "../services/Config";
 import { Link } from "react-router-dom";
+import './Chat.css'
 
 function Chat() {
 
@@ -51,7 +52,7 @@ function Chat() {
     if (username != '') {
       const usuarios = await GetUsername(username);
       setUsers(usuarios)
-    }else{
+    } else {
       fetchData();
     }
   }
@@ -89,10 +90,10 @@ function Chat() {
   }
   return (
     <Fragment>
-      <div className="container-fluid mt-5 mb-5 " >
-        <div className="row clearfix"  >
-          <div className="col-lg-12" >
-            <div className="card chat-app " id="Tchat2" >
+      <div className="container-fluid mt-5 mb-5 todochat" >
+        <div className="row clearfix "  >
+          <div className="col-lg-12 " >
+            <div className="card chat-app chatConainer" id="Tchat2" >
               <div id="plist" className="people-list">
                 <div className="input-group mt-3" >
                   <div className="input-group-prepend">
@@ -104,36 +105,42 @@ function Chat() {
                   </div>
                   <input type="text" className="form-control" placeholder="Buscar..." onChange={event => searchUsername(event.target.value)} />
                 </div>
-                <ul className="list-unstyled chat-list mt-2 mb-0" id="scroll2">
-                  {/*Muestra todos los usuarios disponibles: */}
-                  {Users.filter(data => data._id !== user.userData._id).map(data => (
-                    <li className="clearfix" onClick={() => changeCurrentChat(data._id, data.Foto, data.Usuario)}>
-                      <img className=" img" src={data.Foto} alt="avatar " />
-                      <div className="about">
-                        <div className="name">{data.Usuario}</div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <div className="UsuariosLista">
+                  <ul className="aaa list-unstyled chat-list mt-2 mb-0" id="scroll2">
+                    {/*Muestra todos los usuarios disponibles: */}
+                    {Users.filter(data => data._id !== user.userData._id).map(data => (
+                      <li className="clearfix" onClick={() => changeCurrentChat(data._id, data.Foto, data.Usuario)}>
+                        <div >
+                          <img className=" img" src={data.Foto} alt="avatar " height="50" width="50" />  
+                          <div className="name">{data.Usuario}</div>
+                        </div>
+
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
               </div>
               <div className="chat" >
                 <div className="chat-header clearfix" >
                   <div className="row" >
                     {/*Si eligio a un usuario para chatear, muestra: */}
-                    {currentChat.length != 0 &&
+                    {currentChat.length != 0 ?
                       <div className="col-lg-6" >
                         <Link to={`/Perfil/${currentChat[0]}`} data-toggle="modal" data-target="#view_info">
-                          <img className=" img" src={currentChat[1]} alt="avatar "  height="50" width="50" />
+                          <img className=" img" src={currentChat[1]} alt="avatar " height="50" width="50" />
                         </Link>
                         <div className="chat-about">
                           <h6 className="m-b-0">{currentChat[2]}</h6>
                         </div>
                       </div>
+                      :
+                      <div className="vacio" >
+                      </div>
                     }
-
                   </div>
                 </div>
-                <div className="chat-history"  id="Tchat">
+                <div className="chat-history" id="Tchat">
                   {currentChat.length != 0 ?
                     <ul className="m-b-0 m-5">
                       {/*Si hay mensajes muestra: */}
@@ -188,6 +195,7 @@ function Chat() {
           </div>
         </div>
       </div>
+
     </Fragment>
 
 

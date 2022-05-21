@@ -2,11 +2,6 @@ body {
     background: #282828;
 }
 
-#form {
-    align-items: center;
-    font-family: Arial Black;
-}
-
 #login {
     align-items: center;
     height: 420px;
@@ -20,6 +15,13 @@ body {
     margin-bottom: 100px;
 }
 
+#form {
+    align-items: center;
+    font-family: Arial Black;
+}
+
+
+
 
 
 #entrar {
@@ -32,20 +34,36 @@ body {
 }
 
 .logoFORMS {
-    margin-left: 50px;
+    margin: 0 auto;
 }
 
-#letraCorreo {
-    font-size: 22px;
-    margin-left: 90px;
-}
-
-#letraContra {
-    font-size: 22px;
-    margin-left: 130px;
-}
-
-h1,
-label {
+#form p,
+h1 {
+    text-align: center;
     color: #ffffff;
+}
+
+.btn_Registrar {
+    margin: auto;
+    width: 50%;
+  
+}
+
+@media (max-width: 768px) {
+
+    #login {
+        align-items: center;
+        height: 420px;
+        width: 100%;
+        border-radius: 0px;
+        margin: 0 auto;
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+    .btn_Registrar {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+
 }
