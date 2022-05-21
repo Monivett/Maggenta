@@ -169,7 +169,9 @@ function Perfil() {
             <img className="img rounded-circle" alt="100x100" src={userData.Foto}
               width="150" height="150" />
             <h3 className="fw-bold text-center mt-3 TCR"> {userData.Nombre} {userData.Apellidos}</h3>
-            <h5 className="fw-bold text-center mt-3 TCR"> @{userData.Usuario}</h5>
+            <h5 className="fw-bold text-center mt-2 TCR"> @{userData.Usuario}</h5>
+            <h5 className="fw-light text-center mt-2 TCR"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
+              <h5 className="fw-light text-center mt-2 TCR"> {userData.Correo} </h5>
           </div>
         </div>
         <div className="row align-items-stretch">
@@ -186,11 +188,34 @@ function Perfil() {
             </div>
           </div>
         </div>
+
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#">Features</a>
+      <a class="nav-item nav-link" href="#">Pricing</a>
+      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
         <div className="row text-center  bg5   ">
-          <div className="col-4 ">
+         
             <div className="col p-3 text-white  m-5 rounded shadow " id="Margen">
-              <h5 className="fw-light text-center mt-3"> Fecha de Nacimiento: <br></br> {userData.FechaNac} </h5>
-              <h5 className="fw-light text-center mt-3"> {userData.Correo} </h5>
+             
               {user && user.userData._id == userData._id ? /*SI TU ERES EL DUEÑO DEL PERFIL*/
                 <Fragment>
                   <Link to="/EditarPerfil">
@@ -230,18 +255,22 @@ function Perfil() {
               <button className="btn btn-outline-info m-1" type="submit">Hoja de Comisiones</button>
             </Link>
           </div>
-          <div className="col-7 text-center   m-2 ">
+
+          
+        <div className="row text-center    ">
+          <div className="col text-center d-flex align-content-start flex-wrap m-2 ">
             {publicaciones && publicaciones.map(tuPost => (
               <Link to={`/Publicacion/${tuPost._id}`}>
                 <div className="d-inline-flex m-3 " >
                   <img className="img" src={tuPost.Imagen}
-                    alt="" width="300" height="300" />
+                    alt="" width="570" height="570" />
                 </div>
               </Link>
             ))}
           </div>
         </div>
-      </div>
+        </div>
+      
     </Fragment>
   );
 }
