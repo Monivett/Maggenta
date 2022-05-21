@@ -85,9 +85,8 @@ function ComisionesHoja() {
         <Fragment>
             <div className="container-fluid bg4  p-5">
                 <div className="row ">
-                    <div className="col m-2">
-                    </div>
-                    <div className="col-10 bg2  align-items-center m-2 p-5">
+                   
+                    <div className="col bg2  align-items-center m-2 p-5">
                         <div className="Reglas">
                             {rules.length !== 0 ? <h1>REGLAS</h1> : <h1>No hay reglas</h1>}
                             {rules.map(Reglas => (
@@ -133,8 +132,7 @@ function ComisionesHoja() {
 
 
                     </div>
-                    <div className="col  m-2">
-                    </div>
+                    
 
                 </div>
 

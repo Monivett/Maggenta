@@ -119,15 +119,44 @@ function SubirPub() {
                   <img className="reg-publ"
                     src={require("../IMG/tbchoi2.jpg")}
                     alt="no se pudo cargar :("
-                    width="300" height="500" />
+                    width="400" height="600" />
                   :
                   <img className="reg-publ"
                     src={DisplayImage}
                     alt="no se pudo cargar :("
-                    width="300" height="500" />
+                    width="400" height="600" />
                 }
                 { /**    Imagen     */}
-                <div className="form-group m-5 text-center">
+               
+              </div>
+            </div>
+            </div>
+
+
+            <div className="row">
+            <div className="col  bg2  ">
+             
+
+
+             
+                
+                  <h5 className="card-text text-white fw-bold text-center mt-5"> Descripcion de la Imagen</h5>
+                  { /* Descripcion */}
+                  <div className=" Separador " >    
+                   <div className="form-group m-1">
+                    <textarea className="form-control mt-2" rows="7" name="descripcion" required ></textarea>
+                  </div>
+                  { /* Categoria*/}
+                  <div className="text-center m-3 " name="categoria">
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="categoria" required  >
+                      {categorias.map(category => (
+                        <option value={category._id} selected>{category.Category}</option>
+                      ))}
+                    </select>
+                  </div>
+                     </div>
+                  
+                     <div className="form-group  text-center">
                   <label htmlFor="exampleFormControlFile1">Abrir Imagen</label>
                   <input
                     type="file"
@@ -139,32 +168,13 @@ function SubirPub() {
                     accept="image/*"
                   />
                 </div>
-              </div>
-            </div>
-            <div className="col bg2 m-2">
-              <div className="col p-5 text-white  rounded shadow  mt-5 " id="Margen">
-                <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">
-                  <h5 className="card-text text-white fw-bold text-center mt-5"> Descripcion de la Imagen</h5>
-                  { /* Descripcion */}
-                  <div className="form-group m-1">
-                    <textarea className="form-control mt-2" rows="7" name="descripcion" required ></textarea>
-                  </div>
-                  { /* Categoria*/}
-                  <div className="text-center m-3 " name="categoria">
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="categoria" required  >
-                      {categorias.map(category => (
-                        <option value={category._id} selected>{category.Category}</option>
-                      ))}
-                    </select>
-                  </div>
                   <div className="text-center mb-5 ">
                     <p className="error">{error}</p>
                     <button className="btn btn-outline-info m-2 " type="submit">Crear Publicacion</button>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+                </div>
+        
         </form>
         {/** fin del Form */}
       </div>

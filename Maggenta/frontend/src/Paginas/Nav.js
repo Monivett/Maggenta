@@ -53,10 +53,10 @@ function Nav() {
             </a>
           </div>
           <form onSubmit={BuscarPublicacion} className="col  mt-3 formulario">
-            <div className="col  mt-3 ">
+            <div className="col  mt-1 ">
               <input type="text" className="form-control" name="Buscar" id="Buscador" placeholder="Buscar" />
             </div>
-            <div className="col mt-3">
+            <div className="col mt-1">
               <button className="btn btn-outline-info " type="submit">Buscar</button>
             </div>
           </form>

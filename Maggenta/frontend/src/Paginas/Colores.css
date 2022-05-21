@@ -62,6 +62,14 @@
 
 }
 
+#MargenT {
+
+    border-width: 40px;
+    border-style: solid;
+   
+
+}
+
 .Reglas{
     color: white;
 }
@@ -332,4 +340,42 @@ body {
         height: calc(100vh - 350px);
         overflow-x: auto
     }
+}
+
+.Separador {
+margin: auto;
+    width: 30%;
+
+}
+
+
+
+.Comis{
+    margin: auto;
+
+}
+
+@media (max-width: 768px) {
+
+    .Separador {
+        margin: auto;
+            width: fit-content;
+        
+        }
+
+
+        .reg-publ{
+
+            width: fit-content;
+            height: fit-content;
+        }
+
+
+
+.Comis{
+    width: 30%;
+    height: 30%;
+
+}
+
 }

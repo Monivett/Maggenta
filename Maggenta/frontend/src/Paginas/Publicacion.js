@@ -152,7 +152,7 @@ function Publicacion() {
                 alt="No se pudo cargar..." width="300" height="500" />
               <div className="card mt-5 " >
                 <div className="row">
-                  <div className="col">
+                  <div className="col" >
                     <div className="card-body userInfoPub">
                       <div className="row contornos pt-2">
                         <div className="mini-inline">
@@ -171,7 +171,7 @@ function Publicacion() {
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col-4"  >
 
             {user &&
               <div className=" m-2  " >
@@ -189,6 +189,9 @@ function Publicacion() {
                 </div>
               </div>
             }
+
+
+<div className=" m-2  "  id="scroll3">
             {/** FOR DE COMENTARIOS */}
             {coment.map(ElComentario => (
               <div className="card  m-2  " >
@@ -209,7 +212,7 @@ function Publicacion() {
                 </div>
               </div>
             ))}
-
+</div>
             {/** FORM */}
             {user && <div className="col p-3 text-white  rounded shadow ">
               <div className="col p-3 text-white  m-1 rounded shadow " id="Margen">
